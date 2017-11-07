@@ -1,0 +1,439 @@
+<!DOCTYPE html><html lang="zh-Hans"><head><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description" content="Life is strange"><title>C 语言基础入门 | C &amp; Fish</title><link rel="stylesheet" type="text/css" href="/css/style.css?v=0.0.0"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/normalize/7.0.0/normalize.min.css"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/pure/1.0.0/pure-min.css"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/pure/1.0.0/grids-responsive-min.css"><link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css"><script type="text/javascript" src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script><link rel="Shortcut Icon" type="image/x-icon" href="/favicon.ico"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="apple-touch-icon-precomposed" href="/apple-touch-icon.png"></head><body><div class="body_container"><div id="header"><div class="site-name"><h1 class="hidden">C 语言基础入门</h1><a id="logo" href="/.">C &amp; Fish</a><p class="description">Life is strange</p></div><div id="nav-menu"><a href="/." class="current"><i class="fa fa-home"> Start</i></a><a href="/archives/"><i class="fa fa-archive"> Archiv</i></a></div></div><div id="layout" class="pure-g"><div class="pure-u-1 pure-u-md-3-4"><div class="content_container"><div class="post"><h1 class="post-title">C 语言基础入门</h1><div class="post-meta">Nov 7, 2017<span> | </span><span class="category"><a href="/categories/C-语言/">C 语言</a></span></div><div class="post-content"><ul>
+<li><a href="#简介">简介</a></li>
+<li><a href="#环境设置">环境设置</a><ul>
+<li><a href="#UNIX-Linux">UNIX/Linux</a></li>
+<li><a href="#Mac-OS">Mac OS</a></li>
+<li><a href="#Windows">Windows</a></li>
+</ul>
+</li>
+<li><a href="#Hello-World">Hello World</a><ul>
+<li><a href="#例子">例子</a></li>
+<li><a href="#编译-amp-执行-C-程序">编译 &amp; 执行 C 程序</a></li>
+</ul>
+</li>
+<li><a href="#关键字">关键字</a></li>
+<li><a href="#数据类型">数据类型</a><ul>
+<li><a href="#整形">整形</a></li>
+<li><a href="#浮点类型">浮点类型</a></li>
+</ul>
+</li>
+<li><a href="#变量">变量</a><ul>
+<li><a href="#变量定义">定义</a></li>
+<li><a href="#变量声明">声明</a></li>
+</ul>
+</li>
+<li><a href="#常量">常量</a><ul>
+<li><a href="#define-预处理器">#define 预处理器</a></li>
+<li><a href="#const-关键字">const 关键字</a></li>
+</ul>
+</li>
+<li><a href="#存储类">存储类</a></li>
+<li><a href="#运算符">运算符</a></li>
+<li><a href="#判断">判断</a><ul>
+<li><a href="#判断语句">判断语句</a></li>
+<li><a href="#三元运算符">三元运算符</a></li>
+</ul>
+</li>
+<li><a href="#循环">循环</a><ul>
+<li><a href="#循环控制语句">循环控制语句</a></li>
+</ul>
+</li>
+<li><a href="#函数">函数</a><ul>
+<li><a href="#定义函数">定义函数</a></li>
+<li><a href="#函数声明">函数声明</a></li>
+<li><a href="#作用域">作用域</a></li>
+<li><a href="#局部变量">局部变量</a></li>
+<li><a href="#全局变量">全局变量</a></li>
+<li><a href="#形式参数">形式参数</a></li>
+</ul>
+</li>
+<li><a href="#数组">数组</a><ul>
+<li><a href="#声明数组">声明数组</a></li>
+<li><a href="#初始化数组">初始化数组</a></li>
+<li><a href="#指向数组的指针">指向数组的指针</a></li>
+</ul>
+</li>
+<li><a href="#指针">指针</a><ul>
+<li><a href="#使用指针">使用指针</a></li>
+</ul>
+</li>
+<li><a href="#字符串">字符串</a></li>
+<li><a href="#结构体">结构体</a><ul>
+<li><a href="#定义结构体">定义结构体</a></li>
+<li><a href="#访问结构体">访问结构体</a></li>
+</ul>
+</li>
+<li><a href="#typedef">typedef</a><ul>
+<li><a href="#声明">声明</a></li>
+<li><a href="#typedef-vs-define">typedef vs #define</a></li>
+</ul>
+</li>
+<li><a href="#内存管理">内存管理</a></li>
+<li><a href="#堆空间和栈空间">堆空间和栈空间</a></li>
+</ul>
+<h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><blockquote>
+<p>C 语言是一种通用的、面向过程式的计算机程序设计语言。1972 年, 为了移植与开发 UNIX 操作系统, 丹尼斯·里奇在贝尔电话实验室设计开发了 C 语言。</p>
+</blockquote>
+<ul>
+<li>易于学习。</li>
+<li>结构化语言。</li>
+<li>它产生高效率的程序。</li>
+<li>它可以处理底层的活动。</li>
+<li>它可以在多种计算机平台上编译。</li>
+</ul>
+<h2 id="环境设置"><a href="#环境设置" class="headerlink" title="环境设置"></a>环境设置</h2><h3 id="UNIX-Linux"><a href="#UNIX-Linux" class="headerlink" title="UNIX/Linux"></a>UNIX/Linux</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span> gcc -v</div><div class="line"></div><div class="line">Using built-in specs.</div><div class="line">Target: i386-redhat-linux</div><div class="line">Configured with: ../configure --prefix=/usr .......</div><div class="line">Thread model: posix</div><div class="line">gcc version 4.1.2 20080704 (Red Hat 4.1.2-46)</div></pre></td></tr></table></figure>
+<p>如果未安装 GCC，那么请按照 <a href="http://gcc.gnu.org/install/" target="_blank" rel="external">http://gcc.gnu.org/install/</a> 上的详细说明安装 GCC。</p>
+<h3 id="Mac-OS"><a href="#Mac-OS" class="headerlink" title="Mac OS"></a>Mac OS</h3><p>最快捷的获取 GCC 的方法是从苹果的网站上下载 Xcode 开发环境。</p>
+<p>Xcode 目前可从 <a href="https://developer.apple.com/technologies/tools/" target="_blank" rel="external">https://developer.apple.com/technologies/tools/</a> 上下载。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span> gcc -v</div><div class="line"></div><div class="line">Configured with: --prefix=/Applications/Xcode.app/Contents/Developer/usr --with-gxx-include-dir=/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.13.sdk/usr/incl</div><div class="line">ude/c++/4.2.1</div><div class="line">Apple LLVM version 9.0.0 (clang-900.0.38)</div><div class="line">Target: x86_64-apple-darwin17.2.0</div><div class="line">Thread model: posix</div><div class="line">InstalledDir: /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin</div></pre></td></tr></table></figure>
+<h3 id="Windows"><a href="#Windows" class="headerlink" title="Windows"></a>Windows</h3><p>安装 MinGW。MinGW 的主页 <a href="http://www.mingw.org。" target="_blank" rel="external">http://www.mingw.org。</a></p>
+<p>至少要安装 gcc-core、gcc-g++、binutils 和 MinGW runtime。</p>
+<h2 id="Hello-World"><a href="#Hello-World" class="headerlink" title="Hello World"></a>Hello World</h2><p>C 程序主要包括以下部分:</p>
+<ul>
+<li>预处理器指令</li>
+<li>函数</li>
+<li>变量</li>
+<li>语句 &amp; 表达式</li>
+<li>注释</li>
+</ul>
+<h3 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</div><div class="line">   <span class="built_in">printf</span>(<span class="string">"Hello, World! \n"</span>);</div><div class="line">   <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</div><div class="line">    <span class="keyword">float</span> f;</div><div class="line">    <span class="built_in">printf</span>(<span class="string">"Enter a number: "</span>);</div><div class="line">    <span class="comment">// %f 匹配浮点型数据</span></div><div class="line">    <span class="built_in">scanf</span>(<span class="string">"%f"</span>,&amp;f);</div><div class="line">    <span class="built_in">printf</span>(<span class="string">"Value = %f"</span>, f);</div><div class="line">    <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>程序的第一行 <code>#include &lt;stdio.h&gt;</code> 是预处理器指令, 告诉 C 编译器在实际编译之前要包含 <code>stdio.h</code> 文件。</li>
+<li>下一行 <code>int main()</code> 是主函数, 程序从这里开始执行。</li>
+<li>下一行 <code>/*...*/</code> 将会被编译器忽略, 这里放置程序的注释内容。它们被称为程序的注释。</li>
+<li>下一行 <code>printf(...)</code> 是 C 中另一个可用的函数, 会在屏幕上显示消息 <code>&quot;Hello, World!&quot;</code>。</li>
+<li>下一行 <code>return 0;</code> 终止 <code>main()</code> 函数, 并返回值 <code>0</code>。</li>
+</ul>
+<h4 id="编译-amp-执行-C-程序"><a href="#编译-amp-执行-C-程序" class="headerlink" title="编译 &amp; 执行 C 程序"></a>编译 &amp; 执行 C 程序</h4><ul>
+<li>打开一个文本编辑器, 添加上述代码。</li>
+<li>保存文件为 helloword.c。</li>
+<li>打开命令提示符，进入到保存文件所在的目录。</li>
+<li>输入 gcc helloword.c，按回车, 编译代码。</li>
+<li>如果代码中没有错误, 命令提示符会跳到下一行, 并生成 a.out 可执行文件。</li>
+<li>现在, 输入 ./a.out 来执行程序。</li>
+<li>可以看到屏幕上显示 “Hello World”。</li>
+</ul>
+<h2 id="关键字"><a href="#关键字" class="headerlink" title="关键字"></a>关键字</h2><table>
+<thead>
+<tr>
+<th>-</th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>auto</td>
+<td>else</td>
+<td>long</td>
+<td>switch</td>
+<td>break</td>
+<td>enum</td>
+<td>register</td>
+</tr>
+<tr>
+<td>case</td>
+<td>extern</td>
+<td>return</td>
+<td>union</td>
+<td>char</td>
+<td>float</td>
+<td>short</td>
+</tr>
+<tr>
+<td>unsigned</td>
+<td>const</td>
+<td>for</td>
+<td>signed</td>
+<td>void</td>
+<td>continue</td>
+<td>goto</td>
+</tr>
+<tr>
+<td>sizeof</td>
+<td>volatile</td>
+<td>default</td>
+<td>if</td>
+<td>static</td>
+<td>while</td>
+<td>do</td>
+</tr>
+<tr>
+<td>int</td>
+<td>struct</td>
+<td>_Packed</td>
+<td>double</td>
+<td>typedef</td>
+</tr>
+</tbody>
+</table>
+<h2 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h2><table>
+<thead>
+<tr>
+<th>-</th>
+<th>类型与描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>基本类型</td>
+<td>整数类型和浮点类型</td>
+</tr>
+<tr>
+<td>枚举类型</td>
+<td>被用来定义在程序中只能赋予其一定的离散整数值的变量</td>
+</tr>
+<tr>
+<td>void 类型</td>
+<td>表明没有可用的值</td>
+</tr>
+<tr>
+<td>派生类型</td>
+<td>指针类型、数组类型、结构类型、共用体类型和函数类型</td>
+</tr>
+</tbody>
+</table>
+<h3 id="整形"><a href="#整形" class="headerlink" title="整形"></a>整形</h3><table>
+<thead>
+<tr>
+<th>类型</th>
+<th>存储大小</th>
+<th style="text-align:right">值范围</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>char</td>
+<td>1 字节</td>
+<td style="text-align:right">-128 到 127 或 0 到 255</td>
+</tr>
+<tr>
+<td>unsigned char</td>
+<td>1 字节</td>
+<td style="text-align:right">0 到 255</td>
+</tr>
+<tr>
+<td>signed char</td>
+<td>1 字节</td>
+<td style="text-align:right">-128 到 127</td>
+</tr>
+<tr>
+<td>int</td>
+<td>2 或 4 字节</td>
+<td style="text-align:right">-32,768 到 32,767 或 -2,147,483,648 到 2,147,483,647</td>
+</tr>
+<tr>
+<td>unsigned int</td>
+<td>2 或 4 字节</td>
+<td style="text-align:right">0 到 65,535 或 0 到 4,294,967,295</td>
+</tr>
+<tr>
+<td>short</td>
+<td>2 字节</td>
+<td style="text-align:right">-32,768 到 32,767</td>
+</tr>
+<tr>
+<td>unsigned short</td>
+<td>2 字节</td>
+<td style="text-align:right">0 到 65,535</td>
+</tr>
+<tr>
+<td>long</td>
+<td>4 字节</td>
+<td style="text-align:right">-2,147,483,648 到 2,147,483,647</td>
+</tr>
+<tr>
+<td>unsigned long</td>
+<td>4 字节</td>
+<td style="text-align:right">0 到 4,294,967,295</td>
+</tr>
+</tbody>
+</table>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;limits.h&gt;</span></span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</div><div class="line">   <span class="built_in">printf</span>(<span class="string">"int 存储大小 : %lu \n"</span>, <span class="keyword">sizeof</span>(<span class="keyword">int</span>));</div><div class="line">   <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="浮点类型"><a href="#浮点类型" class="headerlink" title="浮点类型"></a>浮点类型</h3><table>
+<thead>
+<tr>
+<th>类型</th>
+<th>存储大小</th>
+<th>值范围</th>
+<th>精度</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>float</td>
+<td>4 字节</td>
+<td>1.2E-38 到 3.4E+38</td>
+<td>6 位小数</td>
+</tr>
+<tr>
+<td>double</td>
+<td>8 字节</td>
+<td>2.3E-308 到 1.7E+308</td>
+<td>15 位小数</td>
+</tr>
+<tr>
+<td>long double</td>
+<td>16 字节</td>
+<td>3.4E-4932 到 1.1E+4932</td>
+<td>19 位小数</td>
+</tr>
+</tbody>
+</table>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;float.h&gt;</span></span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</div><div class="line">   <span class="built_in">printf</span>(<span class="string">"float 存储最大字节数 : %lu \n"</span>, <span class="keyword">sizeof</span>(<span class="keyword">float</span>));</div><div class="line">   <span class="built_in">printf</span>(<span class="string">"float 最小值: %E\n"</span>, FLT_MIN);</div><div class="line">   <span class="built_in">printf</span>(<span class="string">"float 最大值: %E\n"</span>, FLT_MAX);</div><div class="line">   <span class="built_in">printf</span>(<span class="string">"精度值: %d\n"</span>, FLT_DIG);</div><div class="line"></div><div class="line">   <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="变量"><a href="#变量" class="headerlink" title="变量"></a>变量</h2><h3 id="变量定义"><a href="#变量定义" class="headerlink" title="变量定义"></a>变量定义</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">type variable_list;</div><div class="line">type variable_name = value;</div></pre></td></tr></table></figure>
+<p>type 必须是一个有效的 C 数据类型, 可以是 char、w_char、int、float、double、bool 或任何用户自定义的对象。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">int</span>    i, j, k;</div><div class="line"><span class="keyword">char</span>   c, ch;</div><div class="line"><span class="keyword">float</span>  f, salary;</div><div class="line"><span class="keyword">double</span> d;</div><div class="line"></div><div class="line"><span class="keyword">extern</span> <span class="keyword">int</span> d = <span class="number">3</span>, f = <span class="number">5</span>;    <span class="comment">// d 和 f 的声明与初始化</span></div><div class="line"><span class="keyword">int</span> d = <span class="number">3</span>, f = <span class="number">5</span>;           <span class="comment">// 定义并初始化 d 和 f</span></div><div class="line">byte z = <span class="number">22</span>;                <span class="comment">// 定义并初始化 z</span></div><div class="line"><span class="keyword">char</span> x = <span class="string">'x'</span>;               <span class="comment">// 变量 x 的值为 'x'</span></div></pre></td></tr></table></figure>
+<p>不带初始化的定义: 带有静态存储持续时间的变量会被隐式初始化为 NULL（所有字节的值都是 0）, 其他所有变量的初始值是未定义的</p>
+<h3 id="变量声明"><a href="#变量声明" class="headerlink" title="变量声明"></a>变量声明</h3><ul>
+<li>一种是需要建立存储空间的。例如：int a 在声明的时候就已经建立了存储空间。</li>
+<li>另一种是不需要建立存储空间的，通过使用extern关键字声明变量名而不定义它。 例如：extern int a 其中变量 a 可以在别的文件中定义的。</li>
+<li>除非有extern关键字，否则都是变量的定义。</li>
+</ul>
+<p>实例:</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">extern</span> <span class="keyword">int</span> i; <span class="comment">//声明，不是定义</span></div><div class="line"><span class="keyword">int</span> i; <span class="comment">//声明，也是定义</span></div></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></div><div class="line"></div><div class="line"><span class="comment">// 变量声明</span></div><div class="line"><span class="keyword">extern</span> <span class="keyword">int</span> a, b;</div><div class="line"><span class="keyword">extern</span> <span class="keyword">int</span> c;</div><div class="line"><span class="keyword">extern</span> <span class="keyword">float</span> f;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span> <span class="params">()</span> </span>&#123;</div><div class="line">  <span class="comment">/* 变量定义 */</span></div><div class="line">  <span class="keyword">int</span> a, b;</div><div class="line">  <span class="keyword">int</span> c;</div><div class="line">  <span class="keyword">float</span> f;</div><div class="line"></div><div class="line">  <span class="comment">/* 初始化 */</span></div><div class="line">  a = <span class="number">10</span>;</div><div class="line">  b = <span class="number">20</span>;</div><div class="line"></div><div class="line">  c = a + b;</div><div class="line">  <span class="built_in">printf</span>(<span class="string">"value of c : %d \n"</span>, c);</div><div class="line"></div><div class="line">  f = <span class="number">70.0</span>/<span class="number">3.0</span>;</div><div class="line">  <span class="built_in">printf</span>(<span class="string">"value of f : %f \n"</span>, f);</div><div class="line"></div><div class="line">  <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="常量"><a href="#常量" class="headerlink" title="常量"></a>常量</h2><p>定义常量:</p>
+<ul>
+<li>使用 #define 预处理器。</li>
+<li>使用 const 关键字。</li>
+</ul>
+<h3 id="define-预处理器"><a href="#define-预处理器" class="headerlink" title="#define 预处理器"></a>#define 预处理器</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">define</span> identifier value</span></div></pre></td></tr></table></figure>
+<p>实例：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></div><div class="line"></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> LENGTH 10</span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> WIDTH  5</span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> NEWLINE <span class="meta-string">'\n'</span></span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</div><div class="line"></div><div class="line">   <span class="keyword">int</span> area;</div><div class="line"></div><div class="line">   area = LENGTH * WIDTH;</div><div class="line">   <span class="built_in">printf</span>(<span class="string">"value of area : %d"</span>, area);</div><div class="line">   <span class="built_in">printf</span>(<span class="string">"%c"</span>, NEWLINE);</div><div class="line"></div><div class="line">   <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="const-关键字"><a href="#const-关键字" class="headerlink" title="const 关键字"></a>const 关键字</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> type variable = value;</div></pre></td></tr></table></figure>
+<p>实例:</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></div><div class="line"> </div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</div><div class="line">   <span class="keyword">const</span> <span class="keyword">int</span>  LENGTH = <span class="number">10</span>;</div><div class="line">   <span class="keyword">const</span> <span class="keyword">int</span>  WIDTH  = <span class="number">5</span>;</div><div class="line">   <span class="keyword">const</span> <span class="keyword">char</span> NEWLINE = <span class="string">'\n'</span>;</div><div class="line">   <span class="keyword">int</span> area;</div><div class="line"></div><div class="line">   area = LENGTH * WIDTH;</div><div class="line">   <span class="built_in">printf</span>(<span class="string">"value of area : %d"</span>, area);</div><div class="line">   <span class="built_in">printf</span>(<span class="string">"%c"</span>, NEWLINE);</div><div class="line"></div><div class="line">   <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>PS: 把常量定义为大写字母形式。</p>
+<h2 id="存储类"><a href="#存储类" class="headerlink" title="存储类"></a>存储类</h2><ul>
+<li>auto<ul>
+<li>auto 只能用在函数内，即 auto 只能修饰局部变量。</li>
+</ul>
+</li>
+<li>register<ul>
+<li>用于定义存储在寄存器中而不是 RAM 中的局部变量。这意味着变量的最大尺寸等于寄存器的大小（通常是一个词），且不能对它应用一元的 ‘&amp;’ 运算符（因为它没有内存位置。</li>
+</ul>
+</li>
+<li>static<ul>
+<li>指示编译器在程序的生命周期内保持局部变量的存在，而不需要在每次它进入和离开作用域时进行创建和销毁。</li>
+</ul>
+</li>
+<li>extern<ul>
+<li>用于提供一个全局变量的引用，全局变量对所有的程序文件都是可见的。</li>
+</ul>
+</li>
+</ul>
+<h2 id="运算符"><a href="#运算符" class="headerlink" title="运算符"></a>运算符</h2><ul>
+<li>算术运算符</li>
+<li>关系运算符</li>
+<li>逻辑运算符</li>
+<li>位运算符</li>
+<li>赋值运算符</li>
+<li>杂项运算符</li>
+</ul>
+<h2 id="判断"><a href="#判断" class="headerlink" title="判断"></a>判断</h2><h3 id="判断语句"><a href="#判断语句" class="headerlink" title="判断语句"></a>判断语句</h3><ul>
+<li>if 语句</li>
+<li>if…else 语句</li>
+<li>switch 语句</li>
+</ul>
+<h3 id="三元运算符"><a href="#三元运算符" class="headerlink" title="三元运算符"></a>三元运算符</h3><p><code>1 : 0 ? 0;</code></p>
+<h2 id="循环"><a href="#循环" class="headerlink" title="循环"></a>循环</h2><ul>
+<li>while 循环</li>
+<li>for 循环</li>
+<li>do…while 循环</li>
+</ul>
+<h3 id="循环控制语句"><a href="#循环控制语句" class="headerlink" title="循环控制语句"></a>循环控制语句</h3><ul>
+<li>break 语句</li>
+<li>continue 语句</li>
+<li>goto 语句</li>
+</ul>
+<h2 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h2><p>每个 C 程序都至少有一个函数，即主函数 main()。</p>
+<h3 id="定义函数"><a href="#定义函数" class="headerlink" title="定义函数"></a>定义函数</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="function">return_type <span class="title">function_name</span><span class="params">(parameter <span class="built_in">list</span>)</span> </span>&#123;</div><div class="line">   <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="函数声明"><a href="#函数声明" class="headerlink" title="函数声明"></a>函数声明</h3><p>函数声明会告诉编译器函数名称及如何调用函数。函数的实际主体可以单独定义。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="function">return_type <span class="title">function_name</span><span class="params">( parameter <span class="built_in">list</span> )</span></span>;</div></pre></td></tr></table></figure>
+<p>实例:</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></div><div class="line"></div><div class="line"><span class="comment">/* 函数声明 */</span></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">max</span><span class="params">(<span class="keyword">int</span> num1, <span class="keyword">int</span> num2)</span></span>;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span> <span class="params">()</span> </span>&#123;</div><div class="line">   <span class="comment">/* 局部变量定义 */</span></div><div class="line">   <span class="keyword">int</span> a = <span class="number">100</span>;</div><div class="line">   <span class="keyword">int</span> b = <span class="number">200</span>;</div><div class="line">   <span class="keyword">int</span> ret;</div><div class="line"> </div><div class="line">   <span class="comment">/* 调用函数来获取最大值 */</span></div><div class="line">   ret = max(a, b);</div><div class="line"> </div><div class="line">   <span class="built_in">printf</span>( <span class="string">"Max value is : %d\n"</span>, ret );</div><div class="line"> </div><div class="line">   <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div><div class="line"> </div><div class="line"><span class="comment">/* 函数返回两个数中较大的那个数 */</span></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">max</span><span class="params">(<span class="keyword">int</span> num1, <span class="keyword">int</span> num2)</span> </span>&#123;</div><div class="line">   <span class="comment">/* 局部变量声明 */</span></div><div class="line">   <span class="keyword">int</span> result;</div><div class="line"> </div><div class="line">   <span class="keyword">if</span> (num1 &gt; num2) &#123;</div><div class="line">      result = num1;</div><div class="line">   &#125; <span class="keyword">else</span> &#123;</div><div class="line">      result = num2;</div><div class="line">   &#125;</div><div class="line"> </div><div class="line">   <span class="keyword">return</span> result;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>内部函数 <code>static int max(int a,intb)</code></li>
+<li>外部函数 <code>extern int max (int a,intb)</code></li>
+<li>内联函数 <code>inline void swap(int *a, int *b)</code><ul>
+<li>递归函数不能定义为内联函数</li>
+<li>内联函数一般适合于不存在while和switch等复杂的结构且只有1~5条语句的小函数上，否则编译系统将该函数视为普通函数。</li>
+<li>内联函数只能先定义后使用，否则编译系统也会把它认为是普通函数。</li>
+<li>对内联函数不能进行异常的接口声明。</li>
+</ul>
+</li>
+</ul>
+<h2 id="作用域"><a href="#作用域" class="headerlink" title="作用域"></a>作用域</h2><h3 id="局部变量"><a href="#局部变量" class="headerlink" title="局部变量"></a>局部变量</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></div><div class="line"> </div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span> <span class="params">()</span> </span>&#123;</div><div class="line">  <span class="comment">/* 局部变量声明 */</span></div><div class="line">  <span class="keyword">int</span> a, b;</div><div class="line">  <span class="keyword">int</span> c;</div><div class="line"> </div><div class="line">  <span class="comment">/* 实际初始化 */</span></div><div class="line">  a = <span class="number">10</span>;</div><div class="line">  b = <span class="number">20</span>;</div><div class="line">  c = a + b;</div><div class="line"> </div><div class="line">  <span class="built_in">printf</span> (<span class="string">"value of a = %d, b = %d and c = %d\n"</span>, a, b, c);</div><div class="line"> </div><div class="line">  <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="全局变量"><a href="#全局变量" class="headerlink" title="全局变量"></a>全局变量</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></div><div class="line"> </div><div class="line"><span class="comment">/* 全局变量声明 */</span></div><div class="line"><span class="keyword">int</span> g;</div><div class="line"> </div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span> <span class="params">()</span> </span>&#123;</div><div class="line">  <span class="comment">/* 局部变量声明 */</span></div><div class="line">  <span class="keyword">int</span> a, b;</div><div class="line"> </div><div class="line">  <span class="comment">/* 实际初始化 */</span></div><div class="line">  a = <span class="number">10</span>;</div><div class="line">  b = <span class="number">20</span>;</div><div class="line">  g = a + b;</div><div class="line"> </div><div class="line">  <span class="built_in">printf</span> (<span class="string">"value of a = %d, b = %d and g = %d\n"</span>, a, b, g);</div><div class="line"> </div><div class="line">  <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="形式参数"><a href="#形式参数" class="headerlink" title="形式参数"></a>形式参数</h3><p>函数的参数，形式参数，被当作该函数内的局部变量，它们会优先覆盖全局变量。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></div><div class="line"> </div><div class="line"><span class="comment">/* 全局变量声明 */</span></div><div class="line"><span class="keyword">int</span> a = <span class="number">20</span>;</div><div class="line"> </div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span> <span class="params">()</span> </span>&#123;</div><div class="line">  <span class="comment">/* 在主函数中的局部变量声明 */</span></div><div class="line">  <span class="keyword">int</span> a = <span class="number">10</span>;</div><div class="line">  <span class="keyword">int</span> b = <span class="number">20</span>;</div><div class="line">  <span class="keyword">int</span> c = <span class="number">0</span>;</div><div class="line">  <span class="function"><span class="keyword">int</span> <span class="title">sum</span><span class="params">(<span class="keyword">int</span>, <span class="keyword">int</span>)</span></span>;</div><div class="line"> </div><div class="line">  <span class="built_in">printf</span> (<span class="string">"value of a in main() = %d\n"</span>,  a);</div><div class="line">  c = sum( a, b);</div><div class="line">  <span class="built_in">printf</span> (<span class="string">"value of c in main() = %d\n"</span>,  c);</div><div class="line"> </div><div class="line">  <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div><div class="line"> </div><div class="line"><span class="comment">/* 添加两个整数的函数 */</span></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">sum</span><span class="params">(<span class="keyword">int</span> a, <span class="keyword">int</span> b)</span></span></div><div class="line"><span class="function"></span>&#123;</div><div class="line">    <span class="built_in">printf</span> (<span class="string">"value of a in sum() = %d\n"</span>,  a);</div><div class="line">    <span class="built_in">printf</span> (<span class="string">"value of b in sum() = %d\n"</span>,  b);</div><div class="line"> </div><div class="line">    <span class="keyword">return</span> a + b;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="数组"><a href="#数组" class="headerlink" title="数组"></a>数组</h2><p>所有的数组都是由连续的内存位置组成。最低的地址对应第一个元素，最高的地址对应最后一个元素。</p>
+<h3 id="声明数组"><a href="#声明数组" class="headerlink" title="声明数组"></a>声明数组</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">type arrayName [arraySize];</div><div class="line"><span class="comment">//例子</span></div><div class="line"><span class="keyword">double</span> balance[<span class="number">10</span>];</div></pre></td></tr></table></figure>
+<h3 id="初始化数组"><a href="#初始化数组" class="headerlink" title="初始化数组"></a>初始化数组</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//声明大小</span></div><div class="line"><span class="keyword">double</span> balance[<span class="number">5</span>] = &#123;<span class="number">1000.0</span>, <span class="number">2.0</span>, <span class="number">3.4</span>, <span class="number">7.0</span>, <span class="number">50.0</span>&#125;;</div><div class="line"><span class="comment">//不声明大小</span></div><div class="line"><span class="keyword">double</span> balance[] = &#123;<span class="number">1000.0</span>, <span class="number">2.0</span>, <span class="number">3.4</span>, <span class="number">7.0</span>, <span class="number">50.0</span>&#125;;</div></pre></td></tr></table></figure>
+<p>访问数组中数据:</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">double</span> salary = balance[<span class="number">9</span>];</div></pre></td></tr></table></figure>
+<h3 id="指向数组的指针"><a href="#指向数组的指针" class="headerlink" title="指向数组的指针"></a>指向数组的指针</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">double</span> balance[<span class="number">50</span>];</div></pre></td></tr></table></figure>
+<p>balance 是一个指向 <code>&amp;balance[0]</code> 的指针，即数组 balance 的第一个元素的地址。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">double</span> *p;</div><div class="line"><span class="keyword">double</span> balance[<span class="number">10</span>];</div><div class="line"></div><div class="line">p = balance;</div></pre></td></tr></table></figure>
+<p><code>*(balance + 4)</code> 是一种访问 <code>balance[4]</code> 数据的合法方式。</p>
+<h2 id="指针"><a href="#指针" class="headerlink" title="指针"></a>指针</h2><p>什么是指针？</p>
+<blockquote>
+<p>指针是一个变量，其值为另一个变量的地址，即，内存位置的直接地址。就像其他变量或常量一样，您必须在使用指针存储其他变量地址之前，对其进行声明。</p>
+</blockquote>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">type *var-name;</div><div class="line"></div><div class="line"><span class="keyword">int</span>    *ip;    <span class="comment">/* 一个整型的指针 */</span></div><div class="line"><span class="keyword">double</span> *dp;    <span class="comment">/* 一个 double 型的指针 */</span></div><div class="line"><span class="keyword">float</span>  *fp;    <span class="comment">/* 一个浮点型的指针 */</span></div><div class="line"><span class="keyword">char</span>   *ch;     <span class="comment">/* 一个字符型的指针 */</span></div></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></div><div class="line"> </div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span> <span class="params">()</span> </span>&#123;</div><div class="line">   <span class="keyword">int</span>  var1;</div><div class="line">   <span class="keyword">char</span> var2[<span class="number">10</span>];</div><div class="line"> </div><div class="line">   <span class="built_in">printf</span>(<span class="string">"var1 变量的地址： %p\n"</span>, &amp;var1  );</div><div class="line">   <span class="built_in">printf</span>(<span class="string">"var2 变量的地址： %p\n"</span>, &amp;var2  );</div><div class="line"> </div><div class="line">   <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="使用指针"><a href="#使用指针" class="headerlink" title="使用指针"></a>使用指针</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></div><div class="line"> </div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span> <span class="params">()</span> </span>&#123;</div><div class="line">   <span class="keyword">int</span>  var = <span class="number">20</span>;   <span class="comment">/* 实际变量的声明 */</span></div><div class="line">   <span class="keyword">int</span>  *ip;        <span class="comment">/* 指针变量的声明 */</span></div><div class="line"> </div><div class="line">   ip = &amp;var;  <span class="comment">/* 在指针变量中存储 var 的地址 */</span></div><div class="line"> </div><div class="line">   <span class="built_in">printf</span>(<span class="string">"Address of var variable: %p\n"</span>, &amp;var  );</div><div class="line"> </div><div class="line">   <span class="comment">/* 在指针变量中存储的地址 */</span></div><div class="line">   <span class="built_in">printf</span>(<span class="string">"Address stored in ip variable: %p\n"</span>, ip );</div><div class="line"> </div><div class="line">   <span class="comment">/* 使用指针访问值 */</span></div><div class="line">   <span class="built_in">printf</span>(<span class="string">"Value of *ip variable: %d\n"</span>, *ip );</div><div class="line"> </div><div class="line">   <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="字符串"><a href="#字符串" class="headerlink" title="字符串"></a>字符串</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">char</span> greeting[<span class="number">6</span>] = &#123;<span class="string">'H'</span>, <span class="string">'e'</span>, <span class="string">'l'</span>, <span class="string">'l'</span>, <span class="string">'o'</span>, <span class="string">'\0'</span>&#125;;</div><div class="line"><span class="keyword">char</span> greeting[] = <span class="string">"Hello"</span>;</div></pre></td></tr></table></figure>
+<p><img src="https://cdoco.com/images/string_representation.jpg" alt=""></p>
+<h2 id="结构体"><a href="#结构体" class="headerlink" title="结构体"></a>结构体</h2><h3 id="定义结构体"><a href="#定义结构体" class="headerlink" title="定义结构体"></a>定义结构体</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">struct</span> [<span class="title">structure</span> <span class="title">tag</span>]</span></div><div class="line"><span class="class">&#123;</span></div><div class="line">   member definition;</div><div class="line">   member definition;</div><div class="line">   ...</div><div class="line">   member definition;</div><div class="line">&#125; [one <span class="keyword">or</span> more structure variables];</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Books</span></span></div><div class="line"><span class="class">&#123;</span></div><div class="line">   <span class="keyword">char</span>  title[<span class="number">50</span>];</div><div class="line">   <span class="keyword">char</span>  author[<span class="number">50</span>];</div><div class="line">   <span class="keyword">char</span>  subject[<span class="number">100</span>];</div><div class="line">   <span class="keyword">int</span>   book_id;</div><div class="line">&#125; book;</div></pre></td></tr></table></figure>
+<h3 id="访问结构体"><a href="#访问结构体" class="headerlink" title="访问结构体"></a>访问结构体</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//访问结构体</span></div><div class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Books</span> <span class="title">Book1</span>;</span></div><div class="line">Book1.title</div><div class="line"></div><div class="line"><span class="comment">//指向结构的指针</span></div><div class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Books</span> *<span class="title">struct_pointer</span>;</span></div><div class="line">struct_pointer = &amp;Book1;</div><div class="line">struct_pointer-&gt;title;</div></pre></td></tr></table></figure>
+<h2 id="typedef"><a href="#typedef" class="headerlink" title="typedef"></a>typedef</h2><h3 id="声明"><a href="#声明" class="headerlink" title="声明"></a>声明</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">typedef</span> <span class="keyword">unsigned</span> <span class="keyword">char</span> BYTE;</div><div class="line">BYTE  b1, b2;</div></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">Books</span></span></div><div class="line"><span class="class">&#123;</span></div><div class="line">   <span class="keyword">char</span>  title[<span class="number">50</span>];</div><div class="line">   <span class="keyword">char</span>  author[<span class="number">50</span>];</div><div class="line">   <span class="keyword">char</span>  subject[<span class="number">100</span>];</div><div class="line">   <span class="keyword">int</span>   book_id;</div><div class="line">&#125; Book;</div><div class="line"></div><div class="line">Book book;</div><div class="line">book.title;</div></pre></td></tr></table></figure>
+<h3 id="typedef-vs-define"><a href="#typedef-vs-define" class="headerlink" title="typedef vs #define"></a>typedef vs #define</h3><ul>
+<li>typedef 仅限于为类型定义符号名称，#define 不仅可以为类型定义别名，也能为数值定义别名，比如您可以定义 1 为 ONE。</li>
+<li>typedef 是由编译器执行解释的，#define 语句是由预编译器进行处理的。</li>
+</ul>
+<h2 id="内存管理"><a href="#内存管理" class="headerlink" title="内存管理"></a>内存管理</h2><table>
+<thead>
+<tr>
+<th>函数</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>calloc</td>
+<td>在内存中动态地分配 num 个长度为 size 的连续空间。</td>
+</tr>
+<tr>
+<td>free</td>
+<td>该函数释放 address 所指向的内存块,释放的是动态分配的内存空间。</td>
+</tr>
+<tr>
+<td>malloc</td>
+<td>在堆区分配一块指定大小的内存空间，用来存放数据。</td>
+</tr>
+<tr>
+<td>realloc</td>
+<td>该函数重新分配内存，把内存扩展到 newsize。</td>
+</tr>
+</tbody>
+</table>
+<h2 id="堆空间和栈空间"><a href="#堆空间和栈空间" class="headerlink" title="堆空间和栈空间"></a>堆空间和栈空间</h2><p><img src="https://cdoco.com/images/stack.jpg" alt=""></p>
+<p>一个由C/C++编译的程序占用的内存分为以下几个部分:</p>
+<ul>
+<li><p>栈区（stack）：又编译器自动分配释放，存放函数的参数值，局部变量的值等，其操作方式类似于数据结构的栈。</p>
+</li>
+<li><p>堆区（heap）：一般是由程序员分配释放，若程序员不释放的话，程序结束时可能由OS回收，值得注意的是他与数据结构的堆是两回事，分配方式倒是类似于数据结构的链表。</p>
+</li>
+<li>全局区（static）：也叫静态数据内存空间，存储全局变量和静态变量，全局变量和静态变量的存储是放一块的，初始化的全局变量和静态变量放一块区域，没有初始化的在相邻的另一块区域，程序结束后由系统释放。</li>
+<li>文字常量区：常量字符串就是放在这里，程序结束后由系统释放。</li>
+<li>程序代码区：存放函数体的二进制代码。</li>
+</ul>
+</div><div class="tags"><a href="/tags/c/">c</a></div><div class="post-nav"><a href="/2017/11/02/php-patterns/" class="next">PHP 设计模式</a></div></div></div></div><div class="pure-u-1-4 hidden_mid_and_down"><div id="sidebar"><div class="widget"><form action="//www.google.com/search" method="get" accept-charset="utf-8" target="_blank" class="search-form"><input type="text" name="q" maxlength="20" placeholder="Search"/><input type="hidden" name="sitesearch" value="https://cdoco.com"/></form></div><div class="widget"><div class="widget-title"><i class="fa fa-folder-o"> Kategorien</i></div><ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/C-语言/">C 语言</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/docker/">docker</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/linux/">linux</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/nginx/">nginx</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/php/">php</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/php扩展/">php扩展</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/regex/">regex</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/设计模式/">设计模式</a></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-star-o"> Tags</i></div><div class="tagcloud"><a href="/tags/mysql/" style="font-size: 15px;">mysql</a> <a href="/tags/docker/" style="font-size: 15px;">docker</a> <a href="/tags/php/" style="font-size: 15px;">php</a> <a href="/tags/php扩展/" style="font-size: 15px;">php扩展</a> <a href="/tags/linux/" style="font-size: 15px;">linux</a> <a href="/tags/shell/" style="font-size: 15px;">shell</a> <a href="/tags/lnmp/" style="font-size: 15px;">lnmp</a> <a href="/tags/gdb/" style="font-size: 15px;">gdb</a> <a href="/tags/nginx/" style="font-size: 15px;">nginx</a> <a href="/tags/设计模式/" style="font-size: 15px;">设计模式</a> <a href="/tags/xdebug/" style="font-size: 15px;">xdebug</a> <a href="/tags/phpstorm/" style="font-size: 15px;">phpstorm</a> <a href="/tags/ipc/" style="font-size: 15px;">ipc</a> <a href="/tags/regex/" style="font-size: 15px;">regex</a> <a href="/tags/c/" style="font-size: 15px;">c</a></div></div><div class="widget"><div class="widget-title"><i class="fa fa-file-o"> Letzte</i></div><ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2017/11/07/learn-c/">C 语言基础入门</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/11/02/php-patterns/">PHP 设计模式</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/08/15/learn-regex-zh/">学习正则表达式的简单方法</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/08/15/php7-update/">PHP7 升级的那些事儿</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/10/php-ext-class/">PHP扩展实现类</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/02/23/debug-php-extension/">Debugging PHP Extensions</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/02/22/docker-basics/">docker常用命令</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/02/21/linux-ipc/">进程间通信（IPC）</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/02/21/nginx-cut-log/">nginx 直接在配置文件中切割日志</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/02/21/nginx-variables/">nginx 内置变量</a></li></ul></div></div></div><div class="pure-u-1 pure-u-md-3-4"><div id="footer">Copyright © 2017 <a href="/." rel="nofollow">C &amp; Fish.</a></div></div></div><a id="rocket" href="#top" class="show"></a><script type="text/javascript" src="/js/totop.js?v=0.0.0" async></script><script type="text/javascript" src="//cdn.bootcss.com/fancybox/3.1.20/jquery.fancybox.min.js" async></script><script type="text/javascript" src="/js/fancybox.js?v=0.0.0" async></script><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/fancybox/3.1.20/jquery.fancybox.min.css"><script type="text/javascript" src="/js/codeblock-resizer.js?v=0.0.0"></script><script type="text/javascript" src="/js/smartresize.js?v=0.0.0"></script></div></body></html>
