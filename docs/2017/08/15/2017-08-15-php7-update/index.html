@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="CN">
+
+
+
+
+
+
+
+<head>
+	
+	
+	<link rel="stylesheet" href="/css/allinone.min.css">
+
+	
+
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+	<title>PHP7 升级的那些事儿 | C & Fish</title>
+
+	<meta name="HandheldFriendly" content="True">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+	<meta name="generator" content="hexo">
+	<meta name="author" content="ZiHang Gao">
+	<meta name="description" content>
+
+	
+	<meta name="keywords" content>
+	
+
+	
+	<link rel="shortcut icon" href="https://i.loli.net/2019/02/24/5c722760644a6.png">
+	<link rel="apple-touch-icon" href="https://i.loli.net/2019/02/24/5c722760644a6.png">
+	
+
+	
+	<meta name="theme-color" content="#3c484e">
+	<meta name="msapplication-TileColor" content="#3c484e">
+	
+
+	
+
+	
+
+	<meta property="og:site_name" content="C & Fish">
+	<meta property="og:type" content="article">
+	<meta property="og:title" content="PHP7 升级的那些事儿 | C & Fish">
+	<meta property="og:description" content>
+	<meta property="og:url" content="https://cdoco.com/2017/08/15/2017-08-15-php7-update/">
+
+	
+	<meta property="article:published_time" content="2017-08-15T11:08:00+08:00"> 
+	<meta property="article:author" content="ZiHang Gao">
+	<meta property="article:published_first" content="C & Fish, /2017/08/15/2017-08-15-php7-update/">
+	
+</head>
+<body class="post-template">
+	<div class="site-wrapper">
+		
+
+
+
+
+<header class="site-header outer" style="z-index: 999">
+    <div class="inner">
+        
+<nav class="site-nav"> 
+    <div class="site-nav-left">
+        <ul class="nav">
+            <li>
+                
+                <a href="/" title="Home">HOME</a>
+                
+            </li>
+            
+            
+            <li>
+                <a href="/about" title="ABOUT">ABOUT</a>
+            </li>
+            
+            <li>
+                <a href="/archives" title="ARCHIVES">ARCHIVES</a>
+            </li>
+            
+            
+        </ul> 
+    </div>
+     
+    <div class="site-nav-right">
+         
+        
+<div class="social-links">
+    
+    <a class="social-link" title="weibo" href="https://weibo.com/u/233878950" target="_blank" rel="noopener">
+        <svg viewbox="0 0 1141 1024" xmlns="http://www.w3.org/2000/svg"><path d="M916.48 518.144q27.648 21.504 38.912 51.712t9.216 62.976-14.336 65.536-31.744 59.392q-34.816 48.128-78.848 81.92t-91.136 56.32-94.72 35.328-89.6 18.944-75.264 7.68-51.712 1.536-49.152-2.56-68.096-10.24-78.336-21.504-79.872-36.352-74.24-55.296-59.904-78.848q-16.384-29.696-22.016-63.488t-5.632-86.016q0-22.528 7.68-51.2t27.136-63.488 53.248-75.776 86.016-90.112q51.2-48.128 105.984-85.504t117.248-57.856q28.672-10.24 63.488-11.264t57.344 11.264q10.24 11.264 19.456 23.04t12.288 29.184q3.072 14.336 0.512 27.648t-5.632 26.624-5.12 25.6 2.048 22.528q17.408 2.048 33.792-1.536t31.744-9.216 31.232-11.776 33.28-9.216q27.648-5.12 54.784-4.608t49.152 7.68 36.352 22.016 17.408 38.4q2.048 14.336-2.048 26.624t-8.704 23.04-7.168 22.016 1.536 23.552q3.072 7.168 14.848 13.312t27.136 12.288 32.256 13.312 29.184 16.384zM658.432 836.608q26.624-16.384 53.76-45.056t44.032-64 18.944-75.776-20.48-81.408q-19.456-33.792-47.616-57.344t-62.976-37.376-74.24-19.968-80.384-6.144q-78.848 0-139.776 16.384t-105.472 43.008-72.192 60.416-38.912 68.608q-11.264 33.792-6.656 67.072t20.992 62.976 42.496 53.248 57.856 37.888q58.368 25.6 119.296 32.256t116.224 0.512 100.864-21.504 74.24-33.792zM524.288 513.024q20.48 8.192 38.912 18.432t32.768 27.648q10.24 12.288 17.92 30.72t10.752 39.424 1.536 42.496-9.728 38.912q-8.192 18.432-19.968 37.376t-28.672 35.328-40.448 29.184-57.344 18.944q-61.44 11.264-117.76-11.264t-88.064-74.752q-12.288-39.936-13.312-70.656t16.384-66.56q13.312-27.648 40.448-51.712t62.464-38.912 75.264-17.408 78.848 12.8zM361.472 764.928q37.888 3.072 57.856-18.432t21.504-48.128-15.36-47.616-52.736-16.896q-27.648 3.072-43.008 23.552t-17.408 43.52 9.728 42.496 39.424 21.504zM780.288 6.144q74.752 0 139.776 19.968t113.664 57.856 76.288 92.16 27.648 122.88q0 33.792-16.384 50.688t-35.328 17.408-35.328-14.336-16.384-45.568q0-40.96-22.528-77.824t-59.392-64.512-84.48-43.52-96.768-15.872q-31.744 0-47.104-15.36t-14.336-34.304 18.944-34.304 51.712-15.36zM780.288 169.984q95.232 0 144.384 48.64t49.152 146.944q0 30.72-10.24 43.52t-22.528 11.264-22.528-14.848-10.24-35.84q0-60.416-34.816-96.256t-93.184-35.84q-19.456 0-28.672-10.752t-9.216-23.04 9.728-23.04 28.16-10.752z"/></svg>
+    </a>
+    
+    
+    <a class="social-link" title="github" href="https://github.com/cdoco" target="_blank" rel="noopener">
+        <svg viewbox="0 0 1049 1024" xmlns="http://www.w3.org/2000/svg"><path d="M524.979332 0C234.676191 0 0 234.676191 0 524.979332c0 232.068678 150.366597 428.501342 358.967656 498.035028 26.075132 5.215026 35.636014-11.299224 35.636014-25.205961 0-12.168395-0.869171-53.888607-0.869171-97.347161-146.020741 31.290159-176.441729-62.580318-176.441729-62.580318-23.467619-60.841976-58.234462-76.487055-58.234463-76.487055-47.804409-32.15933 3.476684-32.15933 3.476685-32.15933 53.019436 3.476684 80.83291 53.888607 80.83291 53.888607 46.935238 79.963739 122.553122 57.365291 152.97411 43.458554 4.345855-33.897672 18.252593-57.365291 33.028501-70.402857-116.468925-12.168395-239.022047-57.365291-239.022047-259.012982 0-57.365291 20.860106-104.300529 53.888607-140.805715-5.215026-13.037566-23.467619-66.926173 5.215027-139.067372 0 0 44.327725-13.906737 144.282399 53.888607 41.720212-11.299224 86.917108-17.383422 131.244833-17.383422s89.524621 6.084198 131.244833 17.383422C756.178839 203.386032 800.506564 217.29277 800.506564 217.29277c28.682646 72.1412 10.430053 126.029806 5.215026 139.067372 33.897672 36.505185 53.888607 83.440424 53.888607 140.805715 0 201.64769-122.553122 245.975415-239.891218 259.012982 19.121764 16.514251 35.636014 47.804409 35.636015 97.347161 0 70.402857-0.869171 126.898978-0.869172 144.282399 0 13.906737 9.560882 30.420988 35.636015 25.205961 208.601059-69.533686 358.967656-265.96635 358.967655-498.035028C1049.958663 234.676191 814.413301 0 524.979332 0z"/></svg>
+    </a>
+    
+    
+    
+    <a class="social-link" title="twitter" href="https://twitter.com/gaozihang" target="_blank" rel="noopener">
+        <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 32 32"><path d="M30.063 7.313c-.813 1.125-1.75 2.125-2.875 2.938v.75c0 1.563-.188 3.125-.688 4.625a15.088 15.088 0 0 1-2.063 4.438c-.875 1.438-2 2.688-3.25 3.813a15.015 15.015 0 0 1-4.625 2.563c-1.813.688-3.75 1-5.75 1-3.25 0-6.188-.875-8.875-2.625.438.063.875.125 1.375.125 2.688 0 5.063-.875 7.188-2.5-1.25 0-2.375-.375-3.375-1.125s-1.688-1.688-2.063-2.875c.438.063.813.125 1.125.125.5 0 1-.063 1.5-.25-1.313-.25-2.438-.938-3.313-1.938a5.673 5.673 0 0 1-1.313-3.688v-.063c.813.438 1.688.688 2.625.688a5.228 5.228 0 0 1-1.875-2c-.5-.875-.688-1.813-.688-2.75 0-1.063.25-2.063.75-2.938 1.438 1.75 3.188 3.188 5.25 4.25s4.313 1.688 6.688 1.813a5.579 5.579 0 0 1 1.5-5.438c1.125-1.125 2.5-1.688 4.125-1.688s3.063.625 4.188 1.813a11.48 11.48 0 0 0 3.688-1.375c-.438 1.375-1.313 2.438-2.563 3.188 1.125-.125 2.188-.438 3.313-.875z"/></svg>
+
+    </a>
+    
+    
+    
+    
+</div>
+    </div>
+</nav>
+    </div>
+</header>
+
+
+<main id="site-main" class="site-main outer" role="main">
+    <div class="inner">
+        <header class="post-full-header">
+            <section class="post-full-meta">
+                <time class="post-full-meta-date" datetime="2017-08-15T11:10:34.000Z" itemprop="datePublished">
+                    2017-08-15
+                </time>
+                
+                <span class="date-divider">/</span>
+                
+                <a href="/categories/php/">php</a>&nbsp;&nbsp;
+                
+                
+            </section>
+            <h1 class="post-full-title">PHP7 升级的那些事儿</h1>
+        </header>
+        <article class="post-full no-image">
+            
+            <section class="post-full-content">
+                <div id="lightgallery" class="markdown-body">
+                    <h2 id="新特性"><a href="#新特性" class="headerlink" title="新特性"></a>新特性</h2><ul>
+<li>标量类型声明</li>
+<li>返回值类型声明</li>
+<li>太空船操作符</li>
+<li>NULL 合并运算符</li>
+<li>通过 define 定义常量数组</li>
+<li>Unicode codepoint 转译语法</li>
+<li>Session options</li>
+</ul>
+<h3 id="标量类型声明"><a href="#标量类型声明" class="headerlink" title="标量类型声明"></a>标量类型声明</h3><p>有两种模式: 强制 ( 默认 ) 和 严格模式。<br>字符串 (string), 整数 (int), 浮点数 (float), 以及布尔值 (bool), 类名，接口，数组。</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">check</span><span class="params">(int $bool)</span></span>&#123;</span><br><span class="line"></span><br><span class="line">    var_dump($bool);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">check(<span class="number">1</span>);</span><br><span class="line">check(<span class="keyword">true</span>);</span><br></pre></td></tr></table></figure>
+<a id="more"></a>
+<h3 id="返回值类型声明"><a href="#返回值类型声明" class="headerlink" title="返回值类型声明"></a>返回值类型声明</h3><p>PHP 7 增加了对返回类型声明的支持。</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">arraysSum</span><span class="params">(array ...$arrays)</span>: <span class="title">array</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> array_map(<span class="function"><span class="keyword">function</span><span class="params">(array $array)</span>: <span class="title">int</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> array_sum($array);</span><br><span class="line"></span><br><span class="line">    &#125;, $arrays);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">print_r(arraysSum([<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>], [<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>], [<span class="number">7</span>,<span class="number">8</span>,<span class="number">9</span>]));</span><br><span class="line"></span><br><span class="line"><span class="keyword">Array</span>(</span><br><span class="line">    [<span class="number">0</span>] =&gt; <span class="number">6</span></span><br><span class="line">    [<span class="number">1</span>] =&gt; <span class="number">15</span></span><br><span class="line">    [<span class="number">2</span>] =&gt; <span class="number">24</span></span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<h3 id="太空船操作符"><a href="#太空船操作符" class="headerlink" title="太空船操作符"></a>太空船操作符</h3><p>太空船操作符用于比较两个表达式。当 $a 大于、等于或小于 $b 时它分别返回 -1 、 0 或 1 。 比较的原则是沿用 PHP 的常规比较规则进行的。</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// Integers</span></span><br><span class="line"><span class="keyword">echo</span> <span class="number">1</span> &lt;=&gt; <span class="number">1</span>; <span class="comment">// 0</span></span><br><span class="line"><span class="keyword">echo</span> <span class="number">1</span> &lt;=&gt; <span class="number">2</span>; <span class="comment">// -1</span></span><br><span class="line"><span class="keyword">echo</span> <span class="number">2</span> &lt;=&gt; <span class="number">1</span>; <span class="comment">// 1</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// Floats</span></span><br><span class="line"><span class="keyword">echo</span> <span class="number">1.5</span> &lt;=&gt; <span class="number">1.5</span>; <span class="comment">// 0</span></span><br><span class="line"><span class="keyword">echo</span> <span class="number">1.5</span> &lt;=&gt; <span class="number">2.5</span>; <span class="comment">// -1</span></span><br><span class="line"><span class="keyword">echo</span> <span class="number">2.5</span> &lt;=&gt; <span class="number">1.5</span>; <span class="comment">// 1</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// Strings</span></span><br><span class="line"><span class="keyword">echo</span> <span class="string">"a"</span> &lt;=&gt; <span class="string">"a"</span>; <span class="comment">// 0</span></span><br><span class="line"><span class="keyword">echo</span> <span class="string">"a"</span> &lt;=&gt; <span class="string">"b"</span>; <span class="comment">// -1</span></span><br><span class="line"><span class="keyword">echo</span> <span class="string">"b"</span> &lt;=&gt; <span class="string">"a"</span>; <span class="comment">// 1</span></span><br></pre></td></tr></table></figure>
+<h3 id="NULL-合并运算符"><a href="#NULL-合并运算符" class="headerlink" title="NULL 合并运算符"></a>NULL 合并运算符</h3><p>项目中存在大量同时使用三元表达式和 isset() 的情况，新增了 null 合并运算符 (??) 这个语法糖。如果变量存在且值不为 NULL ， 它就会返回自身的值，否则返回它的第二个操作数。</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">isset</span>($_GET[<span class="string">'id'</span>]) ? $_GET[id] : <span class="string">'err'</span>; <span class="comment">// PHP5</span></span><br><span class="line"></span><br><span class="line">$_GET[<span class="string">'id'</span>] ?? <span class="string">'err'</span>; <span class="comment">// PHP7</span></span><br></pre></td></tr></table></figure>
+<h3 id="通过-define-定义常量数组"><a href="#通过-define-定义常量数组" class="headerlink" title="通过 define 定义常量数组"></a>通过 define 定义常量数组</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"></span><br><span class="line">define(<span class="string">'ANIMALS'</span>, [<span class="string">'dog'</span>, <span class="string">'cat'</span>, <span class="string">'bird'</span>]);</span><br><span class="line"></span><br><span class="line"><span class="keyword">echo</span> ANIMALS[<span class="number">1</span>]; <span class="comment">// outputs "cat"</span></span><br></pre></td></tr></table></figure>
+<h3 id="intdiv-两个数相除-取整"><a href="#intdiv-两个数相除-取整" class="headerlink" title="intdiv() 两个数相除 取整"></a>intdiv() 两个数相除 取整</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"></span><br><span class="line">var_dump(intdiv(<span class="number">7</span>, <span class="number">2</span>));</span><br><span class="line"></span><br><span class="line">输出 int(<span class="number">3</span>)</span><br></pre></td></tr></table></figure>
+<h2 id="Unicode-codepoint-转译语法"><a href="#Unicode-codepoint-转译语法" class="headerlink" title="Unicode codepoint 转译语法"></a>Unicode codepoint 转译语法</h2><p>这接受一个以 16 进制形式的 Unicode codepoint ，并打印出一个双引号或 heredoc 包围的 UTF-8 编码格式的字符串。 可以接受任何有效的 codepoint ，并且开头的 0 是可以省略的。</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">echo</span> <span class="string">"\u&#123;638c&#125;\u&#123;9605&#125;"</span>;</span><br><span class="line"><span class="meta">?&gt;</span></span><br><span class="line"></span><br><span class="line">旧版输出：\u&#123;<span class="number">638</span>c&#125;\u&#123;<span class="number">9605</span>&#125;</span><br><span class="line"></span><br><span class="line">新版输入：掌阅</span><br></pre></td></tr></table></figure>
+<h2 id="Session-options"><a href="#Session-options" class="headerlink" title="Session options"></a>Session options</h2><p>现在， session_start() 函数可以接收一个数组作为参数，可以覆盖 php.ini 中 session 的配置项。<br>比如，把 cache_limiter 设置为私有的，同时在阅读完 session 后立即关闭。</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"></span><br><span class="line">session_start([</span><br><span class="line">    <span class="string">'cookie_lifetime'</span> =&gt; <span class="number">86400</span>,</span><br><span class="line">    <span class="string">'read_and_close'</span>  =&gt; <span class="keyword">true</span>,</span><br><span class="line">]);</span><br></pre></td></tr></table></figure>
+<h2 id="不兼容性"><a href="#不兼容性" class="headerlink" title="不兼容性"></a>不兼容性</h2><ul>
+<li>foreach 不再改变内部数组指针</li>
+<li>16进制字符串不再被认为是数字</li>
+<li>被移除的函数</li>
+<li>移除了 ASP 和 script PHP 标签</li>
+<li>JSON 扩展已经被 JSOND 取代</li>
+<li>INI 文件中 # 注释格式被移除</li>
+</ul>
+<h3 id="foreach-不再改变内部数组指针"><a href="#foreach-不再改变内部数组指针" class="headerlink" title="foreach 不再改变内部数组指针"></a>foreach 不再改变内部数组指针</h3><p>在 PHP7 之前，当数组通过 foreach 迭代时，数组指针会移动。现在开始，不再如此，见下面代码:</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"></span><br><span class="line">$array = [<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>];</span><br><span class="line"><span class="keyword">foreach</span> ($array <span class="keyword">as</span> &amp;$val) &#123;</span><br><span class="line">    var_dump(current($array));</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">?&gt;</span></span><br><span class="line"></span><br><span class="line">PHP5 输出:</span><br><span class="line"></span><br><span class="line">int(<span class="number">1</span>)</span><br><span class="line">int(<span class="number">2</span>)</span><br><span class="line">bool(<span class="keyword">false</span>)</span><br><span class="line"></span><br><span class="line">PHP7 输出：</span><br><span class="line"></span><br><span class="line">int(<span class="number">0</span>)</span><br><span class="line">int(<span class="number">0</span>)</span><br><span class="line">int(<span class="number">0</span>)</span><br></pre></td></tr></table></figure>
+<h3 id="十六进制字符串不再被认为是数字"><a href="#十六进制字符串不再被认为是数字" class="headerlink" title="十六进制字符串不再被认为是数字"></a>十六进制字符串不再被认为是数字</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"></span><br><span class="line">var_dump(<span class="string">"0x123"</span> == <span class="string">"291"</span>);</span><br><span class="line">var_dump(is_numeric(<span class="string">"0x123"</span>));</span><br><span class="line">var_dump(<span class="string">"0xe"</span> + <span class="string">"0x1"</span>);</span><br><span class="line">var_dump(substr(<span class="string">"foo"</span>, <span class="string">"0x1"</span>));</span><br><span class="line"><span class="meta">?&gt;</span></span><br><span class="line"></span><br><span class="line">PHP5 输出：</span><br><span class="line"></span><br><span class="line">bool(<span class="keyword">true</span>)</span><br><span class="line">bool(<span class="keyword">true</span>)</span><br><span class="line">int(<span class="number">15</span>)</span><br><span class="line">string(<span class="number">2</span>) <span class="string">"oo"</span></span><br><span class="line"></span><br><span class="line">PHP7 输出：</span><br><span class="line"></span><br><span class="line">bool(<span class="keyword">false</span>)</span><br><span class="line">bool(<span class="keyword">false</span>)</span><br><span class="line">int(<span class="number">0</span>)</span><br><span class="line">Notice: A non well formed numeric value encountered in /tmp/test.php on line <span class="number">5</span></span><br><span class="line">string(<span class="number">3</span>) <span class="string">"foo"</span></span><br></pre></td></tr></table></figure>
+<h3 id="PHP7-中被移除的函数"><a href="#PHP7-中被移除的函数" class="headerlink" title="PHP7 中被移除的函数"></a>PHP7 中被移除的函数</h3><ul>
+<li>已废弃的 mcrypt_generic_end() 函数已被移除，请使用 mcrypt_generic_deinit() 代替</li>
+<li>mcrypt_*<ul>
+<li>mcrypt_ecb</li>
+<li>mcrypt_cbc</li>
+<li>mcrypt_cfb</li>
+<li>mcrypt_ofb</li>
+</ul>
+</li>
+<li>dl() 在 PHP-FPM 不再可用，在 CLI 和 embed SAPIs 中仍可用。</li>
+<li>在配置文件 php.ini 中， always_populate_raw_post_data 、 asp_tags 、 xsl.security_prefs 被移除了。</li>
+</ul>
+<h3 id="移除了-ASP-和-script-PHP-标签"><a href="#移除了-ASP-和-script-PHP-标签" class="headerlink" title="移除了 ASP 和 script PHP 标签"></a>移除了 ASP 和 script PHP 标签</h3><p>使用类似 ASP 的标签，以及 script 标签来区分 PHP 代码的方式被移除。 受到影响的标签有： </p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">%</span> %&gt;</span> 、 <span class="tag">&lt;<span class="name">%=</span> %&gt;</span> 、 <span class="tag">&lt;<span class="name">script</span> <span class="attr">language</span>=<span class="string">"php"</span>&gt;</span><span class="undefined"> </span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h2 id="ZVAL-结构体优化"><a href="#ZVAL-结构体优化" class="headerlink" title="ZVAL 结构体优化"></a>ZVAL 结构体优化</h2><p>PHP5 的 zval 结构体。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> _<span class="title">zval_struct</span> &#123;</span></span><br><span class="line">    <span class="keyword">union</span> &#123;</span><br><span class="line">        <span class="keyword">long</span> lval;</span><br><span class="line">        <span class="keyword">double</span> dval;</span><br><span class="line">        <span class="class"><span class="keyword">struct</span> &#123;</span></span><br><span class="line">            <span class="keyword">char</span> *val;</span><br><span class="line">            <span class="keyword">int</span> len;</span><br><span class="line">        &#125; str;</span><br><span class="line">        HashTable *ht;</span><br><span class="line">        zend_object_value obj;</span><br><span class="line">        zend_ast *ast;</span><br><span class="line">    &#125; value;</span><br><span class="line">    zend_uint refcount__gc;</span><br><span class="line">    zend_uchar type;</span><br><span class="line">    zend_uchar is_ref__gc;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h3 id="存在问题"><a href="#存在问题" class="headerlink" title="存在问题"></a>存在问题</h3><ul>
+<li>这个结构体的大小是(在64位系统)24个字节</li>
+<li>没有预留任何的自定义字段</li>
+</ul>
+<p>5.3的时候新引入专门解决循环引用的GC, 它不得采用如下的比较hack的做法:</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* The following macroses override macroses from zend_alloc.h */</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">undef</span>  ALLOC_ZVAL</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> ALLOC_ZVAL(z)                                   \</span></span><br><span class="line">    <span class="keyword">do</span> &#123;                                                \</span><br><span class="line">        (z) = (zval*)emalloc(<span class="keyword">sizeof</span>(zval_gc_info));     \</span><br><span class="line">        GC_ZVAL_INIT(z);                                \</span><br><span class="line">    &#125; <span class="keyword">while</span> (<span class="number">0</span>)</span><br></pre></td></tr></table></figure>
+<p>它用zval_gc_info劫持了zval的分配:</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> _<span class="title">zval_gc_info</span> &#123;</span></span><br><span class="line">    zval z;</span><br><span class="line">    <span class="keyword">union</span> &#123;</span><br><span class="line">        gc_root_buffer       *buffered;</span><br><span class="line">        <span class="class"><span class="keyword">struct</span> _<span class="title">zval_gc_info</span> *<span class="title">next</span>;</span></span><br><span class="line">    &#125; u;</span><br><span class="line">&#125; zval_gc_info;</span><br></pre></td></tr></table></figure>
+<p>实际上来说我们在PHP5时代申请一个zval其实真正的是分配了32个字节。</p>
+<h3 id="PHP7-的-zval-结构体。"><a href="#PHP7-的-zval-结构体。" class="headerlink" title="PHP7 的 zval 结构体。"></a>PHP7 的 zval 结构体。</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> _<span class="title">zval_struct</span> &#123;</span></span><br><span class="line">    <span class="keyword">union</span> &#123;</span><br><span class="line">        zend_long         lval;             <span class="comment">/* long value */</span></span><br><span class="line">        <span class="keyword">double</span>            dval;             <span class="comment">/* double value */</span></span><br><span class="line">        zend_refcounted  *counted;</span><br><span class="line">        zend_string      *str;</span><br><span class="line">        zend_array       *arr;</span><br><span class="line">        zend_object      *obj;</span><br><span class="line">        zend_resource    *res;</span><br><span class="line">        zend_reference   *ref;</span><br><span class="line">        zend_ast_ref     *ast;</span><br><span class="line">        zval             *zv;</span><br><span class="line">        <span class="keyword">void</span>             *ptr;</span><br><span class="line">        zend_class_entry *ce;</span><br><span class="line">        zend_function    *func;</span><br><span class="line">        <span class="class"><span class="keyword">struct</span> &#123;</span></span><br><span class="line">            <span class="keyword">uint32_t</span> w1;</span><br><span class="line">            <span class="keyword">uint32_t</span> w2;</span><br><span class="line">        &#125; ww;</span><br><span class="line">    &#125; value;</span><br><span class="line">    <span class="keyword">union</span> &#123;</span><br><span class="line">        <span class="class"><span class="keyword">struct</span> &#123;</span></span><br><span class="line">            ZEND_ENDIAN_LOHI_4(</span><br><span class="line">                zend_uchar    type,         <span class="comment">/* active type */</span></span><br><span class="line">                zend_uchar    type_flags,</span><br><span class="line">                zend_uchar    const_flags,</span><br><span class="line">                zend_uchar    reserved)     <span class="comment">/* call info for EX(This) */</span></span><br><span class="line">        &#125; v;</span><br><span class="line">        <span class="keyword">uint32_t</span> type_info;</span><br><span class="line">    &#125; u1;</span><br><span class="line">    <span class="keyword">union</span> &#123;</span><br><span class="line">        <span class="keyword">uint32_t</span>     var_flags;</span><br><span class="line">        <span class="keyword">uint32_t</span>     next;                 <span class="comment">/* hash collision chain */</span></span><br><span class="line">        <span class="keyword">uint32_t</span>     cache_slot;           <span class="comment">/* literal cache slot */</span></span><br><span class="line">        <span class="keyword">uint32_t</span>     lineno;               <span class="comment">/* line number (for ast nodes) */</span></span><br><span class="line">        <span class="keyword">uint32_t</span>     num_args;             <span class="comment">/* arguments number for EX(This) */</span></span><br><span class="line">        <span class="keyword">uint32_t</span>     fe_pos;               <span class="comment">/* foreach position */</span></span><br><span class="line">        <span class="keyword">uint32_t</span>     fe_iter_idx;          <span class="comment">/* foreach iterator index */</span></span><br><span class="line">    &#125; u2;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>这个新的zval在64位环境下,现在只需要16个字节(2个指针size)。</p>
+<h3 id="PHP7-类型"><a href="#PHP7-类型" class="headerlink" title="PHP7 类型"></a>PHP7 类型</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* regular data types */</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> IS_UNDEF                    0</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> IS_NULL                     1</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> IS_FALSE                    2</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> IS_TRUE                     3</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> IS_LONG                     4</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> IS_DOUBLE                   5</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> IS_STRING                   6</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> IS_ARRAY                    7</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> IS_OBJECT                   8</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> IS_RESOURCE                 9</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> IS_REFERENCE                10</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/* constant expressions */</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> IS_CONSTANT                 11</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> IS_CONSTANT_AST             12</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/* fake types */</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> _IS_BOOL                    13</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> IS_CALLABLE                 14</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/* internal types */</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> IS_INDIRECT                 15</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> IS_PTR                      17</span></span><br></pre></td></tr></table></figure>
+<p>IS_BOOL -&gt; IS_FALSE, IS_TRUE</p>
+<p>不再进行引用计数的类型：</p>
+<p>IS_LONG<br>IS_DOUBLE</p>
+<p>IS_NULL<br>IS_FALSE<br>IS_TRUE</p>
+<h2 id="升级遇到的问题"><a href="#升级遇到的问题" class="headerlink" title="升级遇到的问题"></a>升级遇到的问题</h2><ul>
+<li>memcahced 扩展问题<ul>
+<li>libmemcahced 库版本依赖 &gt;= 1.0.18</li>
+</ul>
+</li>
+<li>qconf 扩展问题</li>
+<li>redis扩展</li>
+<li>mcrypt 不兼容问题</li>
+<li>使用 php7cc 检查整体代码的兼容性</li>
+</ul>
+<h3 id="qconf-扩展问题"><a href="#qconf-扩展问题" class="headerlink" title="qconf 扩展问题"></a>qconf 扩展问题</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">PHP_FUNCTION(test_bug)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">char</span> *path, *idc;</span><br><span class="line">    <span class="keyword">int</span> path_len, idc_len;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (zend_parse_parameters(ZEND_NUM_ARGS() TSRMLS_CC,</span><br><span class="line">        <span class="string">"s|s"</span>, &amp;path, &amp;path_len, &amp;idc, &amp;idc_len) == FAILURE) &#123;</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    RETVAL_STRINGL(path, path_len);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="redis-扩展问题"><a href="#redis-扩展问题" class="headerlink" title="redis 扩展问题"></a>redis 扩展问题</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">add_class_constants</span><span class="params">(...)</span> </span>&#123;</span><br><span class="line">    ............................</span><br><span class="line"></span><br><span class="line">    <span class="meta">#<span class="meta-keyword">ifdef</span> PHP_SESSION</span></span><br><span class="line">        php_session_register_module(&amp;ps_mod_redis);</span><br><span class="line">        php_session_register_module(&amp;ps_mod_redis_cluster);</span><br><span class="line">    <span class="meta">#<span class="meta-keyword">endif</span></span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">PHP_MINIT_FUNCTION(redis)</span><br><span class="line">&#123;</span><br><span class="line">    ............................</span><br><span class="line">    ............................</span><br><span class="line"></span><br><span class="line">    <span class="comment">/* Add shared class constants to Redis and RedisCluster objects */</span></span><br><span class="line">    add_class_constants(redis_ce, <span class="number">0</span> TSRMLS_CC);</span><br><span class="line">    add_class_constants(redis_cluster_ce, <span class="number">1</span> TSRMLS_CC);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> SUCCESS;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="mcrypt"><a href="#mcrypt" class="headerlink" title="mcrypt"></a>mcrypt</h2><h3 id="PHP5"><a href="#PHP5" class="headerlink" title="PHP5"></a>PHP5</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">php_mcrypt_do_crypt</span><span class="params">(...)</span> <span class="comment">/* &#123;&#123;&#123; */</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    ..........................</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (count == <span class="number">0</span> &amp;&amp; key_length_sizes == <span class="literal">NULL</span>) &#123; <span class="comment">/* all lengths 1 - k_l_s = OK */</span></span><br><span class="line">        ..........................</span><br><span class="line"></span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (count == <span class="number">1</span>) &#123;  <span class="comment">/* only m_k_l = OK */</span></span><br><span class="line">        ..........................</span><br><span class="line"></span><br><span class="line">    &#125; <span class="keyword">else</span> &#123; <span class="comment">/* dertermine smallest supported key &gt; length of requested key */</span></span><br><span class="line">        use_key_length = max_key_length; <span class="comment">/* start with max key length */</span></span><br><span class="line">        ..........................</span><br><span class="line"></span><br><span class="line">        key_s = emalloc(use_key_length);</span><br><span class="line">        <span class="built_in">memset</span>(key_s, <span class="number">0</span>, use_key_length);</span><br><span class="line">        <span class="built_in">memcpy</span>(key_s, key, MIN(key_len, use_key_length));</span><br><span class="line">    &#125;</span><br><span class="line">    ..........................</span><br></pre></td></tr></table></figure>
+<h3 id="PHP7"><a href="#PHP7" class="headerlink" title="PHP7"></a>PHP7</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">php_mcrypt_do_crypt</span><span class="params">(...)</span> <span class="comment">/* &#123;&#123;&#123; */</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    ..........................</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (php_mcrypt_ensure_valid_key_size(td, (<span class="keyword">int</span>)key_len) == FAILURE &#123;</span><br><span class="line">        mcrypt_module_close(td);</span><br><span class="line">        RETURN_FALSE;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (php_mcrypt_ensure_valid_iv(td, iv, (<span class="keyword">int</span>)iv_len) == FAILURE) &#123;</span><br><span class="line">        mcrypt_module_close(td);</span><br><span class="line">        RETURN_FALSE;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    ..........................</span><br></pre></td></tr></table></figure>
+<p><a href="https://github.com/php/php-src/blob/PHP-5.4.32/ext/mcrypt/mcrypt.c" target="_blank" rel="noopener">php-src/ext/mcrypt/mcrypt.c</a></p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">var_dump(mcrypt_encrypt(MCRYPT_DES, <span class="string">"123456789"</span>, <span class="string">"123"</span>,</span><br><span class="line">MCRYPT_MODE_CBC, <span class="string">"12345678"</span>));</span><br></pre></td></tr></table></figure>
+
+                </div>
+            </section>
+        </article>
+    </div>
+
+    
+    <div style="height: 4vw;width: 100%"></div>
+    <nav id="gobottom" class="pagination">
+        
+        <a class="prev-post" title="学习正则表达式的简单方法" href="/2017/08/15/2017-08-15-learn-regex-zh/">
+            ← 学习正则表达式的简单方法
+        </a>
+        
+        <span class="prev-next-post">•</span>
+        
+        <a class="next-post" title="PHP扩展实现类" href="/2016/03/10/2016-03-09-php-ext-class/">
+            PHP扩展实现类 →
+        </a>
+        
+    </nav>
+
+    
+</main>
+
+<div class="toc-bar">
+    <div class="toc-btn-bar">
+        <a href="#site-main" class="toc-btn">
+            <svg viewbox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg"><path d="M793.024 710.272a32 32 0 1 0 45.952-44.544l-310.304-320a32 32 0 0 0-46.4 0.48l-297.696 320a32 32 0 0 0 46.848 43.584l274.752-295.328 286.848 295.808z"/></svg>
+        </a>
+        <div class="toc-btn toc-switch">
+            <svg class="toc-open" viewbox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg"><path d="M779.776 480h-387.2a32 32 0 0 0 0 64h387.2a32 32 0 0 0 0-64M779.776 672h-387.2a32 32 0 0 0 0 64h387.2a32 32 0 0 0 0-64M256 288a32 32 0 1 0 0 64 32 32 0 0 0 0-64M392.576 352h387.2a32 32 0 0 0 0-64h-387.2a32 32 0 0 0 0 64M256 480a32 32 0 1 0 0 64 32 32 0 0 0 0-64M256 672a32 32 0 1 0 0 64 32 32 0 0 0 0-64"/></svg>
+            <svg class="toc-close hide" viewbox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg"><path d="M512 960c-247.039484 0-448-200.960516-448-448S264.960516 64 512 64 960 264.960516 960 512 759.039484 960 512 960zM512 128.287273c-211.584464 0-383.712727 172.128262-383.712727 383.712727 0 211.551781 172.128262 383.712727 383.712727 383.712727 211.551781 0 383.712727-172.159226 383.712727-383.712727C895.712727 300.415536 723.551781 128.287273 512 128.287273z"/><path d="M557.05545 513.376159l138.367639-136.864185c12.576374-12.416396 12.672705-32.671738 0.25631-45.248112s-32.704421-12.672705-45.248112-0.25631l-138.560301 137.024163-136.447897-136.864185c-12.512727-12.512727-32.735385-12.576374-45.248112-0.063647-12.512727 12.480043-12.54369 32.735385-0.063647 45.248112l136.255235 136.671523-137.376804 135.904314c-12.576374 12.447359-12.672705 32.671738-0.25631 45.248112 6.271845 6.335493 14.496116 9.504099 22.751351 9.504099 8.12794 0 16.25588-3.103239 22.496761-9.247789l137.567746-136.064292 138.687596 139.136568c6.240882 6.271845 14.432469 9.407768 22.65674 9.407768 8.191587 0 16.352211-3.135923 22.591372-9.34412 12.512727-12.480043 12.54369-32.704421 0.063647-45.248112L557.05545 513.376159z"/></svg>
+        </div>
+        <a href="#gobottom" class="toc-btn">
+            <svg viewbox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg"><path d="M231.424 346.208a32 32 0 0 0-46.848 43.584l297.696 320a32 32 0 0 0 46.4 0.48l310.304-320a32 32 0 1 0-45.952-44.544l-286.848 295.808-274.752-295.36z"/></svg>
+        </a>
+    </div>
+    <div class="toc-main">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#新特性"><span class="toc-text">新特性</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#标量类型声明"><span class="toc-text">标量类型声明</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#返回值类型声明"><span class="toc-text">返回值类型声明</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#太空船操作符"><span class="toc-text">太空船操作符</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#NULL-合并运算符"><span class="toc-text">NULL 合并运算符</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#通过-define-定义常量数组"><span class="toc-text">通过 define 定义常量数组</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#intdiv-两个数相除-取整"><span class="toc-text">intdiv() 两个数相除 取整</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Unicode-codepoint-转译语法"><span class="toc-text">Unicode codepoint 转译语法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Session-options"><span class="toc-text">Session options</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#不兼容性"><span class="toc-text">不兼容性</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#foreach-不再改变内部数组指针"><span class="toc-text">foreach 不再改变内部数组指针</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#十六进制字符串不再被认为是数字"><span class="toc-text">十六进制字符串不再被认为是数字</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#PHP7-中被移除的函数"><span class="toc-text">PHP7 中被移除的函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#移除了-ASP-和-script-PHP-标签"><span class="toc-text">移除了 ASP 和 script PHP 标签</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ZVAL-结构体优化"><span class="toc-text">ZVAL 结构体优化</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#存在问题"><span class="toc-text">存在问题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#PHP7-的-zval-结构体。"><span class="toc-text">PHP7 的 zval 结构体。</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#PHP7-类型"><span class="toc-text">PHP7 类型</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#升级遇到的问题"><span class="toc-text">升级遇到的问题</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#qconf-扩展问题"><span class="toc-text">qconf 扩展问题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#redis-扩展问题"><span class="toc-text">redis 扩展问题</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#mcrypt"><span class="toc-text">mcrypt</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#PHP5"><span class="toc-text">PHP5</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#PHP7"><span class="toc-text">PHP7</span></a></li></ol></li></ol>
+    </div>
+</div>
+
+
+
+	</div>
+	
+
+
+<aside class="read-next outer">
+    <div class="inner">
+        <div class="read-next-feed">
+            
+            
+
+<article class="read-next-card" style="background-image: url(https://i.loli.net/2019/02/24/5c72252a523c7.jpg)">
+  <header class="read-next-card-header">
+    <small class="read-next-card-header-sitetitle">&mdash; C & Fish &mdash;</small>
+    <h3 class="read-next-card-header-title">Recent Posts</h3>
+  </header>
+  <div class="read-next-divider">
+    <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24">
+      <path d="M13 14.5s2 3 5 3 5.5-2.463 5.5-5.5S21 6.5 18 6.5c-5 0-7 11-12 11C2.962 17.5.5 15.037.5 12S3 6.5 6 6.5s4.5 3.5 4.5 3.5"/>
+    </svg>
+  </div>
+  <div class="read-next-card-content">
+    <ul>
+      
+      
+      
+      <li>
+        <a href="/2017/11/07/2017-11-07-learn-c/">C 语言基础入门</a>
+      </li>
+      
+      
+      
+      <li>
+        <a href="/2017/11/02/2017-11-01-php-patterns/">PHP 设计模式</a>
+      </li>
+      
+      
+      
+      <li>
+        <a href="/2017/08/15/2017-08-15-learn-regex-zh/">学习正则表达式的简单方法</a>
+      </li>
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+    </ul>
+  </div>
+  <footer class="read-next-card-footer">
+    <a href="/archives">  MORE  → </a>
+  </footer>
+</article>
+
+            
+            
+            
+
+            
+            
+            
+            
+        </div>
+    </div>
+</aside>
+
+	
+
+
+
+
+
+<footer class="site-footer outer">
+	<div class="site-footer-content inner">
+		<section class="copyright">
+			<a href="/" title="C & Fish">C & Fish</a>
+			&copy; 2019
+		</section>
+		<nav class="site-footer-nav">
+			
+            <a href="https://hexo.io" title="Hexo" target="_blank" rel="noopener">Hexo</a>
+            <a href="https://github.com/xzhih/hexo-theme-casper" title="Casper" target="_blank" rel="noopener">Casper</a>
+        </nav>
+    </div>
+</footer>
+	
+
+
+<script>
+    if(window.navigator && navigator.serviceWorker) {
+        navigator.serviceWorker.getRegistrations()
+        .then(function(registrations) {
+            for(let registration of registrations) {
+                registration.unregister();
+            }
+        });
+    }
+</script>
+
+
+
+
+
+
+
+<div class="floating-header">
+	<div class="floating-header-logo">
+        <a href="/" title="C & Fish">
+			
+                <img src="https://i.loli.net/2019/02/24/5c722760644a6.png" alt="C & Fish icon">
+			
+            <span>C & Fish</span>
+        </a>
+    </div>
+    <span class="floating-header-divider">&mdash;</span>
+    <div class="floating-header-title">PHP7 升级的那些事儿</div>
+    <progress class="progress" value="0">
+        <div class="progress-container">
+            <span class="progress-bar"></span>
+        </div>
+    </progress>
+</div>
+
+
+
+
+
+
+<script src="/js/mix/post-lazy.min.js"></script>
+
+<script>;(function() {var bLazy = new Blazy()})();</script>
+
+
+
+
+<script src="/js/lightgallery.min.js"></script>
+<link rel="stylesheet" href="/css/lightgallery.min.css">
+<script>
+    lightGallery(document.getElementById('lightgallery'), {
+        selector: '.post-img'
+    });
+</script>
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

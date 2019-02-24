@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="CN">
+
+
+
+
+
+
+
+<head>
+	
+	
+	<link rel="stylesheet" href="/css/allinone.min.css">
+
+	
+
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+	<title>Debugging PHP Extensions | C & Fish</title>
+
+	<meta name="HandheldFriendly" content="True">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+	<meta name="generator" content="hexo">
+	<meta name="author" content="ZiHang Gao">
+	<meta name="description" content>
+
+	
+	<meta name="keywords" content>
+	
+
+	
+	<link rel="shortcut icon" href="https://i.loli.net/2019/02/24/5c722760644a6.png">
+	<link rel="apple-touch-icon" href="https://i.loli.net/2019/02/24/5c722760644a6.png">
+	
+
+	
+	<meta name="theme-color" content="#3c484e">
+	<meta name="msapplication-TileColor" content="#3c484e">
+	
+
+	
+
+	
+
+	<meta property="og:site_name" content="C & Fish">
+	<meta property="og:type" content="article">
+	<meta property="og:title" content="Debugging PHP Extensions | C & Fish">
+	<meta property="og:description" content>
+	<meta property="og:url" content="https://cdoco.com/2016/02/23/2016-02-23-debug-php-extension/">
+
+	
+	<meta property="article:published_time" content="2016-02-23T00:02:00+08:00"> 
+	<meta property="article:author" content="ZiHang Gao">
+	<meta property="article:published_first" content="C & Fish, /2016/02/23/2016-02-23-debug-php-extension/">
+	
+</head>
+<body class="post-template">
+	<div class="site-wrapper">
+		
+
+
+
+
+<header class="site-header outer" style="z-index: 999">
+    <div class="inner">
+        
+<nav class="site-nav"> 
+    <div class="site-nav-left">
+        <ul class="nav">
+            <li>
+                
+                <a href="/" title="Home">HOME</a>
+                
+            </li>
+            
+            
+            <li>
+                <a href="/about" title="ABOUT">ABOUT</a>
+            </li>
+            
+            <li>
+                <a href="/archives" title="ARCHIVES">ARCHIVES</a>
+            </li>
+            
+            
+        </ul> 
+    </div>
+     
+    <div class="site-nav-right">
+         
+        
+<div class="social-links">
+    
+    <a class="social-link" title="weibo" href="https://weibo.com/u/233878950" target="_blank" rel="noopener">
+        <svg viewbox="0 0 1141 1024" xmlns="http://www.w3.org/2000/svg"><path d="M916.48 518.144q27.648 21.504 38.912 51.712t9.216 62.976-14.336 65.536-31.744 59.392q-34.816 48.128-78.848 81.92t-91.136 56.32-94.72 35.328-89.6 18.944-75.264 7.68-51.712 1.536-49.152-2.56-68.096-10.24-78.336-21.504-79.872-36.352-74.24-55.296-59.904-78.848q-16.384-29.696-22.016-63.488t-5.632-86.016q0-22.528 7.68-51.2t27.136-63.488 53.248-75.776 86.016-90.112q51.2-48.128 105.984-85.504t117.248-57.856q28.672-10.24 63.488-11.264t57.344 11.264q10.24 11.264 19.456 23.04t12.288 29.184q3.072 14.336 0.512 27.648t-5.632 26.624-5.12 25.6 2.048 22.528q17.408 2.048 33.792-1.536t31.744-9.216 31.232-11.776 33.28-9.216q27.648-5.12 54.784-4.608t49.152 7.68 36.352 22.016 17.408 38.4q2.048 14.336-2.048 26.624t-8.704 23.04-7.168 22.016 1.536 23.552q3.072 7.168 14.848 13.312t27.136 12.288 32.256 13.312 29.184 16.384zM658.432 836.608q26.624-16.384 53.76-45.056t44.032-64 18.944-75.776-20.48-81.408q-19.456-33.792-47.616-57.344t-62.976-37.376-74.24-19.968-80.384-6.144q-78.848 0-139.776 16.384t-105.472 43.008-72.192 60.416-38.912 68.608q-11.264 33.792-6.656 67.072t20.992 62.976 42.496 53.248 57.856 37.888q58.368 25.6 119.296 32.256t116.224 0.512 100.864-21.504 74.24-33.792zM524.288 513.024q20.48 8.192 38.912 18.432t32.768 27.648q10.24 12.288 17.92 30.72t10.752 39.424 1.536 42.496-9.728 38.912q-8.192 18.432-19.968 37.376t-28.672 35.328-40.448 29.184-57.344 18.944q-61.44 11.264-117.76-11.264t-88.064-74.752q-12.288-39.936-13.312-70.656t16.384-66.56q13.312-27.648 40.448-51.712t62.464-38.912 75.264-17.408 78.848 12.8zM361.472 764.928q37.888 3.072 57.856-18.432t21.504-48.128-15.36-47.616-52.736-16.896q-27.648 3.072-43.008 23.552t-17.408 43.52 9.728 42.496 39.424 21.504zM780.288 6.144q74.752 0 139.776 19.968t113.664 57.856 76.288 92.16 27.648 122.88q0 33.792-16.384 50.688t-35.328 17.408-35.328-14.336-16.384-45.568q0-40.96-22.528-77.824t-59.392-64.512-84.48-43.52-96.768-15.872q-31.744 0-47.104-15.36t-14.336-34.304 18.944-34.304 51.712-15.36zM780.288 169.984q95.232 0 144.384 48.64t49.152 146.944q0 30.72-10.24 43.52t-22.528 11.264-22.528-14.848-10.24-35.84q0-60.416-34.816-96.256t-93.184-35.84q-19.456 0-28.672-10.752t-9.216-23.04 9.728-23.04 28.16-10.752z"/></svg>
+    </a>
+    
+    
+    <a class="social-link" title="github" href="https://github.com/cdoco" target="_blank" rel="noopener">
+        <svg viewbox="0 0 1049 1024" xmlns="http://www.w3.org/2000/svg"><path d="M524.979332 0C234.676191 0 0 234.676191 0 524.979332c0 232.068678 150.366597 428.501342 358.967656 498.035028 26.075132 5.215026 35.636014-11.299224 35.636014-25.205961 0-12.168395-0.869171-53.888607-0.869171-97.347161-146.020741 31.290159-176.441729-62.580318-176.441729-62.580318-23.467619-60.841976-58.234462-76.487055-58.234463-76.487055-47.804409-32.15933 3.476684-32.15933 3.476685-32.15933 53.019436 3.476684 80.83291 53.888607 80.83291 53.888607 46.935238 79.963739 122.553122 57.365291 152.97411 43.458554 4.345855-33.897672 18.252593-57.365291 33.028501-70.402857-116.468925-12.168395-239.022047-57.365291-239.022047-259.012982 0-57.365291 20.860106-104.300529 53.888607-140.805715-5.215026-13.037566-23.467619-66.926173 5.215027-139.067372 0 0 44.327725-13.906737 144.282399 53.888607 41.720212-11.299224 86.917108-17.383422 131.244833-17.383422s89.524621 6.084198 131.244833 17.383422C756.178839 203.386032 800.506564 217.29277 800.506564 217.29277c28.682646 72.1412 10.430053 126.029806 5.215026 139.067372 33.897672 36.505185 53.888607 83.440424 53.888607 140.805715 0 201.64769-122.553122 245.975415-239.891218 259.012982 19.121764 16.514251 35.636014 47.804409 35.636015 97.347161 0 70.402857-0.869171 126.898978-0.869172 144.282399 0 13.906737 9.560882 30.420988 35.636015 25.205961 208.601059-69.533686 358.967656-265.96635 358.967655-498.035028C1049.958663 234.676191 814.413301 0 524.979332 0z"/></svg>
+    </a>
+    
+    
+    
+    <a class="social-link" title="twitter" href="https://twitter.com/gaozihang" target="_blank" rel="noopener">
+        <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 32 32"><path d="M30.063 7.313c-.813 1.125-1.75 2.125-2.875 2.938v.75c0 1.563-.188 3.125-.688 4.625a15.088 15.088 0 0 1-2.063 4.438c-.875 1.438-2 2.688-3.25 3.813a15.015 15.015 0 0 1-4.625 2.563c-1.813.688-3.75 1-5.75 1-3.25 0-6.188-.875-8.875-2.625.438.063.875.125 1.375.125 2.688 0 5.063-.875 7.188-2.5-1.25 0-2.375-.375-3.375-1.125s-1.688-1.688-2.063-2.875c.438.063.813.125 1.125.125.5 0 1-.063 1.5-.25-1.313-.25-2.438-.938-3.313-1.938a5.673 5.673 0 0 1-1.313-3.688v-.063c.813.438 1.688.688 2.625.688a5.228 5.228 0 0 1-1.875-2c-.5-.875-.688-1.813-.688-2.75 0-1.063.25-2.063.75-2.938 1.438 1.75 3.188 3.188 5.25 4.25s4.313 1.688 6.688 1.813a5.579 5.579 0 0 1 1.5-5.438c1.125-1.125 2.5-1.688 4.125-1.688s3.063.625 4.188 1.813a11.48 11.48 0 0 0 3.688-1.375c-.438 1.375-1.313 2.438-2.563 3.188 1.125-.125 2.188-.438 3.313-.875z"/></svg>
+
+    </a>
+    
+    
+    
+    
+</div>
+    </div>
+</nav>
+    </div>
+</header>
+
+
+<main id="site-main" class="site-main outer" role="main">
+    <div class="inner">
+        <header class="post-full-header">
+            <section class="post-full-meta">
+                <time class="post-full-meta-date" datetime="2016-02-23T00:05:35.000Z" itemprop="datePublished">
+                    2016-02-23
+                </time>
+                
+                <span class="date-divider">/</span>
+                
+                <a href="/categories/php扩展/">php扩展</a>&nbsp;&nbsp;
+                
+                
+            </section>
+            <h1 class="post-full-title">Debugging PHP Extensions</h1>
+        </header>
+        <article class="post-full no-image">
+            
+            <section class="post-full-content">
+                <div id="lightgallery" class="markdown-body">
+                    <p>GDB, or the GNU Project Debugger, allows you to debug a program while it is executing. GDB can start a program, stop it on specified conditions, examine the execution environment when the program is stopped and allow you to change things inside the running program itself.</p>
+<p><a href="https://sourceware.org/gdb/current/onlinedocs/gdb/" target="_blank" rel="noopener">GDB Reference Documentation</a></p>
+<h3 id="Configuring-GDB"><a href="#Configuring-GDB" class="headerlink" title="Configuring GDB"></a>Configuring GDB</h3><p>Let’s get started by changing to the php-src directory</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">cd</span> ~/php-src</span><br></pre></td></tr></table></figure>
+<p>The .gdbinit script is provided with the PHP source distribution. By copying this file to the home directory, gdb will always load this file when it starts.</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ copy .gdbinit ~</span><br></pre></td></tr></table></figure>
+<p>Alternatively you can load the script into gdb at runtime:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(gdb) <span class="built_in">source</span> /home/vagrant/php-src/.gdbinit</span><br></pre></td></tr></table></figure>
+<a id="more"></a>
+<p>The .gdbinit script provides a number of commands within gdb that are helpful when debugging extensions.</p>
+<p>To view the available commands once the .gdbinit script is loaded provided try the following:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(gdb) <span class="built_in">help</span> user-defined</span><br></pre></td></tr></table></figure>
+<p>Of particular interest is zbacktrace which enables one to backtrace from C to PHP.</p>
+<h3 id="Debugging-a-PCRE-extension"><a href="#Debugging-a-PCRE-extension" class="headerlink" title="Debugging a PCRE extension"></a>Debugging a PCRE extension</h3><p>To familiarise ourselves with GDB and its commands available for debugging we will step through a PHP PCRE extension test.</p>
+<h4 id="PHP-Tests-Wrapper"><a href="#PHP-Tests-Wrapper" class="headerlink" title="PHP Tests Wrapper"></a>PHP Tests Wrapper</h4><p>The run-tests.php script locates test files and then creates a unique shell script to execute each one in a pristine context. To avoid the complexity and overhead of dealing with GDB and fork/exec, we will run our test directly and bypass the run-tests.php script.</p>
+<h4 id="Loading-GDB"><a href="#Loading-GDB" class="headerlink" title="Loading GDB"></a>Loading GDB</h4><p>Now let’s load gdb and tell it we intend to run the phpt test file by executing the PHP CLI binary with an argument to its location:</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ gdb --args sapi/cli/php ext/pcre/tests/preg_match_basic.phpt</span><br></pre></td></tr></table></figure>
+<h4 id="PHP-Function-calls"><a href="#PHP-Function-calls" class="headerlink" title="PHP Function calls"></a>PHP Function calls</h4><p>The PHP function we intend to examine is preg_match() and is defined in the ext/pcre/php_pcre.c file as a static PHP_FUNCTION wrapper around another static function php_do_pcre_match.</p>
+<p>Our test file, ext/pcre/tests/preg_match_basic.phpt evaluates a number of regular expressions against a string and extracts matches into a variable. The .phpt file defines a PHP script to run as input and the corresponding output data that it expects to see from a successful test.</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$string = <span class="string">'Hello, world. [*], this is \ a string'</span>;</span><br><span class="line">var_dump(preg_match(<span class="string">'/^[hH]ello,\s/'</span>, $string, $match1)); <span class="comment">//finds "Hello, "</span></span><br><span class="line">var_dump($match1);</span><br></pre></td></tr></table></figure>
+<p>Running the above should produce:</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">int(<span class="number">1</span>)</span><br><span class="line"><span class="keyword">array</span>(<span class="number">1</span>) &#123;</span><br><span class="line">  [<span class="number">0</span>]=&gt;</span><br><span class="line">  string(<span class="number">7</span>) <span class="string">"Hello, "</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>Where int(1) signifies preg_match returning true for a match, with an array(1) of matched strings, in this case there is only one match, “Hello, “.</p>
+<p>Knowing that php_do_pcre_match is called, let’s tell gdb we would like to break on invocation of php_do_pcre_match and then run the test.</p>
+<p>TODO: more info on breakpoint formats.</p>
+<h4 id="Setting-Breakpoints"><a href="#Setting-Breakpoints" class="headerlink" title="Setting Breakpoints"></a>Setting Breakpoints</h4><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">(gdb) <span class="built_in">break</span> php_do_pcre_match</span><br><span class="line">(gdb) run</span><br></pre></td></tr></table></figure>
+<p>After a few moments, you should see something similar to:</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Breakpoint 1, php_do_pcre_match (execute_data=0x7ffff0214260, return_value=0x7ffff0214100,</span><br><span class="line">    global=0)</span><br><span class="line">  at /home/vagrant/php-src/ext/pcre/php_pcre.c:549</span><br></pre></td></tr></table></figure>
+<p>Let’s use the zbacktrace command to find out where we came from.</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">(gdb) zbacktrace</span><br><span class="line">[0x7ffff0214260] preg_match(<span class="string">"/^[hH]ello,\s/"</span>, <span class="string">"Hello,\40world.\40[*],\40this\40is\40\\40</span></span><br><span class="line"><span class="string">    a\40string"</span>, reference) [internal <span class="keyword">function</span>]</span><br><span class="line">[0x7ffff0214030] (main) /home/vagrant/php-src/ext/pcre/tests/preg_match_basic.phpt:10</span><br></pre></td></tr></table></figure>
+<p>The above output shows that we are inside the the function that generates the output that will be used as a comparison for the first assertion of our unit test. The first unit test in the preg_match_basic.phpt file tries to find matches based on the regex “/^[hH]ello,\s/“ against our subject string “Hello, world. [4], this is \ a string”.</p>
+<h4 id="Program-Execution-Flow"><a href="#Program-Execution-Flow" class="headerlink" title="Program Execution Flow"></a>Program Execution Flow</h4><p>Running next allows us to move line by line through the execution of the original source code. Enter next a few times until you reach a function invocation that looks like this:</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">(gdb) next</span><br><span class="line">    php_pcre_match_impl(pce, subject-&gt;val, (int)subject-&gt;len, return_value, subpats, ...</span><br></pre></td></tr></table></figure>
+<p>In GDB, we can step inside any function call. The ‘next’ command by default steps over functions where as ‘step’ allows us to follow the execution path.</p>
+<p>Let’s step inside! For function calls that span multiple lines in the source file, you may have to call step a few times.</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">(gdb) step</span><br><span class="line">...</span><br><span class="line">(gdb) step</span><br><span class="line">php_pcre_match_impl (pce=0x1a98b70, subject=0x7ffff02028b8 <span class="string">"Hello, world. [*], this is \\</span></span><br><span class="line"><span class="string">    a string"</span>, subject_len=37, return_value=0x7ffff0214100, subpats=0x7ffff02010e8, global=0,</span><br><span class="line">    use_flags=0, flags=0, start_offset=0)</span><br><span class="line">  at /home/vagrant/php-src/ext/pcre/php_pcre.c:585</span><br></pre></td></tr></table></figure>
+<p>Now we are inside the lowest level of the extension that wraps about the PCRE library. Looking at the source for php_pcre.c, we see that php_do_pcre_match calls another function php_pcre_match_impl after parsing the arguments from the Zend VM. We know the string that’s the subject for evaluation, let’s see if we can use the argument subject to php_pcre_match_impl to catch it.</p>
+<p>In GDB a break can take a conditional argument. Knowing that a string starting with the character ‘H’ is the subject for our unit tests, let’s try and break on that condition. To do so we’ll kill the current running program, delete the existing breakpoint and create a new conditional one.</p>
+<h4 id="Stopping-Execution-and-Breakpoints"><a href="#Stopping-Execution-and-Breakpoints" class="headerlink" title="Stopping Execution and Breakpoints"></a>Stopping Execution and Breakpoints</h4><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">(gdb) <span class="built_in">kill</span></span><br><span class="line">Kill the program being debugged? (y or n) y</span><br></pre></td></tr></table></figure>
+<p>Delete the existing breakpoint:</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(gdb) delete 1</span><br></pre></td></tr></table></figure>
+<p>Now let’s set a conditional breakpoint in the lower level function we stepped into before:</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">(gdb) <span class="built_in">break</span> php_pcre_match_impl <span class="keyword">if</span> subject[0] == <span class="string">'H'</span></span><br><span class="line">(gdb) run</span><br></pre></td></tr></table></figure>
+<p>Success!</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Breakpoint 2, php_pcre_match_impl (pce=0x1a98b70, subject=0x7ffff02028b8 <span class="string">"Hello, world. [*],</span></span><br><span class="line"><span class="string">    this is \\ a string"</span>, subject_len=37, return_value=0x7ffff0214100, subpats=0x7ffff02010e8,</span><br><span class="line">    global=0, use_flags=0, flags=0, start_offset=0)</span><br><span class="line">  at /home/vagrant/php-src/ext/pcre/php_pcre.c:585</span><br></pre></td></tr></table></figure>
+<p>Let’s have a look at what’s happening inside this function and start execution line by line:</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">(gdb) info args</span><br><span class="line">...</span><br><span class="line">(gdb) info <span class="built_in">local</span></span><br><span class="line">...</span><br><span class="line">(gdb) next</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+<p>The args output clearly shows the string we were looking for. Local shows the variables in scope for the current function. Now we can start moving through the code and find out how php_pcre_match_impl works. Looking at the source, we can see a call to a library function pcre_exec at line 688. Let’s break there.</p>
+<p>First we create a new breakpoint, continue execution, and then step inside the pcre_exec call.</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">(gdb) <span class="built_in">break</span> 688</span><br><span class="line">(gdb) <span class="built_in">continue</span></span><br><span class="line">(gdb) step</span><br></pre></td></tr></table></figure>
+<p>Once we’re done debugging the pcre_exec call, to return from the current function we can use ‘finish’ and look at the results being passed back through to the extension.</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(gdb) finish</span><br></pre></td></tr></table></figure>
+<p>Now we’re back from the call to count = pcre_exec(…), let’s look at the result.</p>
+<h4 id="Exploring-Variables-and-Types"><a href="#Exploring-Variables-and-Types" class="headerlink" title="Exploring Variables and Types"></a>Exploring Variables and Types</h4><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">Run till <span class="built_in">exit</span> from <span class="comment">#0  php_pcre_exec (argument_re=0x1a98a00, extra_data=0x1a98a80,</span></span><br><span class="line">    subject=0x7ffff02028b8 <span class="string">"Hello, world. [*], this is \\ a string"</span>, length=37,</span><br><span class="line">    start_offset=0, options=0, offsets=0x7fffffffa8c0, offsetcount=3)</span><br><span class="line">  at /home/vagrant/php-src/ext/pcre/pcrelib/pcre_exec.c:6355</span><br><span class="line"></span><br><span class="line">0x00000000005860f5 <span class="keyword">in</span> php_pcre_match_impl (pce=0x1a98b70, subject=0x7ffff02028b8 <span class="string">"Hello,</span></span><br><span class="line"><span class="string">    world. [*], this is \\ a string"</span>, subject_len=37, return_value=0x7ffff0214100,</span><br><span class="line">    subpats=0x7ffff02010e8, global=0, use_flags=0, flags=0, start_offset=0)</span><br><span class="line">  at /home/vagrant/php-src/ext/pcre/php_pcre.c:688</span><br><span class="line"></span><br><span class="line">688  count = pcre_exec(pce-&gt;re, extra, subject, (int)subject_len, (int)start_offset,</span><br><span class="line">Value returned is <span class="variable">$1</span> = 1</span><br></pre></td></tr></table></figure>
+<p>Excellent, so our library function pcre_exec correctly found 1 match for the regular expression against the subject and returned the result to the local variable count in the php_pcre_match_impl function.</p>
+<p>Let’s learn how to unpack and inspect some internal zend engine data types to look at the results being returned back to PHP. First, let’s finish the current php_pcre_match_impl function and get back to our entry point, php_do_pcre_match.</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">(gdb) finish</span><br><span class="line">Run till <span class="built_in">exit</span> from <span class="comment">#0  php_pcre_match_impl (pce=0x1a98b70, subject=0x7ffff02028b8 "Hello,</span></span><br><span class="line">    world. [*], this is \\ a string<span class="string">", subject_len=37, return_value=0x7ffff0214100,</span></span><br><span class="line"><span class="string">    subpats=0x7ffff02010e8, global=0, use_flags=0, flags=0, start_offset=0)</span></span><br><span class="line"><span class="string">  at /home/vagrant/php-src/ext/pcre/php_pcre.c:585</span></span><br><span class="line"><span class="string">0x0000000000585a5c in php_do_pcre_match (execute_data=0x7ffff0214260,</span></span><br><span class="line"><span class="string">    return_value=0x7ffff0214100, global=0)</span></span><br><span class="line"><span class="string">  at /home/vagrant/php-src/ext/pcre/php_pcre.c:574</span></span><br></pre></td></tr></table></figure>
+<p>The above message indicates we’ve returned back to php_do_pcre_match, let’s investigate the local variables available to us.</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">(gdb) info locals</span><br><span class="line">regex = 0x7ffff0264dc0</span><br><span class="line">subject = 0x7ffff02028a0</span><br><span class="line">pce = 0x1a98b70</span><br><span class="line">subpats = 0x7ffff02010e8</span><br><span class="line">flags = 0</span><br><span class="line">start_offset = 0</span><br><span class="line">__PRETTY_FUNCTION__ = <span class="string">"php_do_pcre_match"</span></span><br></pre></td></tr></table></figure>
+<p>We know that the 3rd argument of preg_match takes a variable to return an array of the matches as subpatterns. The results are held in the subpats* pointer, let’s find out more about it.</p>
+<p>First, let’s find out the type of subpats using the ptype command.</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">(gdb) ptype subpats</span><br><span class="line">type = struct _zval_struct &#123;</span><br><span class="line">    zend_value value;</span><br><span class="line">    <span class="keyword">union</span> &#123;</span><br><span class="line">        <span class="class"><span class="keyword">struct</span> &#123;</span>...&#125; v;</span><br><span class="line">        <span class="keyword">uint32_t</span> type_info;</span><br><span class="line">    &#125; u1;</span><br><span class="line">    <span class="keyword">union</span> &#123;</span><br><span class="line">        <span class="keyword">uint32_t</span> var_flags;</span><br><span class="line">        <span class="keyword">uint32_t</span> next;</span><br><span class="line">        <span class="keyword">uint32_t</span> cache_slot;</span><br><span class="line">        <span class="keyword">uint32_t</span> lineno;</span><br><span class="line">        <span class="keyword">uint32_t</span> num_args;</span><br><span class="line">        <span class="keyword">uint32_t</span> fe_pos;</span><br><span class="line">        <span class="keyword">uint32_t</span> fe_iter_idx;</span><br><span class="line">    &#125; u2;</span><br><span class="line">&#125; *</span><br></pre></td></tr></table></figure>
+<p>The above output indicates that subpats is a pointer to a _zval_struct that holds a zend_value type named value. What’s a zend_value? It’s the generic data type PHP uses internally for most of its scalars/primitives.</p>
+<p>We can find out more information about zend_value using the same ptype command. Note, that we can query the type directly or a variable of that type. I.e. ptype zend_value would return the same information.</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">(gdb) ptype subpats-&gt;value</span><br><span class="line">type = <span class="keyword">union</span> _zend_value &#123;</span><br><span class="line">    zend_long lval;</span><br><span class="line">    <span class="keyword">double</span> dval;</span><br><span class="line">    zend_refcounted *counted;</span><br><span class="line">    zend_string *str;</span><br><span class="line">    zend_array *arr;</span><br><span class="line">    zend_object *obj;</span><br><span class="line">    zend_resource *res;</span><br><span class="line">    zend_reference *ref;</span><br><span class="line">    zend_ast_ref *ast;</span><br><span class="line">    zval *zv;</span><br><span class="line">    <span class="keyword">void</span> *ptr;</span><br><span class="line">    zend_class_entry *ce;</span><br><span class="line">    zend_function *func;</span><br><span class="line">    <span class="class"><span class="keyword">struct</span> &#123;</span></span><br><span class="line">        <span class="keyword">uint32_t</span> w1;</span><br><span class="line">        <span class="keyword">uint32_t</span> w2;</span><br><span class="line">    &#125; ww;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>The above exposes the generic data structure PHP uses internally for holding values. We know the return type is an array, so we expect zend_array *arr to hold our information.</p>
+<p>Next, we print the type of a zend_array.</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">(gdb) ptype subpats-&gt;value-&gt;arr</span><br><span class="line">type = struct _zend_array &#123;</span><br><span class="line">    zend_refcounted gc;</span><br><span class="line">    <span class="keyword">union</span> &#123;</span><br><span class="line">        <span class="class"><span class="keyword">struct</span> &#123;</span>...&#125; v;</span><br><span class="line">        <span class="keyword">uint32_t</span> flags;</span><br><span class="line">    &#125; u;</span><br><span class="line">    <span class="keyword">uint32_t</span> nTableSize;</span><br><span class="line">    <span class="keyword">uint32_t</span> nTableMask;</span><br><span class="line">    <span class="keyword">uint32_t</span> nNumUsed;</span><br><span class="line">    <span class="keyword">uint32_t</span> nNumOfElements;</span><br><span class="line">    <span class="keyword">uint32_t</span> nInternalPointer;</span><br><span class="line">    zend_long nNextFreeElement;</span><br><span class="line">    Bucket *arData;</span><br><span class="line">    <span class="keyword">uint32_t</span> *arHash;</span><br><span class="line">    <span class="keyword">dtor_func_t</span> pDestructor;</span><br><span class="line">&#125; *</span><br></pre></td></tr></table></figure>
+<p>Aha! PHP uses a ‘bucket’ concept to store it’s array data. We expected 1 match from our unit test on the word ‘Hello’, let’s find out how many items are in the subpats array.</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">(gdb) <span class="built_in">print</span> subpats-&gt;value-&gt;arr-&gt;nNumOfElements</span><br><span class="line"><span class="variable">$2</span> = 1</span><br></pre></td></tr></table></figure>
+<p>So there is one element in our array, presumably held in the arData pointer to a Bucket. Let’s find out more about the structure of a Bucket type by querying the type directly instead of the arData pointer.</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">(gdb) ptype Bucket</span><br><span class="line">type = struct _Bucket &#123;</span><br><span class="line">    zval val;</span><br><span class="line">    zend_ulong h;</span><br><span class="line">    zend_string *key;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>So a Bucket consists of a val and a key. A zval has a value that’s a zend_value, and we know the array result should contain a string for the subpattern match. Therefore subpats-&gt;value-&gt;arr-&gt;arData-&gt;val-&gt;value-&gt;str should be a zend_string with a length property and a char val.</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">(gdb) <span class="built_in">print</span> subpats-&gt;value-&gt;arr-&gt;arData-&gt;val-&gt;value-&gt;str-&gt;len</span><br><span class="line"><span class="variable">$3</span> = 7</span><br></pre></td></tr></table></figure>
+<p>So our result has a length of 7. Let’s look at the result itself. GDB print command (or p or x) has a number of additional and useful features. First, we can specify the output format, and for arrays we can pass our length using the @ operator.</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">(gdb) <span class="built_in">print</span>/c subpats-&gt;value-&gt;arr-&gt;arData-&gt;val-&gt;value-&gt;str-&gt;val@7</span><br><span class="line"><span class="variable">$4</span> = &#123;&#123;72 <span class="string">'H'</span>&#125;, &#123;101 <span class="string">'e'</span>&#125;, &#123;108 <span class="string">'l'</span>&#125;, &#123;108 <span class="string">'l'</span>&#125;, &#123;111 <span class="string">'o'</span>&#125;, &#123;44 <span class="string">','</span>&#125;, &#123;32 <span class="string">' '</span>&#125;&#125;</span><br></pre></td></tr></table></figure>
+<p>You can also use the x command to inspect variables/memory</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">(gdb) x subpats-&gt;value-&gt;arr-&gt;arData-&gt;val-&gt;value-&gt;str-&gt;val</span><br><span class="line">0x7ffff0258c58: <span class="string">"Hello, "</span></span><br></pre></td></tr></table></figure>
+<p>And there it is, our match “Hello, “ being returned to PHP.</p>
+<h3 id="Summary"><a href="#Summary" class="headerlink" title="Summary"></a>Summary</h3><p>What have we learnt? Zval’s are just a struct that contain’s a zend_value, and a zend_value is a generic data type that can represent any PHP value. A PHP array consists of a “bucket” structure (among other things), which is ultimately just a reference to another zval (i.e. any type).</p>
+<p>We have a zval -&gt; zend_value -&gt; array -&gt; bucket -&gt; zval -&gt; zend_value -&gt; str where our subpattern match is held.</p>
+<p>As a final note, it’s important to know that all PHP functions are exposed to GDB through a symbol table that prefixes them with zif_. For example, we could have chosen to break on zif_preg_match insterad of php_do_pcre_match initially. This would have broken at the static function wrapper around php_do_pcre_match. Global object functions are exposed under the zim_ prefix with the pattern zim_classname_methodname.</p>
+<p>Happy debugging!</p>
+
+                </div>
+            </section>
+        </article>
+    </div>
+
+    
+    <div style="height: 4vw;width: 100%"></div>
+    <nav id="gobottom" class="pagination">
+        
+        <a class="prev-post" title="PHP扩展实现类" href="/2016/03/10/2016-03-09-php-ext-class/">
+            ← PHP扩展实现类
+        </a>
+        
+        <span class="prev-next-post">•</span>
+        
+        <a class="next-post" title="docker常用命令" href="/2016/02/22/2016-02-21-docker-basics/">
+            docker常用命令 →
+        </a>
+        
+    </nav>
+
+    
+</main>
+
+<div class="toc-bar">
+    <div class="toc-btn-bar">
+        <a href="#site-main" class="toc-btn">
+            <svg viewbox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg"><path d="M793.024 710.272a32 32 0 1 0 45.952-44.544l-310.304-320a32 32 0 0 0-46.4 0.48l-297.696 320a32 32 0 0 0 46.848 43.584l274.752-295.328 286.848 295.808z"/></svg>
+        </a>
+        <div class="toc-btn toc-switch">
+            <svg class="toc-open" viewbox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg"><path d="M779.776 480h-387.2a32 32 0 0 0 0 64h387.2a32 32 0 0 0 0-64M779.776 672h-387.2a32 32 0 0 0 0 64h387.2a32 32 0 0 0 0-64M256 288a32 32 0 1 0 0 64 32 32 0 0 0 0-64M392.576 352h387.2a32 32 0 0 0 0-64h-387.2a32 32 0 0 0 0 64M256 480a32 32 0 1 0 0 64 32 32 0 0 0 0-64M256 672a32 32 0 1 0 0 64 32 32 0 0 0 0-64"/></svg>
+            <svg class="toc-close hide" viewbox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg"><path d="M512 960c-247.039484 0-448-200.960516-448-448S264.960516 64 512 64 960 264.960516 960 512 759.039484 960 512 960zM512 128.287273c-211.584464 0-383.712727 172.128262-383.712727 383.712727 0 211.551781 172.128262 383.712727 383.712727 383.712727 211.551781 0 383.712727-172.159226 383.712727-383.712727C895.712727 300.415536 723.551781 128.287273 512 128.287273z"/><path d="M557.05545 513.376159l138.367639-136.864185c12.576374-12.416396 12.672705-32.671738 0.25631-45.248112s-32.704421-12.672705-45.248112-0.25631l-138.560301 137.024163-136.447897-136.864185c-12.512727-12.512727-32.735385-12.576374-45.248112-0.063647-12.512727 12.480043-12.54369 32.735385-0.063647 45.248112l136.255235 136.671523-137.376804 135.904314c-12.576374 12.447359-12.672705 32.671738-0.25631 45.248112 6.271845 6.335493 14.496116 9.504099 22.751351 9.504099 8.12794 0 16.25588-3.103239 22.496761-9.247789l137.567746-136.064292 138.687596 139.136568c6.240882 6.271845 14.432469 9.407768 22.65674 9.407768 8.191587 0 16.352211-3.135923 22.591372-9.34412 12.512727-12.480043 12.54369-32.704421 0.063647-45.248112L557.05545 513.376159z"/></svg>
+        </div>
+        <a href="#gobottom" class="toc-btn">
+            <svg viewbox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg"><path d="M231.424 346.208a32 32 0 0 0-46.848 43.584l297.696 320a32 32 0 0 0 46.4 0.48l310.304-320a32 32 0 1 0-45.952-44.544l-286.848 295.808-274.752-295.36z"/></svg>
+        </a>
+    </div>
+    <div class="toc-main">
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#Configuring-GDB"><span class="toc-text">Configuring GDB</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Debugging-a-PCRE-extension"><span class="toc-text">Debugging a PCRE extension</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#PHP-Tests-Wrapper"><span class="toc-text">PHP Tests Wrapper</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Loading-GDB"><span class="toc-text">Loading GDB</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#PHP-Function-calls"><span class="toc-text">PHP Function calls</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Setting-Breakpoints"><span class="toc-text">Setting Breakpoints</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Program-Execution-Flow"><span class="toc-text">Program Execution Flow</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Stopping-Execution-and-Breakpoints"><span class="toc-text">Stopping Execution and Breakpoints</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Exploring-Variables-and-Types"><span class="toc-text">Exploring Variables and Types</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Summary"><span class="toc-text">Summary</span></a></li></ol>
+    </div>
+</div>
+
+
+
+	</div>
+	
+
+
+<aside class="read-next outer">
+    <div class="inner">
+        <div class="read-next-feed">
+            
+            
+
+<article class="read-next-card" style="background-image: url(https://i.loli.net/2019/02/24/5c72252a523c7.jpg)">
+  <header class="read-next-card-header">
+    <small class="read-next-card-header-sitetitle">&mdash; C & Fish &mdash;</small>
+    <h3 class="read-next-card-header-title">Recent Posts</h3>
+  </header>
+  <div class="read-next-divider">
+    <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24">
+      <path d="M13 14.5s2 3 5 3 5.5-2.463 5.5-5.5S21 6.5 18 6.5c-5 0-7 11-12 11C2.962 17.5.5 15.037.5 12S3 6.5 6 6.5s4.5 3.5 4.5 3.5"/>
+    </svg>
+  </div>
+  <div class="read-next-card-content">
+    <ul>
+      
+      
+      
+      <li>
+        <a href="/2017/11/07/2017-11-07-learn-c/">C 语言基础入门</a>
+      </li>
+      
+      
+      
+      <li>
+        <a href="/2017/11/02/2017-11-01-php-patterns/">PHP 设计模式</a>
+      </li>
+      
+      
+      
+      <li>
+        <a href="/2017/08/15/2017-08-15-learn-regex-zh/">学习正则表达式的简单方法</a>
+      </li>
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+    </ul>
+  </div>
+  <footer class="read-next-card-footer">
+    <a href="/archives">  MORE  → </a>
+  </footer>
+</article>
+
+            
+            
+            
+
+            
+            
+            
+            
+        </div>
+    </div>
+</aside>
+
+	
+
+
+
+
+
+<footer class="site-footer outer">
+	<div class="site-footer-content inner">
+		<section class="copyright">
+			<a href="/" title="C & Fish">C & Fish</a>
+			&copy; 2019
+		</section>
+		<nav class="site-footer-nav">
+			
+            <a href="https://hexo.io" title="Hexo" target="_blank" rel="noopener">Hexo</a>
+            <a href="https://github.com/xzhih/hexo-theme-casper" title="Casper" target="_blank" rel="noopener">Casper</a>
+        </nav>
+    </div>
+</footer>
+	
+
+
+<script>
+    if(window.navigator && navigator.serviceWorker) {
+        navigator.serviceWorker.getRegistrations()
+        .then(function(registrations) {
+            for(let registration of registrations) {
+                registration.unregister();
+            }
+        });
+    }
+</script>
+
+
+
+
+
+
+
+<div class="floating-header">
+	<div class="floating-header-logo">
+        <a href="/" title="C & Fish">
+			
+                <img src="https://i.loli.net/2019/02/24/5c722760644a6.png" alt="C & Fish icon">
+			
+            <span>C & Fish</span>
+        </a>
+    </div>
+    <span class="floating-header-divider">&mdash;</span>
+    <div class="floating-header-title">Debugging PHP Extensions</div>
+    <progress class="progress" value="0">
+        <div class="progress-container">
+            <span class="progress-bar"></span>
+        </div>
+    </progress>
+</div>
+
+
+
+
+
+
+<script src="/js/mix/post-lazy.min.js"></script>
+
+<script>;(function() {var bLazy = new Blazy()})();</script>
+
+
+
+
+<script src="/js/lightgallery.min.js"></script>
+<link rel="stylesheet" href="/css/lightgallery.min.css">
+<script>
+    lightGallery(document.getElementById('lightgallery'), {
+        selector: '.post-img'
+    });
+</script>
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="CN">
+
+
+
+
+
+<head>
+	
+	
+	<link rel="stylesheet" href="/css/allinone.min.css">
+
+	
+
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+	<title>C & Fish | C & Fish</title>
+
+	<meta name="HandheldFriendly" content="True">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+	<meta name="generator" content="hexo">
+	<meta name="author" content="ZiHang Gao">
+	<meta name="description" content>
+
+	
+	<meta name="keywords" content="golang, go, php, node, java, rust, c">
+	
+
+	
+	<link rel="shortcut icon" href="https://i.loli.net/2019/02/24/5c722760644a6.png">
+	<link rel="apple-touch-icon" href="https://i.loli.net/2019/02/24/5c722760644a6.png">
+	
+
+	
+	<meta name="theme-color" content="#3c484e">
+	<meta name="msapplication-TileColor" content="#3c484e">
+	
+
+	
+
+	
+
+	<meta property="og:site_name" content="C & Fish">
+	<meta property="og:type" content="blog">
+	<meta property="og:title" content="C & Fish | C & Fish">
+	<meta property="og:description" content>
+	<meta property="og:url" content="https://cdoco.com/html/memcached.html">
+
+	
+</head>
+<body class="tag-template">
+	<div class="site-wrapper">
+		
+
+
+
+
+<header class="site-header outer " style="background-image: url(https://i.loli.net/2019/02/24/5c72252a523c7.jpg)">
+    <div class="inner">
+        
+        
+        
+<nav class="site-nav"> 
+    <div class="site-nav-left">
+        <ul class="nav">
+            <li>
+                
+                <a href="/" title="Home">HOME</a>
+                
+            </li>
+            
+            
+            <li>
+                <a href="/about" title="ABOUT">ABOUT</a>
+            </li>
+            
+            <li>
+                <a href="/archives" title="ARCHIVES">ARCHIVES</a>
+            </li>
+            
+            
+        </ul> 
+    </div>
+     
+    <div class="site-nav-right">
+         
+        
+<div class="social-links">
+    
+    <a class="social-link" title="weibo" href="https://weibo.com/u/233878950" target="_blank" rel="noopener">
+        <svg viewbox="0 0 1141 1024" xmlns="http://www.w3.org/2000/svg"><path d="M916.48 518.144q27.648 21.504 38.912 51.712t9.216 62.976-14.336 65.536-31.744 59.392q-34.816 48.128-78.848 81.92t-91.136 56.32-94.72 35.328-89.6 18.944-75.264 7.68-51.712 1.536-49.152-2.56-68.096-10.24-78.336-21.504-79.872-36.352-74.24-55.296-59.904-78.848q-16.384-29.696-22.016-63.488t-5.632-86.016q0-22.528 7.68-51.2t27.136-63.488 53.248-75.776 86.016-90.112q51.2-48.128 105.984-85.504t117.248-57.856q28.672-10.24 63.488-11.264t57.344 11.264q10.24 11.264 19.456 23.04t12.288 29.184q3.072 14.336 0.512 27.648t-5.632 26.624-5.12 25.6 2.048 22.528q17.408 2.048 33.792-1.536t31.744-9.216 31.232-11.776 33.28-9.216q27.648-5.12 54.784-4.608t49.152 7.68 36.352 22.016 17.408 38.4q2.048 14.336-2.048 26.624t-8.704 23.04-7.168 22.016 1.536 23.552q3.072 7.168 14.848 13.312t27.136 12.288 32.256 13.312 29.184 16.384zM658.432 836.608q26.624-16.384 53.76-45.056t44.032-64 18.944-75.776-20.48-81.408q-19.456-33.792-47.616-57.344t-62.976-37.376-74.24-19.968-80.384-6.144q-78.848 0-139.776 16.384t-105.472 43.008-72.192 60.416-38.912 68.608q-11.264 33.792-6.656 67.072t20.992 62.976 42.496 53.248 57.856 37.888q58.368 25.6 119.296 32.256t116.224 0.512 100.864-21.504 74.24-33.792zM524.288 513.024q20.48 8.192 38.912 18.432t32.768 27.648q10.24 12.288 17.92 30.72t10.752 39.424 1.536 42.496-9.728 38.912q-8.192 18.432-19.968 37.376t-28.672 35.328-40.448 29.184-57.344 18.944q-61.44 11.264-117.76-11.264t-88.064-74.752q-12.288-39.936-13.312-70.656t16.384-66.56q13.312-27.648 40.448-51.712t62.464-38.912 75.264-17.408 78.848 12.8zM361.472 764.928q37.888 3.072 57.856-18.432t21.504-48.128-15.36-47.616-52.736-16.896q-27.648 3.072-43.008 23.552t-17.408 43.52 9.728 42.496 39.424 21.504zM780.288 6.144q74.752 0 139.776 19.968t113.664 57.856 76.288 92.16 27.648 122.88q0 33.792-16.384 50.688t-35.328 17.408-35.328-14.336-16.384-45.568q0-40.96-22.528-77.824t-59.392-64.512-84.48-43.52-96.768-15.872q-31.744 0-47.104-15.36t-14.336-34.304 18.944-34.304 51.712-15.36zM780.288 169.984q95.232 0 144.384 48.64t49.152 146.944q0 30.72-10.24 43.52t-22.528 11.264-22.528-14.848-10.24-35.84q0-60.416-34.816-96.256t-93.184-35.84q-19.456 0-28.672-10.752t-9.216-23.04 9.728-23.04 28.16-10.752z"/></svg>
+    </a>
+    
+    
+    <a class="social-link" title="github" href="https://github.com/cdoco" target="_blank" rel="noopener">
+        <svg viewbox="0 0 1049 1024" xmlns="http://www.w3.org/2000/svg"><path d="M524.979332 0C234.676191 0 0 234.676191 0 524.979332c0 232.068678 150.366597 428.501342 358.967656 498.035028 26.075132 5.215026 35.636014-11.299224 35.636014-25.205961 0-12.168395-0.869171-53.888607-0.869171-97.347161-146.020741 31.290159-176.441729-62.580318-176.441729-62.580318-23.467619-60.841976-58.234462-76.487055-58.234463-76.487055-47.804409-32.15933 3.476684-32.15933 3.476685-32.15933 53.019436 3.476684 80.83291 53.888607 80.83291 53.888607 46.935238 79.963739 122.553122 57.365291 152.97411 43.458554 4.345855-33.897672 18.252593-57.365291 33.028501-70.402857-116.468925-12.168395-239.022047-57.365291-239.022047-259.012982 0-57.365291 20.860106-104.300529 53.888607-140.805715-5.215026-13.037566-23.467619-66.926173 5.215027-139.067372 0 0 44.327725-13.906737 144.282399 53.888607 41.720212-11.299224 86.917108-17.383422 131.244833-17.383422s89.524621 6.084198 131.244833 17.383422C756.178839 203.386032 800.506564 217.29277 800.506564 217.29277c28.682646 72.1412 10.430053 126.029806 5.215026 139.067372 33.897672 36.505185 53.888607 83.440424 53.888607 140.805715 0 201.64769-122.553122 245.975415-239.891218 259.012982 19.121764 16.514251 35.636014 47.804409 35.636015 97.347161 0 70.402857-0.869171 126.898978-0.869172 144.282399 0 13.906737 9.560882 30.420988 35.636015 25.205961 208.601059-69.533686 358.967656-265.96635 358.967655-498.035028C1049.958663 234.676191 814.413301 0 524.979332 0z"/></svg>
+    </a>
+    
+    
+    
+    <a class="social-link" title="twitter" href="https://twitter.com/gaozihang" target="_blank" rel="noopener">
+        <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 32 32"><path d="M30.063 7.313c-.813 1.125-1.75 2.125-2.875 2.938v.75c0 1.563-.188 3.125-.688 4.625a15.088 15.088 0 0 1-2.063 4.438c-.875 1.438-2 2.688-3.25 3.813a15.015 15.015 0 0 1-4.625 2.563c-1.813.688-3.75 1-5.75 1-3.25 0-6.188-.875-8.875-2.625.438.063.875.125 1.375.125 2.688 0 5.063-.875 7.188-2.5-1.25 0-2.375-.375-3.375-1.125s-1.688-1.688-2.063-2.875c.438.063.813.125 1.125.125.5 0 1-.063 1.5-.25-1.313-.25-2.438-.938-3.313-1.938a5.673 5.673 0 0 1-1.313-3.688v-.063c.813.438 1.688.688 2.625.688a5.228 5.228 0 0 1-1.875-2c-.5-.875-.688-1.813-.688-2.75 0-1.063.25-2.063.75-2.938 1.438 1.75 3.188 3.188 5.25 4.25s4.313 1.688 6.688 1.813a5.579 5.579 0 0 1 1.5-5.438c1.125-1.125 2.5-1.688 4.125-1.688s3.063.625 4.188 1.813a11.48 11.48 0 0 0 3.688-1.375c-.438 1.375-1.313 2.438-2.563 3.188 1.125-.125 2.188-.438 3.313-.875z"/></svg>
+
+    </a>
+    
+    
+    
+    
+</div>
+    </div>
+</nav>
+        
+        <div class="site-header-content">
+            
+            <h1 class="site-title">
+                
+            </h1>
+            <h2 class="site-description"></h2>
+        </div>
+        
+        
+    </div>
+</header>
+
+
+
+<main id="site-main" class="site-main outer" role="main">
+	<div class="inner">
+		<div class="post-feed">
+			<article class="post-card post no-image">
+				<article class="post-full no-image">
+					<section class="post-full-content" style="padding: 4vw">
+						<div id="lightgallery" class="markdown-body">
+							
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+<meta http-equiv="Content-Type" content="text/html;charset=gb2312">
+<title>Memcached 协议中英文对照</title>
+</head>
+<body>
+<center><b>Memcached 协议中英文对照<br><br>
+    <table cellspacing="1" border="0" width="100%" cellpadding="4"><tbody><tr><td style="color: #336600" width="50%"><h5>协议</h5></td><td style="color: #336600" width="50%"><h5>Protocol</h5></td></tr><tr><td valign="top" style="font-size: 13px; line-height: 20px">memcached 的客户端使用TCP链接 与 服务器通讯。（UDP接口也同样有效，参考后文的 &ldquo;UDP协议&rdquo; ）一个运行中的memcached服务器监视一些（可设置）端口。客户端连接这些端口，发送命令到服务器，读取回应，最后关闭连接。</td><td valign="top" style="font-size: 13px; line-height: 20px">Clients of memcached communicate with server through TCP connections. (A UDP interface is also available; details are below under &quot;UDP protocol.&quot;) A given running memcached server listens on some (configurable) port; clients connect to that port, send commands to the server, read responses, and eventually close the connection.</td></tr><tr><td valign="top" style="font-size: 13px; line-height: 20px">结束会话不需要发送任何命令。当不再需memcached服务时，要客户端可以在任何时候关闭连接。需要注意的是，鼓励客户端缓存这些连接，而不是每次需要存取数据时都重新打开连接。这是因为memcached 被特意设计成及时开启很多连接也能够高效的工作（数百个，上千个如果需要的话）。缓存这些连接，可以消除建立连接所带来的开销（/*/相对而言，在服务器端建立一个新连接的准备工作所带来的开销，可以忽略不计。）。</td><td valign="top" style="font-size: 13px; line-height: 20px">There is no need to send any command to end the session. A client may just close the connection at any moment it no longer needs it. Note, however, that clients are encouraged to cache their connections rather than reopen them every time they need to store or retrieve data. This is because memcached is especially designed to work very efficiently with a very large number (many hundreds, more than a thousand if necessary) of open connections. Caching connections will eliminate the overhead associated with establishing a TCP connection (the overhead of preparing for a new connection on the server side is insignificant compared to this).</td></tr><tr><td valign="top" style="font-size: 13px; line-height: 20px">在memcache协议中发送的数据分两种：文本行 和 自由数据。 文本行被用于来自客户端的命令和服务器的回应。自由数据用于客户端从服务器端存取数据时。同样服务器会以字节流的方式传回自由数据。/*/服务器不用关心自由数据的字节顺序。自由数据的特征没有任何限制；但是通过前文提到的文本行，这项数据的接受者（服务器或客户端），便能够精确地获知所发送的数据库的长度。<br></td><td valign="top" style="font-size: 13px; line-height: 20px">There are two kinds of data sent in the memcache protocol: text lines<br>and unstructured data. Text lines are used for commands from clients<br>and responses from servers. Unstructured data is sent when a client<br>wants to store or retrieve data. The server will transmit back<br>unstructured data in exactly the same way it received it, as a byte<br>stream. The server doesn't care about byte order issues in<br>unstructured data and isn't aware of them. There are no limitations on<br>characters that may appear in unstructured data; however, the reader<br>of such data (either a client or a server) will always know, from a<br>preceding text line, the exact length of the data block being<br>transmitted.</td></tr><tr><td valign="top" style="font-size: 13px; line-height: 20px">文本行固定以&ldquo;\r\n&rdquo;(回车符紧跟一个换行符)结束。 自由数据也是同样会以&ldquo;\r\n&rdquo;结束，但是 \r(回车符)、\n(换行符)，以及任何其他8位字符，均可出现在数据中。因此，当客户端从服务器取回数据时，必须使用数据区块的长度来确定数据区块的结束位置，而不要依据数据区块末尾的&ldquo;\r\n&rdquo;，即使它们固定存在于此。<br></td><td valign="top" style="font-size: 13px; line-height: 20px">Text lines are always terminated by \r\n. Unstructured data is _also_<br>terminated by \r\n, even though \r, \n or any other 8-bit characters<br>may also appear inside the data. Therefore, when a client retrieves<br>data from a server, it must use the length of the data block (which it<br>will be provided with) to determine where the data block ends, and not<br>the fact that \r\n follows the end of the data block, even though it<br>does.</td></tr><tr><td valign="top" style="font-size: 13px; line-height: 20px">&nbsp;</td><td valign="top" style="font-size: 13px; line-height: 20px">&nbsp;</td></tr><tr><td valign="top" style="color: #336600"><h5>键值</h5></td><td valign="top" style="color: #336600"><h5>Keys</h5></td></tr><tr><td valign="top" style="font-size: 13px; line-height: 20px">存储在memcached中的数据通过键值来标识。键值是一个文本字符串，对于需要存取这项数据的客户端而言，它必须是唯一的。键值当前的长度限制设定为250字符（当然，客户端通常不会用到这么长的键）；键值中不能使用制表符和其他空白字符（例如空格，换行等）。<br></td><td valign="top" style="font-size: 13px; line-height: 20px">Data stored by memcached is identified with the help of a key. A key<br>is a text string which should uniquely identify the data for clients<br>that are interested in storing and retrieving it. Currently the<br>length limit of a key is set at 250 characters (of course, normally<br>clients wouldn't need to use such long keys); the key must not include<br>control characters or whitespace.</td></tr><tr><td valign="top" style="font-size: 13px; line-height: 20px">&nbsp;</td><td valign="top" style="font-size: 13px; line-height: 20px">&nbsp;</td></tr><tr><td valign="top" style="color: #336600"><h5>命令</h5></td><td valign="top" style="color: #336600"><h5>Commands</h5></td></tr><tr><td valign="top" style="font-size: 13px; line-height: 20px">所有命令分为3种类型</td><td valign="top" style="font-size: 13px; line-height: 20px">There are three types of commands. </td></tr><tr><td valign="top" style="font-size: 13px; line-height: 20px">存储命令（有3项：&rsquo;set&rsquo;、&rsquo;add&rsquo;、&rsquo;repalce&rsquo;）指示服务器储存一些由键值标识的数据。客户端发送一行命令，后面跟着数据区块；然后，客户端等待接收服务器回传的命令行，指示成功与否。<br></td><td valign="top" style="font-size: 13px; line-height: 20px">Storage commands (there are three: &quot;set&quot;, &quot;add&quot; and &quot;replace&quot;) ask the<br>server to store some data identified by a key. The client sends a<br>command line, and then a data block; after that the client expects one<br>line of response, which will indicate success or faulure.</td></tr><tr><td valign="top" style="font-size: 13px; line-height: 20px">取回命令（只有一项：&rsquo;get&rsquo;）指示服务器返回与所给键值相符合的数据（一个请求中右一个或多个键值）。客户端发送一行命令，包括所有请求的键值；服务器每找到一项内容，都会发送回客户端一行关于这项内容的信息，紧跟着是对应的数据区块；直到服务器以一行&ldquo;END&rdquo;回应命令结束。<br></td><td valign="top" style="font-size: 13px; line-height: 20px">Retrieval commands (there is only one: &quot;get&quot;) ask the server to<br>retrieve data corresponding to a set of keys (one or more keys in one<br>request). The client sends a command line, which includes all the<br>requested keys; after that for each item the server finds it sends to<br>the client one response line with information about the item, and one<br>data block with the item's data; this continues until the server<br>finished with the &quot;END&quot; response line.<br></td></tr><tr><td valign="top" style="font-size: 13px; line-height: 20px">/*?*/其他的命令都不能携带自由数据。在这些命令中，客户端发送一行命令，然后等待（由命令所决定）一行回应，或最终以一行&ldquo;END&rdquo;结束的多行命令。<br></td><td valign="top" style="font-size: 13px; line-height: 20px">All other commands don't involve unstructured data. In all of them,<br>the client sends one command line, and expects (depending on the<br>command) either one line of response, or several lines of response<br>ending with &quot;END&quot; on the last line.</td></tr><tr><td valign="top" style="font-size: 13px; line-height: 20px">一行命令固定以命令名称开始，接着是以空格隔开的参数（如果有参数的话）。命令名称大小写敏感，并且必须小写。<br></td><td valign="top" style="font-size: 13px; line-height: 20px">A command line always starts with the name of the command, followed by<br>parameters (if any) delimited by whitespace. Command names are<br>lower-case and are case-sensitive.</td></tr><tr><td valign="top" style="font-size: 13px; line-height: 20px">&nbsp;</td><td valign="top" style="font-size: 13px; line-height: 20px">&nbsp;</td></tr><tr><td valign="top" style="font-size: 13px; line-height: 20px">一些客户端发送给服务器的命令会包含一些时限（针对内容或客户端请求的操作）。这时，时限的具体内容既可以是Unix时间戳（从1970年1月1日开始的秒钟数），或当前时间开始的秒钟数。对后者而言，不能超过 60*60*24*30（30天）；如果超出，服务器将会理解为Unix时间戳，而不是从当前时间起的秒偏移。<br></td><td valign="top" style="font-size: 13px; line-height: 20px">Some commands involve a client sending some kind of expiration time<br>(relative to an item or to an operation requested by the client) to<br>the server. In all such cases, the actual value sent may either be<br>Unix time (number of seconds since January 1, 1970, as a 32-bit<br>value), or a number of seconds starting from current time. In the<br>latter case, this number of seconds may not exceed 60*60*24*30 (number<br>of seconds in 30 days); if the number sent by a client is larger than<br>that, the server will consider it to be real Unix time value rather<br>than an offset from current time.</td></tr><tr><td valign="top" style="font-size: 13px; line-height: 20px">&nbsp;</td><td valign="top" style="font-size: 13px; line-height: 20px">&nbsp;</td></tr><tr><td valign="top" style="color: #336600"><h5>错误字串</h5></td><td valign="top" style="color: #336600"><h5>Error strings</h5></td></tr><tr><td valign="top" style="font-size: 13px; line-height: 20px">每一个由客户端发送的命令，都可能收到来自服务器的错误字串回复。这些错误字串会以三种形式出现：</td><td valign="top" style="font-size: 13px; line-height: 20px">Each command sent by a client may be answered with an error string<br>from the server. These error strings come in three types:</td></tr><tr><td valign="top" bgcolor="#cccccc" style="font-size: 13px; line-height: 20px" colspan="2">- &quot;ERROR\r\n&quot; </td></tr><tr><td valign="top" style="font-size: 13px; line-height: 20px">意味着客户端发送了不存在的命令名称。</td><td valign="top" style="font-size: 13px; line-height: 20px">means the client sent a nonexistent command name.</td></tr><tr><td valign="top" bgcolor="#cccccc" style="font-size: 13px; line-height: 20px" colspan="2">- &quot;CLIENT_ERROR &lt;error&gt;\r\n&quot;</td></tr><tr><td valign="top" style="font-size: 13px; line-height: 20px">意味着输入的命令行里存在一些客户端错误，例如输入未遵循协议。&lt;error&gt;部分是人类易于理解的错误解说&hellip;&hellip;</td><td valign="top" style="font-size: 13px; line-height: 20px">means some sort of client error in the input line, i.e. the input<br>doesn't conform to the protocol in some way. &lt;error&gt; is a<br>human-readable error string.</td></tr><tr><td valign="top" bgcolor="#cccccc" style="font-size: 13px; line-height: 20px" colspan="2">- &quot;SERVER_ERROR &lt;error&gt;\r\n&quot;</td></tr><tr><td valign="top" style="font-size: 13px; line-height: 20px">意味着一些服务器错误，导致命令无法执行。&lt;error&gt;部分是人类易于理解的错误解说。在一些严重的情形下（通常应该不会遇到），服务器将在发送这行错误后关闭连接。这是服务器主动关闭连接的唯一情况。<br></td><td valign="top" style="font-size: 13px; line-height: 20px">means some sort of server error prevents the server from carrying<br>out the command. &lt;error&gt; is a human-readable error string. In cases<br>of severe server errors, which make it impossible to continue<br>serving the client (this shouldn't normally happen), the server will<br>close the connection after sending the error line. This is the only<br>case in which the server closes a connection to a client.</td></tr><tr><td valign="top" style="font-size: 13px; line-height: 20px">在后面每项命令的描述中，这些错误行不会再特别提到，但是客户端必须考虑到这些它们存在的可能性。</td><td valign="top" style="font-size: 13px; line-height: 20px">In the descriptions of individual commands below, these error lines<br>are not again specifically mentioned, but clients must allow for their<br>possibility.</td></tr><tr><td valign="top" style="font-size: 13px; line-height: 20px">&nbsp;</td><td valign="top" style="font-size: 13px; line-height: 20px">&nbsp;</td></tr><tr><td valign="top" style="color: #336600"><h5><span style="font-size: 13px; line-height: 20px">存储命令</span></h5></td><td valign="top" style="color: #336600"><h5><span style="font-size: 13px; line-height: 20px">Storage commands</span></h5></td></tr><tr><td valign="top" style="font-size: 13px; line-height: 20px">首先，客户端会发送一行像这样的命令：</td><td valign="top" style="font-size: 13px; line-height: 20px">First, the client sends a command line which looks like this:</td></tr><tr><td valign="top" bgcolor="#cccccc" style="font-size: 13px; line-height: 20px" colspan="2">&lt;command name&gt; &lt;key&gt; &lt;flags&gt; &lt;exptime&gt; &lt;bytes&gt;\r\n</td></tr><tr><td valign="top" style="font-size: 13px; line-height: 20px">- &lt;command name&gt; 是 set, add, 或者 repalce</td><td valign="top" style="font-size: 13px; line-height: 20px">- &lt;command name&gt; is &quot;set&quot;, &quot;add&quot; or &quot;replace&quot;</td></tr><tr><td valign="top" style="font-size: 13px; line-height: 20px"><ul><li>set 意思是 &ldquo;储存此数据&rdquo; </li><li>add 意思是 &ldquo;储存此数据，只在服务器*未*保留此键值的数据时&rdquo; </li><li>replace意思是 &ldquo;储存此数据，只在服务器*曾*保留此键值的数据时&rdquo;</li></ul></td><td valign="top" style="font-size: 13px; line-height: 20px"><ul><li>&quot;set&quot; means &quot;store this data&quot;. </li><li>&quot;add&quot; means &quot;store this data, but only if the server *doesn't* already<br>hold data for this key&quot;. </li><li>&quot;replace&quot; means &quot;store this data, but only if the server *does*<br>already hold data for this key&quot;.</li></ul></td></tr><tr><td valign="top" style="font-size: 13px; line-height: 20px">- &lt;key&gt; 是接下来的客户端所要求储存的数据的键值</td><td valign="top" style="font-size: 13px; line-height: 20px">- &lt;key&gt; is the key under which the client asks to store the data</td></tr><tr><td valign="top" style="font-size: 13px; line-height: 20px">- &lt;flags&gt; 是在取回内容时，与数据和发送块一同保存服务器上的任意16位无符号整形（用十进制来书写）。客户端可以用它作为&ldquo;位域&rdquo;来存储一些特定的信息；它对服务器是不透明的。<br></td><td valign="top" style="font-size: 13px; line-height: 20px">- &lt;flags&gt; is an arbitrary 16-bit unsigned integer (written out in<br>decimal) that the server stores along with the data and sends back<br>when the item is retrieved. Clients may use this as a bit field to<br>store data-specific information; this field is opaque to the server.</td></tr><tr><td valign="top" style="font-size: 13px; line-height: 20px">- &lt;exptime&gt; 是终止时间。如果为0，该项永不过期(虽然它可能被删除，以便为其他缓存项目腾出位置)。如果非0（Unix时间戳或当前时刻的秒偏移），到达终止时间后，客户端无法再获得这项内容。<br></td><td valign="top" style="font-size: 13px; line-height: 20px">- &lt;exptime&gt; is expiration time. If it's 0, the item never expires<br>(although it may be deleted from the cache to make place for other<br>items). If it's non-zero (either Unix time or offset in seconds from<br>current time), it is guaranteed that clients will not be able to<br>retrieve this item after the expiration time arrives (measured by<br>server time). </td></tr><tr><td valign="top" style="font-size: 13px; line-height: 20px">- &lt;bytes&gt; 是随后的数据区块的字节长度，不包括用于分野的&ldquo;\r\n&rdquo;。它可以是0（这时后面跟随一个空的数据区块）。</td><td valign="top" style="font-size: 13px; line-height: 20px">- &lt;bytes&gt; is the number of bytes in the data block to follow, *not*<br>including the delimiting \r\n. &lt;bytes&gt; may be zero (in which case<br>it's followed by an empty data block).</td></tr><tr><td valign="top" style="font-size: 13px; line-height: 20px">&nbsp;</td><td valign="top" style="font-size: 13px; line-height: 20px">&nbsp;</td></tr><tr><td valign="top" style="font-size: 13px; line-height: 20px">在这一行以后，客户端发送数据区块。</td><td valign="top" style="font-size: 13px; line-height: 20px">After this line, the client sends the data block:</td></tr><tr><td valign="top" bgcolor="#cccccc" style="font-size: 13px; line-height: 20px" colspan="2">&lt;data block&gt;\r\n</td></tr><tr><td valign="top" style="font-size: 13px; line-height: 20px">- &lt;data block&gt; 是大段的8位数据，其长度由前面的命令行中的&lt;bytes&gt;指定。</td><td valign="top" style="font-size: 13px; line-height: 20px">- &lt;data block&gt; is a chunk of arbitrary 8-bit data of length &lt;bytes&gt;<br>from the previous line.</td></tr><tr><td valign="top" style="font-size: 13px; line-height: 20px">发送命令行和数据区块以后，客户端等待回复，可能的回复如下：</td><td valign="top" style="font-size: 13px; line-height: 20px">After sending the command line and the data blockm the client awaits<br>the reply, which may be:</td></tr><tr><td valign="top" bgcolor="#cccccc" style="font-size: 13px; line-height: 20px" colspan="2">- &quot;STORED\r\n&quot;</td></tr><tr><td valign="top" style="font-size: 13px; line-height: 20px">表明成功.</td><td valign="top" style="font-size: 13px; line-height: 20px">to indicate success.</td></tr><tr><td valign="top" bgcolor="#cccccc" style="font-size: 13px; line-height: 20px" colspan="2">- &quot;NOT_STORED\r\n&quot; </td></tr><tr><td valign="top" style="font-size: 13px; line-height: 20px">表明数据没有被存储，但不是因为发生错误。这通常意味着add 或 replace命令的条件不成立，或者，项目已经位列删除队列（参考后文的&ldquo;delete&rdquo;命令）。<br></td><td valign="top" style="font-size: 13px; line-height: 20px">to indicate the data was not stored, but not<br>because of an error. This normally means that either that the<br>condition for an &quot;add&quot; or a &quot;replace&quot; command wasn't met, or that the<br>item is in a delete queue (see the &quot;delete&quot; command below).</td></tr><tr><td valign="top" style="font-size: 13px; line-height: 20px">&nbsp;</td><td valign="top" style="font-size: 13px; line-height: 20px">&nbsp;</td></tr><tr><td valign="top" style="color: #336600"><h5><span style="font-size: 13px; line-height: 20px">取回命令</span></h5></td><td valign="top" style="color: #336600"><h5><span style="font-size: 13px; line-height: 20px">Retrieval command</span></h5></td></tr><tr><td valign="top" style="font-size: 13px; line-height: 20px">一行取回命令如下：</td><td valign="top" style="font-size: 13px; line-height: 20px">The retrieval command looks like this:</td></tr><tr><td valign="top" bgcolor="#cccccc" style="font-size: 13px; line-height: 20px" colspan="2">get &lt;key&gt;*\r\n</td></tr><tr><td valign="top" style="font-size: 13px; line-height: 20px">- &lt;key&gt;* 表示一个或多个键值，由空格隔开的字串</td><td valign="top" style="font-size: 13px; line-height: 20px">- &lt;key&gt;* means one or more key strings separated by whitespace.</td></tr><tr><td valign="top" style="font-size: 13px; line-height: 20px">这行命令以后，客户端的等待0个或多个项目，每项都会收到一行文本，然后跟着数据区块。所有项目传送完毕后，服务器发送以下字串：<br></td><td valign="top" style="font-size: 13px; line-height: 20px">After this command, the client expects zero or more items, each of<br>which is received as a text line followed by a data block. After all<br>the items have been transmitted, the server sends the string</td></tr><tr><td valign="top" bgcolor="#cccccc" style="font-size: 13px; line-height: 20px" colspan="2">&quot;END\r\n&quot;</td></tr><tr><td valign="top" style="font-size: 13px; line-height: 20px">来指示回应完毕。</td><td valign="top" style="font-size: 13px; line-height: 20px">to indicate the end of response.</td></tr><tr><td valign="top" style="font-size: 13px; line-height: 20px">服务器用以下形式发送每项内容：</td><td valign="top" style="font-size: 13px; line-height: 20px">Each item sent by the server looks like this:</td></tr><tr><td valign="top" bgcolor="#cccccc" style="font-size: 13px; line-height: 20px" colspan="2">VALUE &lt;key&gt; &lt;flags&gt; &lt;bytes&gt;\r\n<br>&lt;data block&gt;\r\n</td></tr><tr><td valign="top" style="font-size: 13px; line-height: 20px">- &lt;key&gt; 是所发送的键名</td><td valign="top" style="font-size: 13px; line-height: 20px">- &lt;key&gt; is the key for the item being sent</td></tr><tr><td valign="top" style="font-size: 13px; line-height: 20px">- &lt;flags&gt; 是存储命令所设置的记号</td><td valign="top" style="font-size: 13px; line-height: 20px"><p>- &lt;flags&gt; is the flags value set by the storage command</p></td></tr><tr><td valign="top" style="font-size: 13px; line-height: 20px">- &lt;bytes&gt; 是随后数据块的长度，*不包括* 它的界定符&ldquo;\r\n&rdquo;</td><td valign="top" style="font-size: 13px; line-height: 20px">- &lt;bytes&gt; is the length of the data block to follow, *not* including<br>its delimiting \r\n</td></tr><tr><td valign="top" style="font-size: 13px; line-height: 20px">- &lt;data block&gt; 是发送的数据</td><td valign="top" style="font-size: 13px; line-height: 20px">- &lt;data block&gt; is the data for this item.</td></tr><tr><td valign="top" style="font-size: 13px; line-height: 20px">如果在取回请求中发送了一些键名，而服务器没有送回项目列表，这意味着服务器没这些键名（可能因为它们从未被存储，或者为给其他内容腾出空间而被删除，或者到期，或者被已客户端删除）。<br></td><td valign="top" style="font-size: 13px; line-height: 20px">If some of the keys appearing in a retrieval request are not sent back<br>by the server in the item list this means that the server does not<br>hold items with such keys (because they were never stored, or stored<br>but deleted to make space for more items, or expired, or explicitly<br>deleted by a client).</td></tr><tr><td valign="top" style="font-size: 13px; line-height: 20px">&nbsp;</td><td valign="top" style="font-size: 13px; line-height: 20px">&nbsp;</td></tr><tr><td valign="top" style="color: #336600"><h5><span style="font-size: 13px; line-height: 20px">删除</span></h5></td><td valign="top" style="color: #336600"><h5><span style="font-size: 13px; line-height: 20px">Deletion</span></h5></td></tr><tr><td valign="top" style="font-size: 13px; line-height: 20px">命令&ldquo;delete&rdquo;允许从外部删除内容：</td><td valign="top" style="font-size: 13px; line-height: 20px">The command &quot;delete&quot; allows for explicit deletion of items:</td></tr><tr><td valign="top" bgcolor="#cccccc" style="font-size: 13px; line-height: 20px" colspan="2">delete &lt;key&gt; &lt;time&gt;\r\n</td></tr><tr><td valign="top" style="font-size: 13px; line-height: 20px">- &lt;key&gt; 是客户端希望服务器删除的内容的键名</td><td valign="top" style="font-size: 13px; line-height: 20px">- &lt;key&gt; is the key of the item the client wishes the server to delete</td></tr><tr><td valign="top" style="font-size: 13px; line-height: 20px">- &lt;time&gt; 是一个单位为秒的时间（或代表直到某一刻的Unix时间），在该时间内服务器会拒绝对于此键名的&ldquo;add&rdquo;和&ldquo;replace&rdquo;命令。此时内容被放入delete队列，无法再通过&ldquo;get&rdquo;得到该内容，也无法是用&ldquo;add&rdquo;和&ldquo;replace&rdquo;命令（但是&ldquo;set&rdquo;命令可用）。直到指定时间，这些内容被最终从服务器的内存中彻底清除。<br></td><td valign="top" style="font-size: 13px; line-height: 20px">- &lt;time&gt; is the amount of time in seconds (or Unix time until which)<br>the client wishes the server to refuse &quot;add&quot; and &quot;replace&quot; commands<br>with this key. For this amount of item, the item is put into a<br>delete queue, which means that it won't possible to retrieve it by<br>the &quot;get&quot; command, but &quot;add&quot; and &quot;replace&quot; command with this key<br>will also fail (the &quot;set&quot; command will succeed, however). After the<br>time passes, the item is finally deleted from server memory.</td></tr><tr><td valign="top" style="font-size: 13px; line-height: 20px">&lt;time&gt;参数 是可选的，缺省为0（表示内容会立刻清除，并且随后的存储命令均可用）。<br></td><td valign="top" style="font-size: 13px; line-height: 20px">The parameter &lt;time&gt; is optional, and, if absent, defaults to 0<br>(which means that the item will be deleted immediately and further<br>storage commands with this key will succeed).</td></tr><tr><td valign="top" style="font-size: 13px; line-height: 20px">此命令有一行回应：</td><td valign="top" style="font-size: 13px; line-height: 20px">The response line to this command can be one of:</td></tr><tr><td valign="top" bgcolor="#cccccc" style="font-size: 13px; line-height: 20px" colspan="2">- &quot;DELETED\r\n&quot;</td></tr><tr><td valign="top" style="font-size: 13px; line-height: 20px">表示执行成功</td><td valign="top" style="font-size: 13px; line-height: 20px">to indicate success</td></tr><tr><td valign="top" bgcolor="#cccccc" style="font-size: 13px; line-height: 20px" colspan="2">- &quot;NOT_FOUND\r\n&quot;</td></tr><tr><td valign="top" style="font-size: 13px; line-height: 20px">表示没有找到这项内容</td><td valign="top" style="font-size: 13px; line-height: 20px">to indicate that the item with this key was not found.</td></tr><tr><td valign="top" style="font-size: 13px; line-height: 20px">参考随后的&ldquo;flush_all&rdquo;命令使所有内容无效<br></td><td valign="top" style="font-size: 13px; line-height: 20px">See the &quot;flush_all&quot; command below for immediate invalidation<br>of all existing items.</td></tr><tr><td valign="top" style="font-size: 13px; line-height: 20px">&nbsp;</td><td valign="top" style="font-size: 13px; line-height: 20px">&nbsp;</td></tr><tr><td valign="top" style="color: #336600"><h5><span style="font-size: 13px; line-height: 20px">增加/减少</span></h5></td><td valign="top" style="color: #336600"><h5><span style="font-size: 13px; line-height: 20px">Increment/Decrement</span></h5></td></tr><tr><td valign="top" style="font-size: 13px; line-height: 20px">命令 &ldquo;incr&rdquo; 和 &ldquo;decr&rdquo;被用来修改数据，当一些内容需要 替换、增加 或减少时。这些数据必须是十进制的32位无符号整新。如果不是，则当作0来处理。修改的内容必须存在，当使用&ldquo;incr&rdquo;/&ldquo;decr&rdquo;命令修改不存在的内容时，不会被当作0处理，而是操作失败。<br></td><td valign="top" style="font-size: 13px; line-height: 20px">Commands &quot;incr&quot; and &quot;decr&quot; are used to change data for some item<br>in-place, incrementing or decrementing it. The data for the item is<br>treated as decimal representation of a 32-bit unsigned integer. If the<br>current data value does not conform to such a representation, the<br>commands behave as if the value were 0. Also, the item must already<br>exist for incr/decr to work; these commands won't pretend that a<br>non-existent key exists with value 0; instead, they will fail.</td></tr><tr><td valign="top" style="font-size: 13px; line-height: 20px">客户端发送命令行：</td><td valign="top" style="font-size: 13px; line-height: 20px">The client sends the command line:</td></tr><tr><td valign="top" bgcolor="#cccccc" style="font-size: 13px; line-height: 20px" colspan="2">incr &lt;key&gt; &lt;value&gt;\r\n<br>或<br>decr &lt;key&gt; &lt;value&gt;\r\n</td></tr><tr><td valign="top" style="font-size: 13px; line-height: 20px">- &lt;key&gt; 是客户端希望修改的内容的建名</td><td valign="top" style="font-size: 13px; line-height: 20px"><p>- &lt;key&gt; is the key of the item the client wishes to change</p></td></tr><tr><td valign="top" style="font-size: 13px; line-height: 20px">- &lt;value&gt; 是客户端要增加/减少的总数。</td><td valign="top" style="font-size: 13px; line-height: 20px">- &lt;value&gt; is the amount by which the client wants to increase/decrease<br>the item. It is a decimal representation of a 32-bit unsigned integer.</td></tr><tr><td valign="top" style="font-size: 13px; line-height: 20px">回复为以下集中情形：</td><td valign="top" style="font-size: 13px; line-height: 20px"><p>The response will be one of: </p></td></tr><tr><td valign="top" bgcolor="#cccccc" style="font-size: 13px; line-height: 20px" colspan="2">- &quot;NOT_FOUND\r\n&quot;</td></tr><tr><td valign="top" style="font-size: 13px; line-height: 20px">指示该项内容的值，不存在。</td><td valign="top" style="font-size: 13px; line-height: 20px">to indicate the item with this value was not found</td></tr><tr><td valign="top" style="font-size: 13px; line-height: 20px">- &lt;value&gt;\r\n ，&lt;value&gt;是 增加/减少 。</td><td valign="top" style="font-size: 13px; line-height: 20px">- &lt;value&gt;\r\n , where &lt;value&gt; is the new value of the item's data,<br>after the increment/decrement operation was carried out.</td></tr><tr><td valign="top" style="font-size: 13px; line-height: 20px">注意&quot;decr&quot;命令发生下溢：如果客户端尝试减少的结果小于0时，结果会是0。&quot;incr&quot; 命令不会发生溢出。</td><td valign="top" style="font-size: 13px; line-height: 20px">Note that underflow in the &quot;decr&quot; command is caught: if a client tries<br>to decrease the value below 0, the new value will be 0. Overflow in<br>the &quot;incr&quot; command is not checked.</td></tr><tr><td valign="top" style="font-size: 13px; line-height: 20px"><p>&hellip;&hellip;</p><p>&nbsp;</p></td><td valign="top" style="font-size: 13px; line-height: 20px">Note also that decrementing a number such that it loses length isn't<br>guaranteed to decrement its returned length. The number MAY be<br>space-padded at the end, but this is purely an implementation<br>optimization, so you also shouldn't rely on that.</td></tr><tr><td valign="top" style="font-size: 13px; line-height: 20px">&nbsp;</td><td valign="top" style="font-size: 13px; line-height: 20px">&nbsp;</td></tr><tr><td valign="top" style="color: #336600"><h5><span style="font-size: 13px; line-height: 20px">状态</span></h5></td><td valign="top" style="color: #336600"><h5><span style="font-size: 13px; line-height: 20px">Statistics</span></h5></td></tr><tr><td valign="top" style="font-size: 13px; line-height: 20px">命令&quot;stats&quot; 被用于查询服务器的运行状态和其他内部数据。有两种格式。不带参数的：<br></td><td valign="top" style="font-size: 13px; line-height: 20px">The command &quot;stats&quot; is used to query the server about statistics it<br>maintains and other internal data. It has two forms. Without<br>arguments:</td></tr><tr><td valign="top" bgcolor="#cccccc" style="font-size: 13px; line-height: 20px" colspan="2"><span style="color: #cccccc">&nbsp;</span>stats\r\n</td></tr><tr><td valign="top" style="font-size: 13px; line-height: 20px">这会在随后输出各项状态、设定值和文档。另一种格式带有一些参数：</td><td valign="top" style="font-size: 13px; line-height: 20px"><p>it causes the server to output general-purpose statistics and<br>settings, documented below. In the other form it has some arguments:</p><br></td></tr><tr><td valign="top" bgcolor="#cccccc" style="font-size: 13px; line-height: 20px" colspan="2">stats &lt;args&gt;\r\n</td></tr><tr><td valign="top" style="font-size: 13px; line-height: 20px">通过&lt;args&gt;，服务器传回各种内部数据。因为随时可能发生变动，本文不提供参数的种类及其传回数据。</td><td valign="top" style="font-size: 13px; line-height: 20px">Depending on &lt;args&gt;, various internal data is sent by the server. The<br>kinds of arguments and the data sent are not documented in this vesion<br>of the protocol, and are subject to change for the convenience of<br>memcache developers.</td></tr><tr><td valign="top" style="font-size: 13px; line-height: 20px">&nbsp;</td><td valign="top" style="font-size: 13px; line-height: 20px">&nbsp;</td></tr><tr><td valign="top" style="color: #336600"><h5><span style="font-size: 13px; line-height: 20px">各种状态</span></h5></td><td valign="top" style="color: #336600"><h5><span style="font-size: 13px; line-height: 20px">General-purpose statistics</span></h5></td></tr><tr><td valign="top" style="font-size: 13px; line-height: 20px">受到无参数的&quot;stats&quot;命令后，服务器发送多行内容，如下：</td><td valign="top" style="font-size: 13px; line-height: 20px">Upon receiving the &quot;stats&quot; command without arguments, the server sents<br>a number of lines which look like this:</td></tr><tr><td valign="top" bgcolor="#cccccc" style="font-size: 13px; line-height: 20px" colspan="2">STAT &lt;name&gt; &lt;value&gt;\r\n</td></tr><tr><td valign="top" style="font-size: 13px; line-height: 20px">服务器用以下一行来终止这个清单：</td><td valign="top" style="font-size: 13px; line-height: 20px">The server terminates this list with the line</td></tr><tr><td valign="top" bgcolor="#cccccc" style="font-size: 13px; line-height: 20px" colspan="2">END\r\n</td></tr><tr><td valign="top" style="font-size: 13px; line-height: 20px">在每行状态中，&lt;name&gt; 是状态的名字，&lt;value&gt; 使状态的数据。 以下清单，是所有的状态名称，数据类型，和数据代表的含义。<br></td><td valign="top" style="font-size: 13px; line-height: 20px">In each line of statistics, &lt;name&gt; is the name of this statistic, and<br>&lt;value&gt; is the data. The following is the list of all names sent in<br>response to the &quot;stats&quot; command, together with the type of the value<br>sent for this name, and the meaning of the value.</td></tr><tr><td valign="top" style="font-size: 13px; line-height: 20px">在&ldquo;类型&rdquo;一列中，&quot;32u&quot;表示32位无符号整型，&quot;64u&quot;表示64位无符号整型，&quot;32u:32u&quot;表示用冒号隔开的两个32位无符号整型。</td><td valign="top" style="font-size: 13px; line-height: 20px"><p>In the type column below, &quot;32u&quot; means a 32-bit unsigned integer, &quot;64u&quot;<br>means a 64-bit unsigner integer. '32u:32u' means two 32-but unsigned<br>integers separated by a colon.</p></td></tr><tr><td valign="top" style="font-size: 13px; line-height: 20px" colspan="2"><table cellspacing="0" border="0" bgcolor="#003366" width="94%" cellpadding="0"><tbody><tr><td><table cellspacing="1" border="0" style="font-size: 13px; line-height: 20px" width="100%" cellpadding="2"><tbody><tr><td align="center" valign="top" bgcolor="#cc9933" style="color: #336600" width="100"><strong><span style="font-size: 13px; line-height: 20px">名称/Name</span></strong></td><td align="center" valign="top" bgcolor="#cc9933" style="color: #336600" width="80"><strong><span style="font-size: 13px; line-height: 20px">类型/Type</span></strong></td><td align="center" valign="top" bgcolor="#cc9933" style="color: #336600" colspan="2"><strong><span style="font-size: 13px; line-height: 20px">含义/</span></strong><strong>Meaning</strong></td></tr><tr><td valign="top" bgcolor="#ffe3aa">pid</td><td valign="top" bgcolor="#ffe3aa">32u</td><td valign="top" bgcolor="#ffe3aa">服务器进程ID</td><td valign="top" bgcolor="#ffe3aa">Process id of this server process</td></tr><tr><td valign="top" bgcolor="#ffe3aa">uptime</td><td valign="top" bgcolor="#ffe3aa">32u</td><td valign="top" bgcolor="#ffe3aa">服务器运行时间，单位秒</td><td valign="top" bgcolor="#ffe3aa">Number of seconds this server has been running</td></tr><tr><td valign="top" bgcolor="#ffe3aa">time</td><td valign="top" bgcolor="#ffe3aa">32u</td><td valign="top" bgcolor="#ffe3aa">服务器当前的UNIX时间</td><td valign="top" bgcolor="#ffe3aa">current UNIX time according to the server</td></tr><tr><td valign="top" bgcolor="#ffe3aa">version</td><td valign="top" bgcolor="#ffe3aa">string</td><td valign="top" bgcolor="#ffe3aa">服务器的版本号</td><td valign="top" bgcolor="#ffe3aa">Version string of this server</td></tr><tr><td valign="top" bgcolor="#ffe3aa">rusage_user</td><td valign="top" bgcolor="#ffe3aa">32u:32u</td><td valign="top" bgcolor="#ffe3aa">该进程累计的用户时间<br>(秒:微妙)</td><td valign="top" bgcolor="#ffe3aa">Accumulated user time for this process <br>(seconds:microseconds)</td></tr><tr><td valign="top" bgcolor="#ffe3aa">rusage_system</td><td valign="top" bgcolor="#ffe3aa">32u:32u</td><td valign="top" bgcolor="#ffe3aa">该进程累计的系统时间 <br>(秒:微妙)</td><td valign="top" bgcolor="#ffe3aa">Accumulated system time for this process <br>(seconds:microseconds)</td></tr><tr><td valign="top" bgcolor="#ffe3aa">curr_items</td><td valign="top" bgcolor="#ffe3aa">32u</td><td valign="top" bgcolor="#ffe3aa">服务器当前存储的内容数量</td><td valign="top" bgcolor="#ffe3aa">Current number of items stored by the server</td></tr><tr><td valign="top" bgcolor="#ffe3aa">total_items</td><td valign="top" bgcolor="#ffe3aa">32u</td><td valign="top" bgcolor="#ffe3aa">服务器启动以来存储过的内容总数</td><td valign="top" bgcolor="#ffe3aa">Total number of items stored by this server <br>ever since it started</td></tr><tr><td valign="top" bgcolor="#ffe3aa">bytes</td><td valign="top" bgcolor="#ffe3aa">64u</td><td valign="top" bgcolor="#ffe3aa">服务器当前存储内容所占用的字节数</td><td valign="top" bgcolor="#ffe3aa">Current number of bytes used by this server <br>to store items</td></tr><tr><td valign="top" bgcolor="#ffe3aa">curr_connections</td><td valign="top" bgcolor="#ffe3aa">32u</td><td valign="top" bgcolor="#ffe3aa">连接数量</td><td valign="top" bgcolor="#ffe3aa">Number of open connections</td></tr><tr><td valign="top" bgcolor="#ffe3aa">total_connections</td><td valign="top" bgcolor="#ffe3aa">32u</td><td valign="top" bgcolor="#ffe3aa">服务器运行以来接受的连接总数</td><td valign="top" bgcolor="#ffe3aa">Total number of connections opened since <br>the server started running</td></tr><tr><td valign="top" bgcolor="#ffe3aa">connection_structures</td><td valign="top" bgcolor="#ffe3aa">32u</td><td valign="top" bgcolor="#ffe3aa">服务器分配的连接结构的数量</td><td valign="top" bgcolor="#ffe3aa">Number of connection structures allocated <br>by the server</td></tr><tr><td valign="top" bgcolor="#ffe3aa">cmd_get</td><td valign="top" bgcolor="#ffe3aa">32u</td><td valign="top" bgcolor="#ffe3aa">取回请求总数</td><td valign="top" bgcolor="#ffe3aa">Cumulative number of retrieval requests</td></tr><tr><td valign="top" bgcolor="#ffe3aa">cmd_set</td><td valign="top" bgcolor="#ffe3aa">32u</td><td valign="top" bgcolor="#ffe3aa">存储请求总数</td><td valign="top" bgcolor="#ffe3aa">Cumulative number of storage requests</td></tr><tr><td valign="top" bgcolor="#ffe3aa">get_hits</td><td valign="top" bgcolor="#ffe3aa">32u</td><td valign="top" bgcolor="#ffe3aa">请求成功的总次数</td><td valign="top" bgcolor="#ffe3aa">Number of keys that have been requested and <br>found present</td></tr><tr><td valign="top" bgcolor="#ffe3aa">get_misses</td><td valign="top" bgcolor="#ffe3aa">32u</td><td valign="top" bgcolor="#ffe3aa">请求失败的总次数</td><td valign="top" bgcolor="#ffe3aa">Number of items that have been requested <br>and not found</td></tr><tr><td valign="top" bgcolor="#ffe3aa">bytes_read</td><td valign="top" bgcolor="#ffe3aa">64u</td><td valign="top" bgcolor="#ffe3aa">服务器从网络读取到的总字节数</td><td valign="top" bgcolor="#ffe3aa">Total number of bytes read by this server <br>from network</td></tr><tr><td valign="top" bgcolor="#ffe3aa">bytes_written</td><td valign="top" bgcolor="#ffe3aa">64u</td><td valign="top" bgcolor="#ffe3aa">服务器向网络发送的总字节数</td><td valign="top" bgcolor="#ffe3aa">Total number of bytes sent by this server to <br>network</td></tr><tr><td valign="top" bgcolor="#ffe3aa">limit_maxbytes</td><td valign="top" bgcolor="#ffe3aa">32u</td><td valign="top" bgcolor="#ffe3aa">服务器在存储时被允许使用的字节总数</td><td valign="top" bgcolor="#ffe3aa">Number of bytes this server is allowed to<br>use for storage. </td></tr></tbody></table></td></tr></tbody></table></td></tr><tr><td valign="top" style="font-size: 13px; line-height: 20px">&nbsp;</td><td valign="top" style="font-size: 13px; line-height: 20px">&nbsp;</td></tr><tr><td valign="top" style="color: #336600"><h5><span style="font-size: 13px; line-height: 20px">其它命令</span></h5></td><td valign="top" style="color: #336600"><h5><span style="font-size: 13px; line-height: 20px">Other commands</span></h5></td></tr><tr><td valign="top" style="font-size: 13px; line-height: 20px"><p>&ldquo;flush_all&rdquo;命令有一个可选的数字参数。它总是执行成功，服务器会发送&ldquo;OK\r\n&rdquo;回应。它的效果是使已经存在的项目立即失效（缺省），或在指定的时间后。此后执行取回命令，将不会有任何内容返回（除非重新存储同样的键名）。flush_all 实际上没有立即释放项目所占用的内存，而是在随后陆续有新的项目被储存时执行。flush_all 效果具体如下：它导致所有更新时间早于flush_all所设定时间的项目，在被执行取回命令时命令被忽略。</p></td><td valign="top" style="font-size: 13px; line-height: 20px">&quot;flush_all&quot; is a command with an optional numeric argument. It always succeeds, and the server sends &quot;OK\r\n&quot; in response. Its effect is to invalidate all existing items immediately (by default) or after the expiration specified. After invalidation none of the items will be returned in response to a retrieval command (unless it's stored again under the same key *after* flush_all has invalidated the items). flush_all doesn't actually free all the memory taken up by existing items; that will happen gradually as new items are stored. The most precise definition of what flush_all does is the following: it causes all items whose update time is earlier than the time at which flush_all was set to be executed to be ignored for retrieval purposes.</td></tr><tr><td valign="top" style="font-size: 13px; line-height: 20px">&ldquo;version&rdquo;命令没有参数：</td><td valign="top" style="font-size: 13px; line-height: 20px">&quot;version&quot; is a command with no arguments:</td></tr><tr><td valign="top" bgcolor="#cccccc" style="font-size: 13px; line-height: 20px" colspan="2">version\r\n</td></tr><tr><td valign="top" style="font-size: 13px; line-height: 20px">在回应中，服务器发送：</td><td valign="top" style="font-size: 13px; line-height: 20px">In response, the server sends</td></tr><tr><td valign="top" bgcolor="#cccccc" style="font-size: 13px; line-height: 20px" colspan="2">&quot;VERSION &lt;version&gt;\r\n&quot;</td></tr><tr><td valign="top" style="font-size: 13px; line-height: 20px">&lt;version&gt; 是服务器的版本字串。</td><td valign="top" style="font-size: 13px; line-height: 20px">where &lt;version&gt; is the version string for the server.</td></tr><tr><td valign="top" style="font-size: 13px; line-height: 20px">&ldquo;quit&rdquo;命令没有参数：</td><td valign="top" style="font-size: 13px; line-height: 20px">&quot;quit&quot; is a command with no arguments:</td></tr><tr><td valign="top" bgcolor="#cccccc" style="font-size: 13px; line-height: 20px" colspan="2">quit\r\n</td></tr><tr><td valign="top" style="font-size: 13px; line-height: 20px">接收此命令后，服务器关闭连接。不过，客户端可以在不再需要时，简单地关闭连接就行，并不一定需要发送这个命令。</td><td valign="top" style="font-size: 13px; line-height: 20px">Upon receiving this command, the server closes the connection. However, the client may also simply close the connection when it no longer needs it, without issuing this command.</td></tr><tr><td valign="top" style="font-size: 13px; line-height: 20px">&nbsp;</td><td valign="top" style="font-size: 13px; line-height: 20px">&nbsp;</td></tr><tr><td valign="top" style="color: #336600"><h5><span style="font-size: 13px; line-height: 20px">UDP 协议</span></h5></td><td valign="top" style="color: #336600"><h5><span style="font-size: 13px; line-height: 20px">UDP protocol</span></h5></td></tr><tr><td valign="top" style="font-size: 13px; line-height: 20px">当来自客户端的连接数远大于TCP连接的上限时，可以使用基于UDP的接口。UDP接口不能保证传输到位，所以只有在不要求成功的操作中使用；比如被用于一个&ldquo;get&rdquo;请求时，会因不当的缓存处理而发生错误或回应有遗失。</td><td valign="top" style="font-size: 13px; line-height: 20px">For very large installations where the number of clients is high enough that the number of TCP connections causes scaling difficulties, there is also a UDP-based interface. The UDP interface does not provide guaranteed delivery, so should only be used for operations that aren't required to succeed; typically it is used for &quot;get&quot; requests where a missing or incomplete response can simply be treated as a cache miss.</td></tr><tr><td valign="top" style="font-size: 13px; line-height: 20px">每个UDP数据包都包含一个简单的帧头，数据之后的内容与TCP协议的描述类似。在执行所产生的数据流中，请求必须被包含在单独的一个UDP数据包中，但是回应可能跨越多个数据包。（只有&ldquo;get&rdquo;和&ldquo;set&rdquo;请求例外，跨越了多个数据包）</td><td valign="top" style="font-size: 13px; line-height: 20px">Each UDP datagram contains a simple frame header, followed by data in the same format as the TCP protocol described above. In the current implementation, requests must be contained in a single UDP datagram, but responses may span several datagrams. (The only common requests that would span multiple datagrams are huge multi-key &quot;get&quot; requests and &quot;set&quot; requests, both of which are more suitable to TCP transport for reliability reasons anyway.)</td></tr><tr><td valign="top" style="font-size: 13px; line-height: 20px">帧头有8字节长，如下（均由16位整数组成，网络字节顺序，高位在前）：</td><td valign="top" style="font-size: 13px; line-height: 20px">The frame header is 8 bytes long, as follows (all values are 16-bit integers in network byte order, high byte first):</td></tr><tr><td valign="top" style="font-size: 13px; line-height: 20px"><ul><li>0-1 请求ID </li><li>2-3 序号 </li><li>4-5 该信息的数据包总数 </li><li>6-7 保留位，必须为0</li></ul></td><td valign="top" style="font-size: 13px; line-height: 20px"><ul><li>0-1 Request ID </li><li>2-3 Sequence number </li><li>4-5 Total number of datagrams in this message </li><li>6-7 Reserved for future use; must be 0</li></ul></td></tr><tr><td valign="top" style="font-size: 13px; line-height: 20px">请求ID有客户端提供。一般它会是一个从随机基数开始的递增值，不过客户端想用什么样的请求ID都可以。服务器的回应会包含一个和请求中的同样的ID。客户端使用请求ID来区分每一个回应。任何一个没有请求ID的数据包，可能是之前的请求遭到延迟而造成的，应该被丢弃。</td><td valign="top" style="font-size: 13px; line-height: 20px">The request ID is supplied by the client. Typically it will be a monotonically increasing value starting from a random seed, but the client is free to use whatever request IDs it likes. The server's response will contain the same ID as the incoming request. The client uses the request ID to differentiate between responses to outstanding requests if there are several pending from the same server; any datagrams with an unknown request ID are probably delayed responses to an earlier request and should be discarded.</td></tr><tr><td valign="top" style="font-size: 13px; line-height: 20px">序号的返回是从0到n-1，n是该条信息的数据包数量。</td><td valign="top" style="font-size: 13px; line-height: 20px">The sequence number ranges from 0 to n-1, where n is the total number of datagrams in the message. The client should concatenate the payloads of the datagrams for a given response in sequence number order; the resulting byte stream will contain a complete response in the same format as the TCP protocol (including terminating \r\n sequences).</td></tr></tbody></table></b></center></body></html>
+
+						</div>
+					</section>
+				</article>
+			</article>
+		</div>
+	</div>
+</main>
+
+
+	</div>
+	
+
+
+<aside class="read-next outer">
+    <div class="inner">
+        <div class="read-next-feed">
+            
+            
+
+<article class="read-next-card" style="background-image: url(https://i.loli.net/2019/02/24/5c72252a523c7.jpg)">
+  <header class="read-next-card-header">
+    <small class="read-next-card-header-sitetitle">&mdash; C & Fish &mdash;</small>
+    <h3 class="read-next-card-header-title">Recent Posts</h3>
+  </header>
+  <div class="read-next-divider">
+    <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24">
+      <path d="M13 14.5s2 3 5 3 5.5-2.463 5.5-5.5S21 6.5 18 6.5c-5 0-7 11-12 11C2.962 17.5.5 15.037.5 12S3 6.5 6 6.5s4.5 3.5 4.5 3.5"/>
+    </svg>
+  </div>
+  <div class="read-next-card-content">
+    <ul>
+      
+      
+      
+      <li>
+        <a href="/2017/11/07/2017-11-07-learn-c/">C 语言基础入门</a>
+      </li>
+      
+      
+      
+      <li>
+        <a href="/2017/11/02/2017-11-01-php-patterns/">PHP 设计模式</a>
+      </li>
+      
+      
+      
+      <li>
+        <a href="/2017/08/15/2017-08-15-learn-regex-zh/">学习正则表达式的简单方法</a>
+      </li>
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+    </ul>
+  </div>
+  <footer class="read-next-card-footer">
+    <a href="/archives">  MORE  → </a>
+  </footer>
+</article>
+
+            
+            
+            
+
+            
+            
+            
+            
+        </div>
+    </div>
+</aside>
+
+	
+
+
+
+
+
+<footer class="site-footer outer">
+	<div class="site-footer-content inner">
+		<section class="copyright">
+			<a href="/" title="C & Fish">C & Fish</a>
+			&copy; 2019
+		</section>
+		<nav class="site-footer-nav">
+			
+            <a href="https://hexo.io" title="Hexo" target="_blank" rel="noopener">Hexo</a>
+            <a href="https://github.com/xzhih/hexo-theme-casper" title="Casper" target="_blank" rel="noopener">Casper</a>
+        </nav>
+    </div>
+</footer>
+	
+
+
+<script>
+    if(window.navigator && navigator.serviceWorker) {
+        navigator.serviceWorker.getRegistrations()
+        .then(function(registrations) {
+            for(let registration of registrations) {
+                registration.unregister();
+            }
+        });
+    }
+</script>
+
+
+
+
+
+<script src="/js/lazyload.js"></script>
+
+<script>;(function() {var bLazy = new Blazy()})();</script>
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

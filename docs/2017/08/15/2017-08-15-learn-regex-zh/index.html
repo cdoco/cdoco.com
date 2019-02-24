@@ -1,0 +1,722 @@
+<!DOCTYPE html>
+<html lang="CN">
+
+
+
+
+
+
+
+<head>
+	
+	
+	<link rel="stylesheet" href="/css/allinone.min.css">
+
+	
+
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+	<title>学习正则表达式的简单方法 | C & Fish</title>
+
+	<meta name="HandheldFriendly" content="True">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+	<meta name="generator" content="hexo">
+	<meta name="author" content="ZiHang Gao">
+	<meta name="description" content>
+
+	
+	<meta name="keywords" content>
+	
+
+	
+	<link rel="shortcut icon" href="https://i.loli.net/2019/02/24/5c722760644a6.png">
+	<link rel="apple-touch-icon" href="https://i.loli.net/2019/02/24/5c722760644a6.png">
+	
+
+	
+	<meta name="theme-color" content="#3c484e">
+	<meta name="msapplication-TileColor" content="#3c484e">
+	
+
+	
+
+	
+
+	<meta property="og:site_name" content="C & Fish">
+	<meta property="og:type" content="article">
+	<meta property="og:title" content="学习正则表达式的简单方法 | C & Fish">
+	<meta property="og:description" content>
+	<meta property="og:url" content="https://cdoco.com/2017/08/15/2017-08-15-learn-regex-zh/">
+
+	
+	<meta property="article:published_time" content="2017-08-15T11:08:00+08:00"> 
+	<meta property="article:author" content="ZiHang Gao">
+	<meta property="article:published_first" content="C & Fish, /2017/08/15/2017-08-15-learn-regex-zh/">
+	
+</head>
+<body class="post-template">
+	<div class="site-wrapper">
+		
+
+
+
+
+<header class="site-header outer" style="z-index: 999">
+    <div class="inner">
+        
+<nav class="site-nav"> 
+    <div class="site-nav-left">
+        <ul class="nav">
+            <li>
+                
+                <a href="/" title="Home">HOME</a>
+                
+            </li>
+            
+            
+            <li>
+                <a href="/about" title="ABOUT">ABOUT</a>
+            </li>
+            
+            <li>
+                <a href="/archives" title="ARCHIVES">ARCHIVES</a>
+            </li>
+            
+            
+        </ul> 
+    </div>
+     
+    <div class="site-nav-right">
+         
+        
+<div class="social-links">
+    
+    <a class="social-link" title="weibo" href="https://weibo.com/u/233878950" target="_blank" rel="noopener">
+        <svg viewbox="0 0 1141 1024" xmlns="http://www.w3.org/2000/svg"><path d="M916.48 518.144q27.648 21.504 38.912 51.712t9.216 62.976-14.336 65.536-31.744 59.392q-34.816 48.128-78.848 81.92t-91.136 56.32-94.72 35.328-89.6 18.944-75.264 7.68-51.712 1.536-49.152-2.56-68.096-10.24-78.336-21.504-79.872-36.352-74.24-55.296-59.904-78.848q-16.384-29.696-22.016-63.488t-5.632-86.016q0-22.528 7.68-51.2t27.136-63.488 53.248-75.776 86.016-90.112q51.2-48.128 105.984-85.504t117.248-57.856q28.672-10.24 63.488-11.264t57.344 11.264q10.24 11.264 19.456 23.04t12.288 29.184q3.072 14.336 0.512 27.648t-5.632 26.624-5.12 25.6 2.048 22.528q17.408 2.048 33.792-1.536t31.744-9.216 31.232-11.776 33.28-9.216q27.648-5.12 54.784-4.608t49.152 7.68 36.352 22.016 17.408 38.4q2.048 14.336-2.048 26.624t-8.704 23.04-7.168 22.016 1.536 23.552q3.072 7.168 14.848 13.312t27.136 12.288 32.256 13.312 29.184 16.384zM658.432 836.608q26.624-16.384 53.76-45.056t44.032-64 18.944-75.776-20.48-81.408q-19.456-33.792-47.616-57.344t-62.976-37.376-74.24-19.968-80.384-6.144q-78.848 0-139.776 16.384t-105.472 43.008-72.192 60.416-38.912 68.608q-11.264 33.792-6.656 67.072t20.992 62.976 42.496 53.248 57.856 37.888q58.368 25.6 119.296 32.256t116.224 0.512 100.864-21.504 74.24-33.792zM524.288 513.024q20.48 8.192 38.912 18.432t32.768 27.648q10.24 12.288 17.92 30.72t10.752 39.424 1.536 42.496-9.728 38.912q-8.192 18.432-19.968 37.376t-28.672 35.328-40.448 29.184-57.344 18.944q-61.44 11.264-117.76-11.264t-88.064-74.752q-12.288-39.936-13.312-70.656t16.384-66.56q13.312-27.648 40.448-51.712t62.464-38.912 75.264-17.408 78.848 12.8zM361.472 764.928q37.888 3.072 57.856-18.432t21.504-48.128-15.36-47.616-52.736-16.896q-27.648 3.072-43.008 23.552t-17.408 43.52 9.728 42.496 39.424 21.504zM780.288 6.144q74.752 0 139.776 19.968t113.664 57.856 76.288 92.16 27.648 122.88q0 33.792-16.384 50.688t-35.328 17.408-35.328-14.336-16.384-45.568q0-40.96-22.528-77.824t-59.392-64.512-84.48-43.52-96.768-15.872q-31.744 0-47.104-15.36t-14.336-34.304 18.944-34.304 51.712-15.36zM780.288 169.984q95.232 0 144.384 48.64t49.152 146.944q0 30.72-10.24 43.52t-22.528 11.264-22.528-14.848-10.24-35.84q0-60.416-34.816-96.256t-93.184-35.84q-19.456 0-28.672-10.752t-9.216-23.04 9.728-23.04 28.16-10.752z"/></svg>
+    </a>
+    
+    
+    <a class="social-link" title="github" href="https://github.com/cdoco" target="_blank" rel="noopener">
+        <svg viewbox="0 0 1049 1024" xmlns="http://www.w3.org/2000/svg"><path d="M524.979332 0C234.676191 0 0 234.676191 0 524.979332c0 232.068678 150.366597 428.501342 358.967656 498.035028 26.075132 5.215026 35.636014-11.299224 35.636014-25.205961 0-12.168395-0.869171-53.888607-0.869171-97.347161-146.020741 31.290159-176.441729-62.580318-176.441729-62.580318-23.467619-60.841976-58.234462-76.487055-58.234463-76.487055-47.804409-32.15933 3.476684-32.15933 3.476685-32.15933 53.019436 3.476684 80.83291 53.888607 80.83291 53.888607 46.935238 79.963739 122.553122 57.365291 152.97411 43.458554 4.345855-33.897672 18.252593-57.365291 33.028501-70.402857-116.468925-12.168395-239.022047-57.365291-239.022047-259.012982 0-57.365291 20.860106-104.300529 53.888607-140.805715-5.215026-13.037566-23.467619-66.926173 5.215027-139.067372 0 0 44.327725-13.906737 144.282399 53.888607 41.720212-11.299224 86.917108-17.383422 131.244833-17.383422s89.524621 6.084198 131.244833 17.383422C756.178839 203.386032 800.506564 217.29277 800.506564 217.29277c28.682646 72.1412 10.430053 126.029806 5.215026 139.067372 33.897672 36.505185 53.888607 83.440424 53.888607 140.805715 0 201.64769-122.553122 245.975415-239.891218 259.012982 19.121764 16.514251 35.636014 47.804409 35.636015 97.347161 0 70.402857-0.869171 126.898978-0.869172 144.282399 0 13.906737 9.560882 30.420988 35.636015 25.205961 208.601059-69.533686 358.967656-265.96635 358.967655-498.035028C1049.958663 234.676191 814.413301 0 524.979332 0z"/></svg>
+    </a>
+    
+    
+    
+    <a class="social-link" title="twitter" href="https://twitter.com/gaozihang" target="_blank" rel="noopener">
+        <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 32 32"><path d="M30.063 7.313c-.813 1.125-1.75 2.125-2.875 2.938v.75c0 1.563-.188 3.125-.688 4.625a15.088 15.088 0 0 1-2.063 4.438c-.875 1.438-2 2.688-3.25 3.813a15.015 15.015 0 0 1-4.625 2.563c-1.813.688-3.75 1-5.75 1-3.25 0-6.188-.875-8.875-2.625.438.063.875.125 1.375.125 2.688 0 5.063-.875 7.188-2.5-1.25 0-2.375-.375-3.375-1.125s-1.688-1.688-2.063-2.875c.438.063.813.125 1.125.125.5 0 1-.063 1.5-.25-1.313-.25-2.438-.938-3.313-1.938a5.673 5.673 0 0 1-1.313-3.688v-.063c.813.438 1.688.688 2.625.688a5.228 5.228 0 0 1-1.875-2c-.5-.875-.688-1.813-.688-2.75 0-1.063.25-2.063.75-2.938 1.438 1.75 3.188 3.188 5.25 4.25s4.313 1.688 6.688 1.813a5.579 5.579 0 0 1 1.5-5.438c1.125-1.125 2.5-1.688 4.125-1.688s3.063.625 4.188 1.813a11.48 11.48 0 0 0 3.688-1.375c-.438 1.375-1.313 2.438-2.563 3.188 1.125-.125 2.188-.438 3.313-.875z"/></svg>
+
+    </a>
+    
+    
+    
+    
+</div>
+    </div>
+</nav>
+    </div>
+</header>
+
+
+<main id="site-main" class="site-main outer" role="main">
+    <div class="inner">
+        <header class="post-full-header">
+            <section class="post-full-meta">
+                <time class="post-full-meta-date" datetime="2017-08-15T11:20:55.000Z" itemprop="datePublished">
+                    2017-08-15
+                </time>
+                
+                <span class="date-divider">/</span>
+                
+                <a href="/categories/regex/">regex</a>&nbsp;&nbsp;
+                
+                
+            </section>
+            <h1 class="post-full-title">学习正则表达式的简单方法</h1>
+        </header>
+        <article class="post-full no-image">
+            
+            <section class="post-full-content">
+                <div id="lightgallery" class="markdown-body">
+                    <h2 id="什么是正则表达式-？"><a href="#什么是正则表达式-？" class="headerlink" title="什么是正则表达式 ？"></a>什么是正则表达式 ？</h2><blockquote>
+<p>正则表达式是一种被用于从文本中检索符合某些特定模式的文本。</p>
+</blockquote>
+<p>正则表达式是从左到右来匹配一个字符串的。”Regular Expression” 这个词太长了，我们通常使用它的缩写 “regex” 或者 “regexp”。正则表达式可以被用来替换字符串中的文本、验证表单、基于模式匹配从一个字符串中提取字符串等等。</p>
+<a id="more"></a>
+<p>想象一下，您正在编写应用程序，并且您希望在用户选择用户名时设置规则。我们希望用户名可以包含字母，数字，下划线和连字符。为了让它看起来不丑，我们还想限制用户名中的字符数量。我们可以使用以下正则表达式来验证用户名:</p>
+<h1 id><a href="#" class="headerlink" title></a><img alt class="post-img b-lazy" href="https://i.imgur.com/UrDb9qc.png" data-src="https://i.imgur.com/UrDb9qc.png"></h1><p>上面这个正则表达式可以匹配 <code>john_doe</code>，<code>jo-hn\_doe</code> 和 <code>john12\_as</code>。但是它不能匹配 <code>Jo</code>，因为该字符串里面包含了大写字符，并且它太短了。</p>
+<h2 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h2><ul>
+<li><a href="#1-基本匹配">基本匹配</a></li>
+<li><a href="#2-元字符">元字符</a><ul>
+<li><a href="#21-英文句号">英文句号</a></li>
+<li><a href="#22-字符集">字符集</a><ul>
+<li><a href="#221-否定字符集">否定字符集</a></li>
+</ul>
+</li>
+<li><a href="#23-重复">重复</a><ul>
+<li><a href="#231-星号">星号</a></li>
+<li><a href="#232-加号">加号</a></li>
+<li><a href="#233-问号">问号</a></li>
+</ul>
+</li>
+<li><a href="#24-花括号">花括号</a></li>
+<li><a href="#25-字符组">字符组</a></li>
+<li><a href="#26-分支结构">分支结构</a></li>
+<li><a href="#27-转义特殊字符">转义特殊字符</a></li>
+<li><a href="#28-定位符">定位符</a><ul>
+<li><a href="#281-插入符号">插入符号</a></li>
+<li><a href="#282-美元符号">美元符号</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#3-简写字符集">简写字符集</a></li>
+<li><a href="#4-断言">断言</a><ul>
+<li><a href="#41-正向先行断言">正向先行断言</a></li>
+<li><a href="#42-负向先行断言">负向先行断言</a></li>
+<li><a href="#43-正向后行断言">正向后行断言</a></li>
+<li><a href="#44-负向后行断言">负向后行断言</a></li>
+</ul>
+</li>
+<li><a href="#5-标记">标记</a><ul>
+<li><a href="#51-不区分大小写">不区分大小写</a></li>
+<li><a href="#52-全局搜索">全局搜索</a></li>
+<li><a href="#53-多行匹配">多行匹配</a></li>
+</ul>
+</li>
+<li><a href="#福利">福利</a></li>
+</ul>
+<h2 id="1-基本匹配"><a href="#1-基本匹配" class="headerlink" title="1. 基本匹配"></a>1. 基本匹配</h2><p>正则表达式只是我们用于在文本中检索字母和数字的模式。例如正则表达式 <code>cat</code>，表示: 字母 <code>c</code> 后面跟着一个字母 <code>a</code>，再后面跟着一个字母 <code>t</code>。</p>
+<pre>
+"cat" => The <a href="#learn-regex"><strong>cat</strong></a> sat on the mat
+</pre>
+
+<p>正则表达式 <code>123</code> 会匹配字符串 “123”。通过将正则表达式中的每个字符逐个与要匹配的字符串中的每个字符进行比较，来完成正则匹配。正则表达式通常区分大小写，因此正则表达式 <code>Cat</code> 与字符串 “cat” 不匹配。</p>
+<pre>
+"Cat" => The cat sat on the <a href="#learn-regex"><strong>Cat</strong></a>
+</pre>
+
+<h2 id="2-元字符"><a href="#2-元字符" class="headerlink" title="2. 元字符"></a>2. 元字符</h2><p>元字符是正则表达式的基本组成元素。元字符在这里跟它通常表达的意思不一样，而是以某种特殊的含义去解释。有些元字符写在方括号内的时候有特殊含义。<br>元字符如下:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">元字符</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">.</td>
+<td>匹配除换行符以外的任意字符。</td>
+</tr>
+<tr>
+<td style="text-align:center">[ ]</td>
+<td>字符类，匹配方括号中包含的任意字符。</td>
+</tr>
+<tr>
+<td style="text-align:center">[^ ]</td>
+<td>否定字符类。匹配方括号中不包含的任意字符</td>
+</tr>
+<tr>
+<td style="text-align:center">*</td>
+<td>匹配前面的子表达式零次或多次</td>
+</tr>
+<tr>
+<td style="text-align:center">+</td>
+<td>匹配前面的子表达式一次或多次</td>
+</tr>
+<tr>
+<td style="text-align:center">?</td>
+<td>匹配前面的子表达式零次或一次，或指明一个非贪婪限定符。</td>
+</tr>
+<tr>
+<td style="text-align:center">{n,m}</td>
+<td>花括号，匹配前面字符至少 n 次，但是不超过 m 次。</td>
+</tr>
+<tr>
+<td style="text-align:center">(xyz)</td>
+<td>字符组，按照确切的顺序匹配字符xyz。</td>
+</tr>
+<tr>
+<td style="text-align:center">&#124;</td>
+<td>分支结构，匹配符号之前的字符或后面的字符。</td>
+</tr>
+<tr>
+<td style="text-align:center">&#92;</td>
+<td>转义符，它可以还原元字符原来的含义，允许你匹配保留字符 <code>[ ] ( ) { } . * + ? ^ $ \ &#124;</code></td>
+</tr>
+<tr>
+<td style="text-align:center">^</td>
+<td>匹配行的开始</td>
+</tr>
+<tr>
+<td style="text-align:center">$</td>
+<td>匹配行的结束</td>
+</tr>
+</tbody>
+</table>
+<h2 id="2-1-英文句号"><a href="#2-1-英文句号" class="headerlink" title="2.1 英文句号"></a>2.1 英文句号</h2><p>英文句号 <code>.</code> 是元字符的最简单的例子。元字符 <code>.</code> 可以匹配任意单个字符。它不会匹配换行符和新行的字符。例如正则表达式 <code>.ar</code>，表示: 任意字符后面跟着一个字母 <code>a</code>，再后面跟着一个字母 <code>r</code>。</p>
+<pre>
+".ar" => The <a href="#learn-regex"><strong>car</strong></a> <a href="#learn-regex"><strong>par</strong></a>ked in the <a href="#learn-regex"><strong>gar</strong></a>age.
+</pre>
+
+<h2 id="2-2-字符集"><a href="#2-2-字符集" class="headerlink" title="2.2 字符集"></a>2.2 字符集</h2><p>字符集也称为字符类。方括号被用于指定字符集。使用字符集内的连字符来指定字符范围。方括号内的字符范围的顺序并不重要。例如正则表达式 <code>[Tt]he</code>，表示: 大写 <code>T</code> 或小写 <code>t</code> ，后跟字母 <code>h</code>，再后跟字母 <code>e</code>。</p>
+<pre>
+"[Tt]he" => <a href="#learn-regex"><strong>The</strong></a> car parked in <a href="#learn-regex"><strong>the</strong></a> garage.
+</pre>
+
+<p>然而，字符集中的英文句号表示它字面的含义。正则表达式 <code>ar[.]</code>，表示小写字母 <code>a</code>，后面跟着一个字母 <code>r</code>，再后面跟着一个英文句号 <code>.</code> 字符。</p>
+<pre>
+"ar[.]" => A garage is a good place to park a c<a href="#learn-regex"><strong>ar.</strong></a>
+</pre>
+
+<h3 id="2-2-1-否定字符集"><a href="#2-2-1-否定字符集" class="headerlink" title="2.2.1 否定字符集"></a>2.2.1 否定字符集</h3><p>一般来说插入字符 <code>^</code> 表示一个字符串的开始，但是当它在方括号内出现时，它会取消字符集。例如正则表达式 <code>[^c]ar</code>，表示: 除了字母 <code>c</code> 以外的任意字符，后面跟着字符 <code>a</code>，再后面跟着一个字母 <code>r</code>。</p>
+<pre>
+"[^c]ar" => The car <a href="#learn-regex"><strong>par</strong></a>ked in the <a href="#learn-regex"><strong>gar</strong></a>age.
+</pre>
+
+<h2 id="2-3-重复"><a href="#2-3-重复" class="headerlink" title="2.3 重复"></a>2.3 重复</h2><p>以下元字符 <code>+</code>，<code>*</code> 或 <code>?</code> 用于指定子模式可以出现多少次。这些元字符在不同情况下的作用不同。</p>
+<h3 id="2-3-1-星号"><a href="#2-3-1-星号" class="headerlink" title="2.3.1 星号"></a>2.3.1 星号</h3><p>该符号 <code>*</code> 表示匹配上一个匹配规则的零次或多次。正则表达式 <code>a*</code> 表示小写字母 <code>a</code> 可以重复零次或者多次。但是它如果出现在字符集或者字符类之后，它表示整个字符集的重复。例如正则表达式 <code>[a-z]*</code>，表示: 一行中可以包含任意数量的小写字母。</p>
+<pre>
+"[a-z]*" => T<a href="#learn-regex"><strong>he</strong></a> <a href="#learn-regex"><strong>car</strong></a> <a href="#learn-regex"><strong>parked</strong></a> <a href="#learn-regex"><strong>in</strong></a> <a href="#learn-regex"><strong>the</strong></a> <a href="#learn-regex"><strong>garage</strong></a> #21.
+</pre>
+
+<p>该 <code>*</code> 符号可以与元符号 <code>.</code> 用在一起，用来匹配任意字符串 <code>.*</code>。该 <code>*</code> 符号可以与空格符 <code>\s</code> 一起使用，用来匹配一串空格字符。例如正则表达式 <code>\s*cat\s*</code>，表示: 零个或多个空格，后面跟小写字母 <code>c</code>，再后面跟小写字母 <code>a</code>，再再后面跟小写字母 <code>t</code>，后面再跟零个或多个空格。</p>
+<pre>
+"\s*cat\s*" => The fat<a href="#learn-regex"><strong> cat </strong></a>sat on the <a href="#learn-regex"><strong>cat</strong></a>.
+</pre>
+
+<h3 id="2-3-2-加号"><a href="#2-3-2-加号" class="headerlink" title="2.3.2 加号"></a>2.3.2 加号</h3><p>该符号 <code>+</code> 匹配上一个字符的一次或多次。例如正则表达式 <code>c.+t</code>，表示: 一个小写字母 <code>c</code>，后跟任意数量的字符，后跟小写字母 <code>t</code>。</p>
+<pre>
+"c.+t" => The fat <a href="#learn-regex"><strong>cat sat on the mat</strong></a>.
+</pre>
+
+<h3 id="2-3-3-问号"><a href="#2-3-3-问号" class="headerlink" title="2.3.3 问号"></a>2.3.3 问号</h3><p>在正则表达式中，元字符 <code>?</code> 用来表示前一个字符是可选的。该符号匹配前一个字符的零次或一次。例如正则表达式 <code>[T]?he</code>，表示: 可选的大写字母 <code>T</code>，后面跟小写字母 <code>h</code>，后跟小写字母 <code>e</code>。</p>
+<pre>
+"[T]he" => <a href="#learn-regex"><strong>The</strong></a> car is parked in the garage.
+</pre>
+<pre>
+"[T]?he" => <a href="#learn-regex"><strong>The</strong></a> car is parked in t<a href="#learn-regex"><strong>he</strong></a> garage.
+</pre>
+
+<h2 id="2-4-花括号"><a href="#2-4-花括号" class="headerlink" title="2.4 花括号"></a>2.4 花括号</h2><p>在正则表达式中花括号(也被称为量词 ?)用于指定字符或一组字符可以重复的次数。例如正则表达式 <code>[0-9]{2,3}</code>，表示: 匹配至少2位数字但不超过3位(0到9范围内的字符)。</p>
+<pre>
+"[0-9]{2,3}" => The number was 9.<a href="#learn-regex"><strong>999</strong></a>7 but we rounded it off to <a href="#learn-regex"><strong>10</strong></a>.0.
+</pre>
+
+<p>我们可以省略第二个数字。例如正则表达式 <code>[0-9]{2,}</code>，表示: 匹配2个或更多个数字。如果我们也删除逗号，则正则表达式 <code>[0-9]{2}</code>，表示: 匹配正好为2位数的数字。</p>
+<pre>
+"[0-9]{2,}" => The number was 9.<a href="#learn-regex"><strong>9997</strong></a> but we rounded it off to <a href="#learn-regex"><strong>10</strong></a>.0.
+</pre>
+
+<pre>
+"[0-9]{2}" => The number was 9.<a href="#learn-regex"><strong>99</strong></a><a href="#learn-regex"><strong>97</strong></a> but we rounded it off to <a href="#learn-regex"><strong>10</strong></a>.0.
+</pre>
+
+<h2 id="2-5-字符组"><a href="#2-5-字符组" class="headerlink" title="2.5 字符组"></a>2.5 字符组</h2><p>字符组是一组写在圆括号内的子模式 <code>(...)</code>。正如我们在正则表达式中讨论的那样，如果我们把一个量词放在一个字符之后，它会重复前一个字符。但是，如果我们把量词放在一个字符组之后，它会重复整个字符组。例如正则表达式 <code>(ab)*</code> 表示匹配零个或多个的字符串 “ab”。我们还可以在字符组中使用元字符 <code>|</code>。例如正则表达式 <code>(c|g|p)ar</code>，表示: 小写字母 <code>c</code>、<code>g</code> 或 <code>p</code> 后面跟字母 <code>a</code>，后跟字母 <code>r</code>。</p>
+<pre>
+"(c|g|p)ar" => The <a href="#learn-regex"><strong>car</strong></a> is <a href="#learn-regex"><strong>par</strong></a>ked in the <a href="#learn-regex"><strong>gar</strong></a>age.
+</pre>
+
+<h2 id="2-6-分支结构"><a href="#2-6-分支结构" class="headerlink" title="2.6 分支结构"></a>2.6 分支结构</h2><p>在正则表达式中垂直条 <code>|</code> 用来定义分支结构，分支结构就像多个表达式之间的条件。现在你可能认为这个字符集和分支机构的工作方式一样。但是字符集和分支结构巨大的区别是字符集只在字符级别上有作用，然而分支结构在表达式级别上依然可以使用。例如正则表达式 <code>(T|t)he|car</code>，表示: 大写字母 <code>T</code> 或小写字母 <code>t</code>，后面跟小写字母 <code>h</code>，后跟小写字母 <code>e</code> 或小写字母 <code>c</code>，后跟小写字母 <code>a</code>，后跟小写字母 <code>r</code>。</p>
+<pre>
+"(T|t)he|car" => <a href="#learn-regex"><strong>The</strong></a> <a href="#learn-regex"><strong>car</strong></a> is parked in <a href="#learn-regex"><strong>the</strong></a> garage.
+</pre>
+
+<h2 id="2-7-转义特殊字符"><a href="#2-7-转义特殊字符" class="headerlink" title="2.7 转义特殊字符"></a>2.7 转义特殊字符</h2><p>正则表达式中使用反斜杠 <code>\</code> 来转义下一个字符。这将允许你使用保留字符来作为匹配字符 <code>{ } [ ] / \ + * . $ ^ | ?</code>。在特殊字符前面加 <code>\</code>，就可以使用它来做匹配字符。例如正则表达式 <code>.</code> 是用来匹配除了换行符以外的任意字符。现在要在输入字符串中匹配 <code>.</code> 字符，正则表达式 <code>(f|c|m)at\.?</code>，表示: 小写字母 <code>f</code>、<code>c</code> 或者 <code>m</code> 后跟小写字母 <code>a</code>，后跟小写字母 <code>t</code>，后跟可选的 <code>.</code> 字符。</p>
+<pre>
+"(f|c|m)at\.?" => The <a href="#learn-regex"><strong>fat</strong></a> <a href="#learn-regex"><strong>cat</strong></a> sat on the <a href="#learn-regex"><strong>mat.</strong></a>
+</pre>
+
+<h2 id="2-8-定位符"><a href="#2-8-定位符" class="headerlink" title="2.8 定位符"></a>2.8 定位符</h2><p>在正则表达式中，为了检查匹配符号是否是起始符号或结尾符号，我们使用定位符。定位符有两种类型: 第一种类型是 <code>^</code> 检查匹配字符是否是起始字符，第二种类型是 <code>$</code>，它检查匹配字符是否是输入字符串的最后一个字符。</p>
+<h3 id="2-8-1-插入符号"><a href="#2-8-1-插入符号" class="headerlink" title="2.8.1 插入符号"></a>2.8.1 插入符号</h3><p>插入符号 <code>^</code> 符号用于检查匹配字符是否是输入字符串的第一个字符。如果我们使用正则表达式 <code>^a</code> (如果a是起始符号)匹配字符串 <code>abc</code>，它会匹配到 <code>a</code>。但是如果我们使用正则表达式 <code>b</code>，它是匹配不到任何东西的，因为在字符串 <code>abc</code> 中 “b” 不是起始字符。让我们来看看另一个正则表达式 <code>^(T|t)he</code>，这表示: 大写字母 <code>T</code> 或小写字母 <code>t</code> 是输入字符串的起始符号，后面跟着小写字母 <code>h</code>，后跟小写字母 <code>e</code>。</p>
+<pre>
+"(T|t)he" => <a href="#learn-regex"><strong>The</strong></a> car is parked in <a href="#learn-regex"><strong>the</strong></a> garage.
+</pre>
+
+<pre>
+"^(T|t)he" => <a href="#learn-regex"><strong>The</strong></a> car is parked in the garage.
+</pre>
+
+<h3 id="2-8-2-美元符号"><a href="#2-8-2-美元符号" class="headerlink" title="2.8.2 美元符号"></a>2.8.2 美元符号</h3><p>美元 <code>$</code> 符号用于检查匹配字符是否是输入字符串的最后一个字符。例如正则表达式 <code>(at\.)$</code>，表示: 小写字母 <code>a</code>，后跟小写字母 <code>t</code>，后跟一个 <code>.</code> 字符，且这个匹配器必须是字符串的结尾。</p>
+<pre>
+"(at\.)" => The fat c<a href="#learn-regex"><strong>at.</strong></a> s<a href="#learn-regex"><strong>at.</strong></a> on the m<a href="#learn-regex"><strong>at.</strong></a>
+</pre>
+
+<pre>
+"(at\.)$" => The fat cat sat on the m<a href="#learn-regex"><strong>at.</strong></a>
+</pre>
+
+<h2 id="3-简写字符集"><a href="#3-简写字符集" class="headerlink" title="3. 简写字符集"></a>3. 简写字符集</h2><p>正则表达式为常用的字符集和常用的正则表达式提供了简写。简写字符集如下:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">简写</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">.</td>
+<td>匹配除换行符以外的任意字符</td>
+</tr>
+<tr>
+<td style="text-align:center">\w</td>
+<td>匹配所有字母和数字的字符: <code>[a-zA-Z0-9_]</code></td>
+</tr>
+<tr>
+<td style="text-align:center">\W</td>
+<td>匹配非字母和数字的字符: <code>[^\w]</code></td>
+</tr>
+<tr>
+<td style="text-align:center">\d</td>
+<td>匹配数字: <code>[0-9]</code></td>
+</tr>
+<tr>
+<td style="text-align:center">\D</td>
+<td>匹配非数字: <code>[^\d]</code></td>
+</tr>
+<tr>
+<td style="text-align:center">\s</td>
+<td>匹配空格符: <code>[\t\n\f\r\p{Z}]</code></td>
+</tr>
+<tr>
+<td style="text-align:center">\S</td>
+<td>匹配非空格符: <code>[^\s]</code></td>
+</tr>
+</tbody>
+</table>
+<h2 id="4-断言"><a href="#4-断言" class="headerlink" title="4. 断言"></a>4. 断言</h2><p>后行断言和先行断言有时候被称为断言，它们是特殊类型的 <strong><em>非捕获组</em></strong> (用于匹配模式，但不包括在匹配列表中)。当我们在一种特定模式之前或者之后有这种模式时，会优先使用断言。例如我们想获取输入字符串 <code>$4.44 and $10.88</code> 中 <code>$</code> 字符之前的所有数字。我们可以使用这个正则表达式 <code>(?&lt;=\$)[0-9\.]*</code>，表示: 获取 <code>$</code> 字符之前的所有的数字包含 <code>.</code> 字符。以下是正则表达式中使用的断言:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">符号</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">?=</td>
+<td>正向先行断言</td>
+</tr>
+<tr>
+<td style="text-align:center">?!</td>
+<td>负向先行断言</td>
+</tr>
+<tr>
+<td style="text-align:center">?&lt;=</td>
+<td>正向后行断言</td>
+</tr>
+<tr>
+<td style="text-align:center">?&lt;!</td>
+<td>负向后行断言</td>
+</tr>
+</tbody>
+</table>
+<h3 id="4-1-正向先行断言"><a href="#4-1-正向先行断言" class="headerlink" title="4.1 正向先行断言"></a>4.1 正向先行断言</h3><p>正向先行断言认为第一部分的表达式必须是先行断言表达式。返回的匹配结果仅包含与第一部分表达式匹配的文本。要在一个括号内定义一个正向先行断言，在括号中问号和等号是这样使用的 <code>(?=...)</code>。先行断言表达式写在括号中的等号后面。例如正则表达式 <code>(T|t)he(?=\sfat)</code>，表示: 匹配大写字母 <code>T</code> 或小写字母 <code>t</code>，后面跟字母 <code>h</code>，后跟字母 <code>e</code>。在括号中，我们定义了正向先行断言，它会引导正则表达式引擎匹配 <code>The</code> 或 <code>the</code> 后面跟着 <code>fat</code>。</p>
+<pre>
+"(T|t)he(?=\sfat)" => <a href="#learn-regex"><strong>The</strong></a> fat cat sat on the mat.
+</pre>
+
+<h3 id="4-2-负向先行断言"><a href="#4-2-负向先行断言" class="headerlink" title="4.2 负向先行断言"></a>4.2 负向先行断言</h3><p>当我们需要从输入字符串中获取不匹配表达式的内容时，使用负向先行断言。负向先行断言的定义跟我们定义的正向先行断言一样，唯一的区别是不是等号 <code>=</code>，我们使用否定符号 <code>!</code>，例如 <code>(?!...)</code>。我们来看看下面的正则表达式 <code>(T|t)he(?!\sfat)</code>，表示: 从输入字符串中获取全部 <code>The</code> 或者 <code>the</code> 且不匹配 <code>fat</code> 前面加上一个空格字符。</p>
+<pre>
+"(T|t)he(?!\sfat)" => The fat cat sat on <a href="#learn-regex"><strong>the</strong></a> mat.
+</pre>
+
+<h3 id="4-3-正向后行断言"><a href="#4-3-正向后行断言" class="headerlink" title="4.3 正向后行断言"></a>4.3 正向后行断言</h3><p>正向后行断言是用于获取在特定模式之前的所有匹配内容。正向后行断言表示为 <code>(?&lt;=...)</code>。例如正则表达式 <code>(?&lt;=(T|t)he\s)(fat|mat)</code>，表示: 从输入字符串中获取在单词 <code>The</code> 或 <code>the</code> 之后的所有 <code>fat</code> 和 <code>mat</code> 单词。</p>
+<pre>
+"(?<=(t|t)he\s)(fat|mat)" => The <a href="#learn-regex"><strong>fat</strong></a> cat sat on the <a href="#learn-regex"><strong>mat</strong></a>.
+</=(t|t)he\s)(fat|mat)"></pre>
+
+<h3 id="4-4-负向后行断言"><a href="#4-4-负向后行断言" class="headerlink" title="4.4 负向后行断言"></a>4.4 负向后行断言</h3><p>负向后行断言是用于获取不在特定模式之前的所有匹配的内容。负向后行断言表示为 <code>(?&lt;!...)</code>。例如正则表达式 <code>(?&lt;!(T|t)he\s)(cat)</code>，表示: 在输入字符中获取所有不在 <code>The</code> 或 <code>the</code> 之后的所有单词 <code>cat</code>。</p>
+<pre>
+"(?&lt;!(T|t)he\s)(cat)" => The cat sat on <a href="#learn-regex"><strong>cat</strong></a>.
+</pre>
+
+<h2 id="5-标记"><a href="#5-标记" class="headerlink" title="5. 标记"></a>5. 标记</h2><p>标记也称为修饰符，因为它会修改正则表达式的输出。这些标志可以以任意顺序或组合使用，并且是正则表达式的一部分。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">标记</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">i</td>
+<td>不区分大小写: 将匹配设置为不区分大小写。</td>
+</tr>
+<tr>
+<td style="text-align:center">g</td>
+<td>全局搜索: 搜索整个输入字符串中的所有匹配。</td>
+</tr>
+<tr>
+<td style="text-align:center">m</td>
+<td>多行匹配: 会匹配输入字符串每一行。</td>
+</tr>
+</tbody>
+</table>
+<h3 id="5-1-不区分大小写"><a href="#5-1-不区分大小写" class="headerlink" title="5.1 不区分大小写"></a>5.1 不区分大小写</h3><p><code>i</code> 修饰符用于执行不区分大小写匹配。例如正则表达式 <code>/The/gi</code>，表示: 大写字母 <code>T</code>，后跟小写字母 <code>h</code>，后跟字母 <code>e</code>。但是在正则匹配结束时 <code>i</code> 标记会告诉正则表达式引擎忽略这种情况。正如你所看到的，我们还使用了 <code>g</code> 标记，因为我们要在整个输入字符串中搜索匹配。</p>
+<pre>
+"The" => <a href="#learn-regex"><strong>The</strong></a> fat cat sat on the mat.
+</pre>
+
+<pre>
+"/The/gi" => <a href="#learn-regex"><strong>The</strong></a> fat cat sat on <a href="#learn-regex"><strong>the</strong></a> mat.
+</pre>
+
+<h3 id="5-2-全局搜索"><a href="#5-2-全局搜索" class="headerlink" title="5.2 全局搜索"></a>5.2 全局搜索</h3><p><code>g</code> 修饰符用于执行全局匹配 (会查找所有匹配，不会在查找到第一个匹配时就停止)。例如正则表达式 <code>/.(at)/g</code>，表示: 除换行符之外的任意字符，后跟小写字母 <code>a</code>，后跟小写字母 <code>t</code>。因为我们在正则表达式的末尾使用了 <code>g</code> 标记，它会从整个输入字符串中找到每个匹配项。</p>
+<pre>
+".(at)" => The <a href="#learn-regex"><strong>fat</strong></a> cat sat on the mat.
+</pre>
+
+<pre>
+"/.(at)/g" => The <a href="#learn-regex"><strong>fat</strong></a> <a href="#learn-regex"><strong>cat</strong></a> <a href="#learn-regex"><strong>sat</strong></a> on the <a href="#learn-regex"><strong>mat</strong></a>.
+</pre>
+
+<h3 id="5-3-多行匹配"><a href="#5-3-多行匹配" class="headerlink" title="5.3 多行匹配"></a>5.3 多行匹配</h3><p><code>m</code> 修饰符被用来执行多行的匹配。正如我们前面讨论过的 <code>(^, $)</code>，使用定位符来检查匹配字符是输入字符串开始或者结束。但是我们希望每一行都使用定位符，所以我们就使用 <code>m</code> 修饰符。例如正则表达式 <code>/at(.)?$/gm</code>，表示: 小写字母 <code>a</code>，后跟小写字母 <code>t</code>，匹配除了换行符以外任意字符零次或一次。而且因为 <code>m</code> 标记，现在正则表达式引擎匹配字符串中每一行的末尾。</p>
+<pre>
+"/.at(.)?$/" => The fat
+                cat sat
+                on the <a href="#learn-regex"><strong>mat.</strong></a>
+</pre>
+
+<pre>
+"/.at(.)?$/gm" => The <a href="#learn-regex"><strong>fat</strong></a>
+                  cat <a href="#learn-regex"><strong>sat</strong></a>
+                  on the <a href="#learn-regex"><strong>mat.</strong></a>
+</pre>
+
+<h2 id="福利"><a href="#福利" class="headerlink" title="福利"></a>福利</h2><ul>
+<li><em>正整数</em>: <code>^\d+$</code></li>
+<li><em>负整数</em>: <code>^-\d+$</code></li>
+<li><em>电话号码</em>: <code>^+?[\d\s]{3,}$</code></li>
+<li><em>电话代码</em>: <code>^+?[\d\s]+(?[\d\s]{10,}$</code></li>
+<li><em>整数</em>: <code>^-?\d+$</code></li>
+<li><em>用户名</em>: <code>^[\w\d_.]{4,16}$</code></li>
+<li><em>字母数字字符</em>: <code>^[a-zA-Z0-9]*$</code></li>
+<li><em>带空格的字母数字字符</em>: <code>^[a-zA-Z0-9 ]*$</code></li>
+<li><em>密码</em>: <code>^(?=^.{6,}$)((?=.*[A-Za-z0-9])(?=.*[A-Z])(?=.*[a-z]))^.*$</code></li>
+<li><em>电子邮件</em>: <code>^([a-zA-Z0-9._%-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4})*$</code></li>
+<li><em>小写字母</em>: <code>^([a-z])*$</code></li>
+<li><em>大写字母</em>: <code>^([A-Z])*$</code></li>
+<li><em>VISA 信用卡号码</em>: <code>^(4[0-9]{12}(?:[0-9]{3})?)*$</code></li>
+<li><em>万事达信用卡号码</em>: <code>^(5[1-5][0-9]{14})*$</code></li>
+</ul>
+
+                </div>
+            </section>
+        </article>
+    </div>
+
+    
+    <div style="height: 4vw;width: 100%"></div>
+    <nav id="gobottom" class="pagination">
+        
+        <a class="prev-post" title="PHP 设计模式" href="/2017/11/02/2017-11-01-php-patterns/">
+            ← PHP 设计模式
+        </a>
+        
+        <span class="prev-next-post">•</span>
+        
+        <a class="next-post" title="PHP7 升级的那些事儿" href="/2017/08/15/2017-08-15-php7-update/">
+            PHP7 升级的那些事儿 →
+        </a>
+        
+    </nav>
+
+    
+</main>
+
+<div class="toc-bar">
+    <div class="toc-btn-bar">
+        <a href="#site-main" class="toc-btn">
+            <svg viewbox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg"><path d="M793.024 710.272a32 32 0 1 0 45.952-44.544l-310.304-320a32 32 0 0 0-46.4 0.48l-297.696 320a32 32 0 0 0 46.848 43.584l274.752-295.328 286.848 295.808z"/></svg>
+        </a>
+        <div class="toc-btn toc-switch">
+            <svg class="toc-open" viewbox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg"><path d="M779.776 480h-387.2a32 32 0 0 0 0 64h387.2a32 32 0 0 0 0-64M779.776 672h-387.2a32 32 0 0 0 0 64h387.2a32 32 0 0 0 0-64M256 288a32 32 0 1 0 0 64 32 32 0 0 0 0-64M392.576 352h387.2a32 32 0 0 0 0-64h-387.2a32 32 0 0 0 0 64M256 480a32 32 0 1 0 0 64 32 32 0 0 0 0-64M256 672a32 32 0 1 0 0 64 32 32 0 0 0 0-64"/></svg>
+            <svg class="toc-close hide" viewbox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg"><path d="M512 960c-247.039484 0-448-200.960516-448-448S264.960516 64 512 64 960 264.960516 960 512 759.039484 960 512 960zM512 128.287273c-211.584464 0-383.712727 172.128262-383.712727 383.712727 0 211.551781 172.128262 383.712727 383.712727 383.712727 211.551781 0 383.712727-172.159226 383.712727-383.712727C895.712727 300.415536 723.551781 128.287273 512 128.287273z"/><path d="M557.05545 513.376159l138.367639-136.864185c12.576374-12.416396 12.672705-32.671738 0.25631-45.248112s-32.704421-12.672705-45.248112-0.25631l-138.560301 137.024163-136.447897-136.864185c-12.512727-12.512727-32.735385-12.576374-45.248112-0.063647-12.512727 12.480043-12.54369 32.735385-0.063647 45.248112l136.255235 136.671523-137.376804 135.904314c-12.576374 12.447359-12.672705 32.671738-0.25631 45.248112 6.271845 6.335493 14.496116 9.504099 22.751351 9.504099 8.12794 0 16.25588-3.103239 22.496761-9.247789l137.567746-136.064292 138.687596 139.136568c6.240882 6.271845 14.432469 9.407768 22.65674 9.407768 8.191587 0 16.352211-3.135923 22.591372-9.34412 12.512727-12.480043 12.54369-32.704421 0.063647-45.248112L557.05545 513.376159z"/></svg>
+        </div>
+        <a href="#gobottom" class="toc-btn">
+            <svg viewbox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg"><path d="M231.424 346.208a32 32 0 0 0-46.848 43.584l297.696 320a32 32 0 0 0 46.4 0.48l310.304-320a32 32 0 1 0-45.952-44.544l-286.848 295.808-274.752-295.36z"/></svg>
+        </a>
+    </div>
+    <div class="toc-main">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#什么是正则表达式-？"><span class="toc-text">什么是正则表达式 ？</span></a></li></ol><li class="toc-item toc-level-1"><a class="toc-link" href="#"><span class="toc-text"></span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#目录"><span class="toc-text">目录</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-基本匹配"><span class="toc-text">1. 基本匹配</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-元字符"><span class="toc-text">2. 元字符</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-1-英文句号"><span class="toc-text">2.1 英文句号</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-2-字符集"><span class="toc-text">2.2 字符集</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-1-否定字符集"><span class="toc-text">2.2.1 否定字符集</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-3-重复"><span class="toc-text">2.3 重复</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3-1-星号"><span class="toc-text">2.3.1 星号</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3-2-加号"><span class="toc-text">2.3.2 加号</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3-3-问号"><span class="toc-text">2.3.3 问号</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-4-花括号"><span class="toc-text">2.4 花括号</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-5-字符组"><span class="toc-text">2.5 字符组</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-6-分支结构"><span class="toc-text">2.6 分支结构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-7-转义特殊字符"><span class="toc-text">2.7 转义特殊字符</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-8-定位符"><span class="toc-text">2.8 定位符</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-8-1-插入符号"><span class="toc-text">2.8.1 插入符号</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-8-2-美元符号"><span class="toc-text">2.8.2 美元符号</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-简写字符集"><span class="toc-text">3. 简写字符集</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-断言"><span class="toc-text">4. 断言</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#4-1-正向先行断言"><span class="toc-text">4.1 正向先行断言</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-2-负向先行断言"><span class="toc-text">4.2 负向先行断言</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-3-正向后行断言"><span class="toc-text">4.3 正向后行断言</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-4-负向后行断言"><span class="toc-text">4.4 负向后行断言</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-标记"><span class="toc-text">5. 标记</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#5-1-不区分大小写"><span class="toc-text">5.1 不区分大小写</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-2-全局搜索"><span class="toc-text">5.2 全局搜索</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-3-多行匹配"><span class="toc-text">5.3 多行匹配</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#福利"><span class="toc-text">福利</span></a></li></ol>
+    </li></div>
+</div>
+
+
+
+	</div>
+	
+
+
+<aside class="read-next outer">
+    <div class="inner">
+        <div class="read-next-feed">
+            
+            
+
+<article class="read-next-card" style="background-image: url(https://i.loli.net/2019/02/24/5c72252a523c7.jpg)">
+  <header class="read-next-card-header">
+    <small class="read-next-card-header-sitetitle">&mdash; C & Fish &mdash;</small>
+    <h3 class="read-next-card-header-title">Recent Posts</h3>
+  </header>
+  <div class="read-next-divider">
+    <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24">
+      <path d="M13 14.5s2 3 5 3 5.5-2.463 5.5-5.5S21 6.5 18 6.5c-5 0-7 11-12 11C2.962 17.5.5 15.037.5 12S3 6.5 6 6.5s4.5 3.5 4.5 3.5"/>
+    </svg>
+  </div>
+  <div class="read-next-card-content">
+    <ul>
+      
+      
+      
+      <li>
+        <a href="/2017/11/07/2017-11-07-learn-c/">C 语言基础入门</a>
+      </li>
+      
+      
+      
+      <li>
+        <a href="/2017/11/02/2017-11-01-php-patterns/">PHP 设计模式</a>
+      </li>
+      
+      
+      
+      <li>
+        <a href="/2017/08/15/2017-08-15-learn-regex-zh/">学习正则表达式的简单方法</a>
+      </li>
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+    </ul>
+  </div>
+  <footer class="read-next-card-footer">
+    <a href="/archives">  MORE  → </a>
+  </footer>
+</article>
+
+            
+            
+            
+
+            
+            
+            
+            
+        </div>
+    </div>
+</aside>
+
+	
+
+
+
+
+
+<footer class="site-footer outer">
+	<div class="site-footer-content inner">
+		<section class="copyright">
+			<a href="/" title="C & Fish">C & Fish</a>
+			&copy; 2019
+		</section>
+		<nav class="site-footer-nav">
+			
+            <a href="https://hexo.io" title="Hexo" target="_blank" rel="noopener">Hexo</a>
+            <a href="https://github.com/xzhih/hexo-theme-casper" title="Casper" target="_blank" rel="noopener">Casper</a>
+        </nav>
+    </div>
+</footer>
+	
+
+
+<script>
+    if(window.navigator && navigator.serviceWorker) {
+        navigator.serviceWorker.getRegistrations()
+        .then(function(registrations) {
+            for(let registration of registrations) {
+                registration.unregister();
+            }
+        });
+    }
+</script>
+
+
+
+
+
+
+
+<div class="floating-header">
+	<div class="floating-header-logo">
+        <a href="/" title="C & Fish">
+			
+                <img src="https://i.loli.net/2019/02/24/5c722760644a6.png" alt="C & Fish icon">
+			
+            <span>C & Fish</span>
+        </a>
+    </div>
+    <span class="floating-header-divider">&mdash;</span>
+    <div class="floating-header-title">学习正则表达式的简单方法</div>
+    <progress class="progress" value="0">
+        <div class="progress-container">
+            <span class="progress-bar"></span>
+        </div>
+    </progress>
+</div>
+
+
+
+
+
+
+<script src="/js/mix/post-lazy.min.js"></script>
+
+<script>;(function() {var bLazy = new Blazy()})();</script>
+
+
+
+
+<script src="/js/lightgallery.min.js"></script>
+<link rel="stylesheet" href="/css/lightgallery.min.css">
+<script>
+    lightGallery(document.getElementById('lightgallery'), {
+        selector: '.post-img'
+    });
+</script>
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

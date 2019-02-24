@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="CN">
+
+
+
+
+
+
+
+<head>
+	
+	
+	<link rel="stylesheet" href="/css/allinone.min.css">
+
+	
+
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+	<title>lnmp 环境搭建 | C & Fish</title>
+
+	<meta name="HandheldFriendly" content="True">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+	<meta name="generator" content="hexo">
+	<meta name="author" content="ZiHang Gao">
+	<meta name="description" content>
+
+	
+	<meta name="keywords" content>
+	
+
+	
+	<link rel="shortcut icon" href="https://i.loli.net/2019/02/24/5c722760644a6.png">
+	<link rel="apple-touch-icon" href="https://i.loli.net/2019/02/24/5c722760644a6.png">
+	
+
+	
+	<meta name="theme-color" content="#3c484e">
+	<meta name="msapplication-TileColor" content="#3c484e">
+	
+
+	
+
+	
+
+	<meta property="og:site_name" content="C & Fish">
+	<meta property="og:type" content="article">
+	<meta property="og:title" content="lnmp 环境搭建 | C & Fish">
+	<meta property="og:description" content>
+	<meta property="og:url" content="https://cdoco.com/2016/02/20/2016-02-20-linux-nginx-mysql-php/">
+
+	
+	<meta property="article:published_time" content="2016-02-20T15:02:00+08:00"> 
+	<meta property="article:author" content="ZiHang Gao">
+	<meta property="article:published_first" content="C & Fish, /2016/02/20/2016-02-20-linux-nginx-mysql-php/">
+	
+</head>
+<body class="post-template">
+	<div class="site-wrapper">
+		
+
+
+
+
+<header class="site-header outer" style="z-index: 999">
+    <div class="inner">
+        
+<nav class="site-nav"> 
+    <div class="site-nav-left">
+        <ul class="nav">
+            <li>
+                
+                <a href="/" title="Home">HOME</a>
+                
+            </li>
+            
+            
+            <li>
+                <a href="/about" title="ABOUT">ABOUT</a>
+            </li>
+            
+            <li>
+                <a href="/archives" title="ARCHIVES">ARCHIVES</a>
+            </li>
+            
+            
+        </ul> 
+    </div>
+     
+    <div class="site-nav-right">
+         
+        
+<div class="social-links">
+    
+    <a class="social-link" title="weibo" href="https://weibo.com/u/233878950" target="_blank" rel="noopener">
+        <svg viewbox="0 0 1141 1024" xmlns="http://www.w3.org/2000/svg"><path d="M916.48 518.144q27.648 21.504 38.912 51.712t9.216 62.976-14.336 65.536-31.744 59.392q-34.816 48.128-78.848 81.92t-91.136 56.32-94.72 35.328-89.6 18.944-75.264 7.68-51.712 1.536-49.152-2.56-68.096-10.24-78.336-21.504-79.872-36.352-74.24-55.296-59.904-78.848q-16.384-29.696-22.016-63.488t-5.632-86.016q0-22.528 7.68-51.2t27.136-63.488 53.248-75.776 86.016-90.112q51.2-48.128 105.984-85.504t117.248-57.856q28.672-10.24 63.488-11.264t57.344 11.264q10.24 11.264 19.456 23.04t12.288 29.184q3.072 14.336 0.512 27.648t-5.632 26.624-5.12 25.6 2.048 22.528q17.408 2.048 33.792-1.536t31.744-9.216 31.232-11.776 33.28-9.216q27.648-5.12 54.784-4.608t49.152 7.68 36.352 22.016 17.408 38.4q2.048 14.336-2.048 26.624t-8.704 23.04-7.168 22.016 1.536 23.552q3.072 7.168 14.848 13.312t27.136 12.288 32.256 13.312 29.184 16.384zM658.432 836.608q26.624-16.384 53.76-45.056t44.032-64 18.944-75.776-20.48-81.408q-19.456-33.792-47.616-57.344t-62.976-37.376-74.24-19.968-80.384-6.144q-78.848 0-139.776 16.384t-105.472 43.008-72.192 60.416-38.912 68.608q-11.264 33.792-6.656 67.072t20.992 62.976 42.496 53.248 57.856 37.888q58.368 25.6 119.296 32.256t116.224 0.512 100.864-21.504 74.24-33.792zM524.288 513.024q20.48 8.192 38.912 18.432t32.768 27.648q10.24 12.288 17.92 30.72t10.752 39.424 1.536 42.496-9.728 38.912q-8.192 18.432-19.968 37.376t-28.672 35.328-40.448 29.184-57.344 18.944q-61.44 11.264-117.76-11.264t-88.064-74.752q-12.288-39.936-13.312-70.656t16.384-66.56q13.312-27.648 40.448-51.712t62.464-38.912 75.264-17.408 78.848 12.8zM361.472 764.928q37.888 3.072 57.856-18.432t21.504-48.128-15.36-47.616-52.736-16.896q-27.648 3.072-43.008 23.552t-17.408 43.52 9.728 42.496 39.424 21.504zM780.288 6.144q74.752 0 139.776 19.968t113.664 57.856 76.288 92.16 27.648 122.88q0 33.792-16.384 50.688t-35.328 17.408-35.328-14.336-16.384-45.568q0-40.96-22.528-77.824t-59.392-64.512-84.48-43.52-96.768-15.872q-31.744 0-47.104-15.36t-14.336-34.304 18.944-34.304 51.712-15.36zM780.288 169.984q95.232 0 144.384 48.64t49.152 146.944q0 30.72-10.24 43.52t-22.528 11.264-22.528-14.848-10.24-35.84q0-60.416-34.816-96.256t-93.184-35.84q-19.456 0-28.672-10.752t-9.216-23.04 9.728-23.04 28.16-10.752z"/></svg>
+    </a>
+    
+    
+    <a class="social-link" title="github" href="https://github.com/cdoco" target="_blank" rel="noopener">
+        <svg viewbox="0 0 1049 1024" xmlns="http://www.w3.org/2000/svg"><path d="M524.979332 0C234.676191 0 0 234.676191 0 524.979332c0 232.068678 150.366597 428.501342 358.967656 498.035028 26.075132 5.215026 35.636014-11.299224 35.636014-25.205961 0-12.168395-0.869171-53.888607-0.869171-97.347161-146.020741 31.290159-176.441729-62.580318-176.441729-62.580318-23.467619-60.841976-58.234462-76.487055-58.234463-76.487055-47.804409-32.15933 3.476684-32.15933 3.476685-32.15933 53.019436 3.476684 80.83291 53.888607 80.83291 53.888607 46.935238 79.963739 122.553122 57.365291 152.97411 43.458554 4.345855-33.897672 18.252593-57.365291 33.028501-70.402857-116.468925-12.168395-239.022047-57.365291-239.022047-259.012982 0-57.365291 20.860106-104.300529 53.888607-140.805715-5.215026-13.037566-23.467619-66.926173 5.215027-139.067372 0 0 44.327725-13.906737 144.282399 53.888607 41.720212-11.299224 86.917108-17.383422 131.244833-17.383422s89.524621 6.084198 131.244833 17.383422C756.178839 203.386032 800.506564 217.29277 800.506564 217.29277c28.682646 72.1412 10.430053 126.029806 5.215026 139.067372 33.897672 36.505185 53.888607 83.440424 53.888607 140.805715 0 201.64769-122.553122 245.975415-239.891218 259.012982 19.121764 16.514251 35.636014 47.804409 35.636015 97.347161 0 70.402857-0.869171 126.898978-0.869172 144.282399 0 13.906737 9.560882 30.420988 35.636015 25.205961 208.601059-69.533686 358.967656-265.96635 358.967655-498.035028C1049.958663 234.676191 814.413301 0 524.979332 0z"/></svg>
+    </a>
+    
+    
+    
+    <a class="social-link" title="twitter" href="https://twitter.com/gaozihang" target="_blank" rel="noopener">
+        <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 32 32"><path d="M30.063 7.313c-.813 1.125-1.75 2.125-2.875 2.938v.75c0 1.563-.188 3.125-.688 4.625a15.088 15.088 0 0 1-2.063 4.438c-.875 1.438-2 2.688-3.25 3.813a15.015 15.015 0 0 1-4.625 2.563c-1.813.688-3.75 1-5.75 1-3.25 0-6.188-.875-8.875-2.625.438.063.875.125 1.375.125 2.688 0 5.063-.875 7.188-2.5-1.25 0-2.375-.375-3.375-1.125s-1.688-1.688-2.063-2.875c.438.063.813.125 1.125.125.5 0 1-.063 1.5-.25-1.313-.25-2.438-.938-3.313-1.938a5.673 5.673 0 0 1-1.313-3.688v-.063c.813.438 1.688.688 2.625.688a5.228 5.228 0 0 1-1.875-2c-.5-.875-.688-1.813-.688-2.75 0-1.063.25-2.063.75-2.938 1.438 1.75 3.188 3.188 5.25 4.25s4.313 1.688 6.688 1.813a5.579 5.579 0 0 1 1.5-5.438c1.125-1.125 2.5-1.688 4.125-1.688s3.063.625 4.188 1.813a11.48 11.48 0 0 0 3.688-1.375c-.438 1.375-1.313 2.438-2.563 3.188 1.125-.125 2.188-.438 3.313-.875z"/></svg>
+
+    </a>
+    
+    
+    
+    
+</div>
+    </div>
+</nav>
+    </div>
+</header>
+
+
+<main id="site-main" class="site-main outer" role="main">
+    <div class="inner">
+        <header class="post-full-header">
+            <section class="post-full-meta">
+                <time class="post-full-meta-date" datetime="2016-02-20T15:40:41.000Z" itemprop="datePublished">
+                    2016-02-20
+                </time>
+                
+                <span class="date-divider">/</span>
+                
+                <a href="/categories/php/">php</a>&nbsp;&nbsp;
+                
+                
+            </section>
+            <h1 class="post-full-title">lnmp 环境搭建</h1>
+        </header>
+        <article class="post-full no-image">
+            
+            <section class="post-full-content">
+                <div id="lightgallery" class="markdown-body">
+                    <h2 id="编译nginx"><a href="#编译nginx" class="headerlink" title="编译nginx"></a>编译nginx</h2><h3 id="编译zlib，下载地址-zlib"><a href="#编译zlib，下载地址-zlib" class="headerlink" title="编译zlib，下载地址 zlib"></a>编译zlib，下载地址 <a href="http://www.zlib.net/" target="_blank" rel="noopener">zlib</a></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">tar xvf zlib-1.2.8.tar.gz</span><br><span class="line">./configure --static --prefix=/opt/<span class="built_in">source</span>/libs/zlib</span><br><span class="line">make</span><br><span class="line">make install</span><br></pre></td></tr></table></figure>
+<a id="more"></a>
+<h3 id="编译openssl，下载地址-openssl"><a href="#编译openssl，下载地址-openssl" class="headerlink" title="编译openssl，下载地址 openssl"></a>编译openssl，下载地址 <a href="http://www.openssl.org/" target="_blank" rel="noopener">openssl</a></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">tar xvf openssl-0.9.8zb.tar.gz</span><br><span class="line">./config --prefix=/opt/<span class="built_in">source</span>/libs/openssl -L/opt/<span class="built_in">source</span>/libs/zlib/lib -I/opt/<span class="built_in">source</span>/libs/zlib/include threads zlib <span class="built_in">enable</span>-static-engine</span><br><span class="line">make</span><br><span class="line">make install</span><br></pre></td></tr></table></figure>
+<h3 id="编译pcre，下载地址-pcre"><a href="#编译pcre，下载地址-pcre" class="headerlink" title="编译pcre，下载地址 pcre"></a>编译pcre，下载地址 <a href="http://www.pcre.org/" target="_blank" rel="noopener">pcre</a></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">tar xvf pcre-8.33.tar.gz</span><br><span class="line">./configure --prefix=/opt/<span class="built_in">source</span>/libs/pcre</span><br><span class="line">make</span><br><span class="line">make install</span><br></pre></td></tr></table></figure>
+<h3 id="编译nginx，下载地址-nginx"><a href="#编译nginx，下载地址-nginx" class="headerlink" title="编译nginx，下载地址 nginx"></a>编译nginx，下载地址 <a href="http://nginx.org/en/download.html" target="_blank" rel="noopener">nginx</a></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">tar xvf nginx-1.9.1.tar.gz</span><br><span class="line"><span class="string">'./configure'</span> \</span><br><span class="line"><span class="string">'--prefix=/opt/source/nginx'</span> \</span><br><span class="line"><span class="string">'--with-debug'</span> \</span><br><span class="line"><span class="string">'--with-openssl=/opt/data/openssl-0.9.8zb'</span> \</span><br><span class="line"><span class="string">'--with-zlib=/opt/data/zlib-1.2.8'</span> \</span><br><span class="line"><span class="string">'--with-pcre=/opt/data/pcre-8.33'</span> \</span><br><span class="line"><span class="string">'--with-http_stub_status_module'</span> \</span><br><span class="line"><span class="string">'--with-http_gzip_static_module'</span> \</span><br><span class="line"><span class="string">"<span class="variable">$@</span>"</span></span><br><span class="line">make</span><br><span class="line">make install</span><br><span class="line"></span><br><span class="line">ps：--with-openssl --with-zlib --with-pcre这3个路径是他们对应的源码路径</span><br></pre></td></tr></table></figure>
+<p>生成的nginx在/opt/source/nginx/sbin下</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">./nginx --运行程序</span><br><span class="line">在地址栏输入:  http://localhost 出现nginx logo，说明正确安装了</span><br></pre></td></tr></table></figure>
+<h2 id="编译php-centos"><a href="#编译php-centos" class="headerlink" title="编译php (centos)"></a>编译php (centos)</h2><h3 id="安装php依赖的运行库"><a href="#安装php依赖的运行库" class="headerlink" title="安装php依赖的运行库"></a>安装php依赖的运行库</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">yum install libjpeg.x86_64 \</span><br><span class="line">libpng.x86_64 \</span><br><span class="line">freetype.x86_64 \</span><br><span class="line">libjpeg-devel.x86_64 \</span><br><span class="line">libpng-devel.x86_64 \</span><br><span class="line">freetype-devel.x86_64 \</span><br><span class="line">libcurl-devel \</span><br><span class="line">libxml2-devel \</span><br><span class="line">libjpeg-turbo \</span><br><span class="line">libjpeg-turbo-devel \</span><br><span class="line">libXpm-devel \</span><br><span class="line">libXpm \</span><br><span class="line">libicu-devel \</span><br><span class="line">libmcrypt</span><br><span class="line">libmcrypt-devel \</span><br><span class="line">libxslt-devel \</span><br><span class="line">libxslt -y</span><br></pre></td></tr></table></figure>
+<h3 id="下载php源码-amp-amp-编译-，下载地址-php"><a href="#下载php源码-amp-amp-编译-，下载地址-php" class="headerlink" title="下载php源码 &amp;&amp; 编译 ，下载地址 php"></a>下载php源码 &amp;&amp; 编译 ，下载地址 <a href="http://php.net/downloads.php" target="_blank" rel="noopener">php</a></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">'./configure'</span> \</span><br><span class="line"><span class="string">'--prefix=/opt/source/php/'</span> \</span><br><span class="line"><span class="string">'--with-config-file-path=/opt/source/php/etc/'</span> \</span><br><span class="line"><span class="string">'--with-config-file-scan-dir=/opt/source/php/conf.d/'</span> \</span><br><span class="line"><span class="string">'--enable-fpm'</span> \</span><br><span class="line"><span class="string">'--enable-cgi'</span> \</span><br><span class="line"><span class="string">'--disable-phpdbg'</span> \</span><br><span class="line"><span class="string">'--disable-jsond'</span> \</span><br><span class="line"><span class="string">'--enable-mbstring'</span> \</span><br><span class="line"><span class="string">'--enable-calendar'</span> \</span><br><span class="line"><span class="string">'--with-xsl'</span> \</span><br><span class="line"><span class="string">'--with-openssl'</span> \</span><br><span class="line"><span class="string">'--enable-soap'</span> \</span><br><span class="line"><span class="string">'--enable-zip'</span> \</span><br><span class="line"><span class="string">'--enable-shmop'</span> \</span><br><span class="line"><span class="string">'--enable-sockets'</span> \</span><br><span class="line"><span class="string">'--with-gd'</span> \</span><br><span class="line"><span class="string">'--with-jpeg-dir'</span> \</span><br><span class="line"><span class="string">'--with-png-dir'</span> \</span><br><span class="line"><span class="string">'--with-xpm-dir'</span> \</span><br><span class="line"><span class="string">'--with-xmlrpc'</span> \</span><br><span class="line"><span class="string">'--enable-pcntl'</span> \</span><br><span class="line"><span class="string">'--enable-intl'</span> \</span><br><span class="line"><span class="string">'--with-mcrypt'</span> \</span><br><span class="line"><span class="string">'--enable-sysvsem'</span> \</span><br><span class="line"><span class="string">'--enable-sysvshm'</span> \</span><br><span class="line"><span class="string">'--enable-sysvmsg'</span> \</span><br><span class="line"><span class="string">'--enable-opcache'</span> \</span><br><span class="line"><span class="string">'--with-iconv'</span> \</span><br><span class="line"><span class="string">'--with-bz2'</span> \</span><br><span class="line"><span class="string">'--with-curl'</span> \</span><br><span class="line"><span class="string">'--enable-mysqlnd'</span> \</span><br><span class="line"><span class="string">'--with-mysql=mysqlnd'</span> \</span><br><span class="line"><span class="string">'--with-mysqli=mysqlnd'</span> \</span><br><span class="line"><span class="string">'--with-pdo-mysql=mysqlnd'</span> \</span><br><span class="line"><span class="string">'--with-zlib'</span> \</span><br><span class="line"><span class="string">'--with-gettext='</span> \</span><br><span class="line"><span class="string">"<span class="variable">$@</span>"</span></span><br><span class="line">make</span><br><span class="line">make install</span><br></pre></td></tr></table></figure>
+<p>ps：这里参数比较多，可以根据自己的需要删除一些</p>
+<p>然后需要把php.ini 复制到/opt/source/php/etc/ 目录下面</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cp /opt/data/php-src/php.ini-development /opt/<span class="built_in">source</span>/php/etc/php.ini</span><br></pre></td></tr></table></figure>
+<p>生成的php-fpm 在/opt/source/php/sbin 目录下</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">./php-fpm --运行fpm 默认端口是 9000</span><br><span class="line"></span><br><span class="line">ps aux |grep php --如果看到fpm master进程，说明安装成功了</span><br></pre></td></tr></table></figure>
+<p>pa：如果安装过程出现问题，请参照 <a href="https://github.com/cdoco/cdoco.github.io/blob/master/md/php-faq.md" target="_blank" rel="noopener">编译php常见问题</a></p>
+<h3 id="nginx-配置"><a href="#nginx-配置" class="headerlink" title="nginx 配置"></a>nginx 配置</h3><p>编辑nginx.conf</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim /opt/<span class="built_in">source</span>/nginx/conf/nginx.conf</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#user  nobody;</span></span><br><span class="line">worker_processes  1;</span><br><span class="line"></span><br><span class="line">error_log  logs/error.log;</span><br><span class="line"><span class="comment">#error_log  logs/error.log  notice;</span></span><br><span class="line"><span class="comment">#error_log  logs/error.log  info;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#pid        logs/nginx.pid;</span></span><br><span class="line"></span><br><span class="line">events &#123;</span><br><span class="line">    worker_connections  1024;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment"># load modules compiled as Dynamic Shared Object (DSO)</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment">#dso &#123;</span></span><br><span class="line"><span class="comment">#    load ngx_http_fastcgi_module.so;</span></span><br><span class="line"><span class="comment">#    load ngx_http_rewrite_module.so;</span></span><br><span class="line"><span class="comment">#&#125;</span></span><br><span class="line"></span><br><span class="line">http &#123;</span><br><span class="line">    include       mime.types;</span><br><span class="line">    default_type  application/octet-stream;</span><br><span class="line"></span><br><span class="line">    log_format  main  <span class="string">'$remote_addr - $remote_user [$time_local] "$request" '</span></span><br><span class="line">                      <span class="string">'$status $body_bytes_sent "$http_referer" '</span></span><br><span class="line">                      <span class="string">'"$http_user_agent" "$http_x_forwarded_for"'</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">#access_log  logs/access.log  main;</span></span><br><span class="line"></span><br><span class="line">    sendfile        off;</span><br><span class="line">    <span class="comment">#tcp_nopush     on;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">#keepalive_timeout  0;</span></span><br><span class="line">    keepalive_timeout  65;</span><br><span class="line"></span><br><span class="line">    gzip  on;</span><br><span class="line">    gzip_min_length 1k;</span><br><span class="line">    gzip_buffers    16 64k;</span><br><span class="line">    gzip_http_version 1.1;</span><br><span class="line">    gzip_disable <span class="string">"MSIE [1-6]."</span>;</span><br><span class="line">    gzip_comp_level 7;</span><br><span class="line">    gzip_types text/plain application/xml text/css application/x-javascript;</span><br><span class="line">    gzip_vary on;</span><br><span class="line"></span><br><span class="line">    include /opt/<span class="built_in">source</span>/nginx/conf/vhost/*.conf;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>创建vhost文件夹</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mkdir /opt/<span class="built_in">source</span>/nginx/conf/vhost</span><br><span class="line"><span class="built_in">cd</span> /opt/<span class="built_in">source</span>/nginx/conf/vhost</span><br><span class="line">touch default.conf &amp;&amp; vim default.conf</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">server&#123;</span><br><span class="line">    listen       *:80 default;</span><br><span class="line">    root    /opt/<span class="built_in">source</span>/www;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (!-e <span class="variable">$request_filename</span>) &#123;  </span><br><span class="line">        rewrite ^/(.*) /index.php?<span class="variable">$1</span> last;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    location ~ .*\.(css|less|scss|js|coffee|gif|jpg|jpeg|png|bmp|swf)$ &#123;</span><br><span class="line">        access_log off;</span><br><span class="line">        expires 1d;</span><br><span class="line">        <span class="built_in">break</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    location ~ .* &#123;  </span><br><span class="line">            fastcgi_pass   127.0.0.1:9000;</span><br><span class="line">            fastcgi_index  index.php;</span><br><span class="line">            fastcgi_param  SCRIPT_FILENAME  /opt/<span class="built_in">source</span>/www<span class="variable">$fastcgi_script_name</span>;</span><br><span class="line">            include        fastcgi_params;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>然后 建一个index.php测试文件</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> /opt/<span class="built_in">source</span>/www</span><br><span class="line">touch index.php &amp;&amp; vim index.php</span><br></pre></td></tr></table></figure>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span> phpinfo();<span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+<p>重启nginx</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">/opt/<span class="built_in">source</span>/nginx/sbin/nginx -s reload --重启nginx</span><br><span class="line">在地址栏输入:  http://localhost 出现phpinfo，说明正确安装了</span><br></pre></td></tr></table></figure>
+<h2 id="编译mysql"><a href="#编译mysql" class="headerlink" title="编译mysql"></a>编译mysql</h2><h3 id="下载mysql源代码包，到mysql下载页面选择MYSQL-Community-Serve-Source-Code-版本"><a href="#下载mysql源代码包，到mysql下载页面选择MYSQL-Community-Serve-Source-Code-版本" class="headerlink" title="下载mysql源代码包，到mysql下载页面选择MYSQL Community Serve Source Code 版本"></a>下载mysql源代码包，到mysql下载页面选择MYSQL Community Serve Source Code 版本</h3><h3 id="安装-bison，下载地址-bison"><a href="#安装-bison，下载地址-bison" class="headerlink" title="安装 bison，下载地址 bison"></a>安装 bison，下载地址 <a href="http://www.gnu.org/software/bison/" target="_blank" rel="noopener">bison</a></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">tar zxvf bison-2.5.tar.gz  </span><br><span class="line"><span class="built_in">cd</span> bison-2.5</span><br><span class="line">./configure</span><br><span class="line">make</span><br><span class="line">make install</span><br></pre></td></tr></table></figure>
+<h3 id="安装ncurses，下载地址-ncurses"><a href="#安装ncurses，下载地址-ncurses" class="headerlink" title="安装ncurses，下载地址 ncurses"></a>安装ncurses，下载地址 <a href="http://www.gnu.org/software/ncurses/" target="_blank" rel="noopener">ncurses</a></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">tar zxvf ncurses-5.8.tar.gz  </span><br><span class="line"><span class="built_in">cd</span> ncurses-5.8  </span><br><span class="line">./configure  </span><br><span class="line">make  </span><br><span class="line">make install</span><br></pre></td></tr></table></figure>
+<h3 id="添加mysql用户与组"><a href="#添加mysql用户与组" class="headerlink" title="添加mysql用户与组"></a>添加mysql用户与组</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">groupadd mysql</span><br><span class="line">useradd -g mysql -s /sbin/nologin -M mysql</span><br></pre></td></tr></table></figure>
+<h3 id="源码编译mysql"><a href="#源码编译mysql" class="headerlink" title="源码编译mysql"></a>源码编译mysql</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">tar zxvf mysql-5.5.13.tar.gz</span><br><span class="line"><span class="built_in">cd</span> mysql-5.5.13</span><br><span class="line">rm CMakeCache.txt</span><br><span class="line">cmake . -DCMAKE_INSTALL_PREFIX=/opt/<span class="built_in">source</span>/mysql/  \</span><br><span class="line">-DMYSQL_DATADIR=/opt/<span class="built_in">source</span>/mysql/data  \</span><br><span class="line">-DWITH_INNOBASE_STORAGE_ENGINE=1  \</span><br><span class="line">-DMYSQL_TCP_PORT=3306  \</span><br><span class="line">-DMYSQL_UNIX_ADDR=/opt/<span class="built_in">source</span>/mysql/data/mysql.sock  \</span><br><span class="line">-DMYSQL_USER=mysql  \</span><br><span class="line">-DWITH_DEBUG=0</span><br><span class="line">make</span><br><span class="line">make install</span><br></pre></td></tr></table></figure>
+<h3 id="编译完成后，安装数据库"><a href="#编译完成后，安装数据库" class="headerlink" title="编译完成后，安装数据库"></a>编译完成后，安装数据库</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> /opt/<span class="built_in">source</span>/mysql</span><br><span class="line">chown -R mysql .</span><br><span class="line">chgrp -R mysql .</span><br><span class="line">scripts/mysql_install_db --user=mysql --basedir=/opt/<span class="built_in">source</span>/mysql --datadir=/opt/<span class="built_in">source</span>/mysql/data</span><br><span class="line">chown -R root .</span><br><span class="line">chown -R mysql ./data</span><br></pre></td></tr></table></figure>
+<h3 id="可选的命令，将mysql的配置文件拷贝到-etc"><a href="#可选的命令，将mysql的配置文件拷贝到-etc" class="headerlink" title="可选的命令，将mysql的配置文件拷贝到/etc"></a>可选的命令，将mysql的配置文件拷贝到/etc</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cp support-files/my-medium.cnf /etc/my.cnf</span><br><span class="line">ps：如果原来的/etc目录下有my.cnf文件，则一定要用编译安装的my.cnf替换掉系统默认的my..cnf。否则会报错</span><br></pre></td></tr></table></figure>
+<h3 id="启动mysql"><a href="#启动mysql" class="headerlink" title="启动mysql"></a>启动mysql</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">bin/mysqld_safe --user=mysql &amp;</span><br><span class="line"><span class="comment">#启动mysql，看是否成功</span></span><br><span class="line">netstat -tnl|grep 3306</span><br><span class="line">或者</span><br><span class="line">ps -aux|grep <span class="string">'mysql'</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">可选步骤：设置root 密码：</span><br><span class="line">/opt/<span class="built_in">source</span>/mysql/bin/mysqladmin -u root password <span class="string">'new-password'</span></span><br><span class="line">/opt/<span class="built_in">source</span>/mysql/bin/mysqladmin -u root -h localhost.localdomain password <span class="string">'new-password'</span></span><br></pre></td></tr></table></figure>
+
+                </div>
+            </section>
+        </article>
+    </div>
+
+    
+    <div style="height: 4vw;width: 100%"></div>
+    <nav id="gobottom" class="pagination">
+        
+        <a class="prev-post" title="phpstorm+xdebug配置" href="/2016/02/21/2016-02-20-xdebug/">
+            ← phpstorm+xdebug配置
+        </a>
+        
+        <span class="prev-next-post">•</span>
+        
+    </nav>
+
+    
+</main>
+
+<div class="toc-bar">
+    <div class="toc-btn-bar">
+        <a href="#site-main" class="toc-btn">
+            <svg viewbox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg"><path d="M793.024 710.272a32 32 0 1 0 45.952-44.544l-310.304-320a32 32 0 0 0-46.4 0.48l-297.696 320a32 32 0 0 0 46.848 43.584l274.752-295.328 286.848 295.808z"/></svg>
+        </a>
+        <div class="toc-btn toc-switch">
+            <svg class="toc-open" viewbox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg"><path d="M779.776 480h-387.2a32 32 0 0 0 0 64h387.2a32 32 0 0 0 0-64M779.776 672h-387.2a32 32 0 0 0 0 64h387.2a32 32 0 0 0 0-64M256 288a32 32 0 1 0 0 64 32 32 0 0 0 0-64M392.576 352h387.2a32 32 0 0 0 0-64h-387.2a32 32 0 0 0 0 64M256 480a32 32 0 1 0 0 64 32 32 0 0 0 0-64M256 672a32 32 0 1 0 0 64 32 32 0 0 0 0-64"/></svg>
+            <svg class="toc-close hide" viewbox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg"><path d="M512 960c-247.039484 0-448-200.960516-448-448S264.960516 64 512 64 960 264.960516 960 512 759.039484 960 512 960zM512 128.287273c-211.584464 0-383.712727 172.128262-383.712727 383.712727 0 211.551781 172.128262 383.712727 383.712727 383.712727 211.551781 0 383.712727-172.159226 383.712727-383.712727C895.712727 300.415536 723.551781 128.287273 512 128.287273z"/><path d="M557.05545 513.376159l138.367639-136.864185c12.576374-12.416396 12.672705-32.671738 0.25631-45.248112s-32.704421-12.672705-45.248112-0.25631l-138.560301 137.024163-136.447897-136.864185c-12.512727-12.512727-32.735385-12.576374-45.248112-0.063647-12.512727 12.480043-12.54369 32.735385-0.063647 45.248112l136.255235 136.671523-137.376804 135.904314c-12.576374 12.447359-12.672705 32.671738-0.25631 45.248112 6.271845 6.335493 14.496116 9.504099 22.751351 9.504099 8.12794 0 16.25588-3.103239 22.496761-9.247789l137.567746-136.064292 138.687596 139.136568c6.240882 6.271845 14.432469 9.407768 22.65674 9.407768 8.191587 0 16.352211-3.135923 22.591372-9.34412 12.512727-12.480043 12.54369-32.704421 0.063647-45.248112L557.05545 513.376159z"/></svg>
+        </div>
+        <a href="#gobottom" class="toc-btn">
+            <svg viewbox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg"><path d="M231.424 346.208a32 32 0 0 0-46.848 43.584l297.696 320a32 32 0 0 0 46.4 0.48l310.304-320a32 32 0 1 0-45.952-44.544l-286.848 295.808-274.752-295.36z"/></svg>
+        </a>
+    </div>
+    <div class="toc-main">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#编译nginx"><span class="toc-text">编译nginx</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#编译zlib，下载地址-zlib"><span class="toc-text">编译zlib，下载地址 zlib</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#编译openssl，下载地址-openssl"><span class="toc-text">编译openssl，下载地址 openssl</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#编译pcre，下载地址-pcre"><span class="toc-text">编译pcre，下载地址 pcre</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#编译nginx，下载地址-nginx"><span class="toc-text">编译nginx，下载地址 nginx</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#编译php-centos"><span class="toc-text">编译php (centos)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#安装php依赖的运行库"><span class="toc-text">安装php依赖的运行库</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#下载php源码-amp-amp-编译-，下载地址-php"><span class="toc-text">下载php源码 &amp;&amp; 编译 ，下载地址 php</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#nginx-配置"><span class="toc-text">nginx 配置</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#编译mysql"><span class="toc-text">编译mysql</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#下载mysql源代码包，到mysql下载页面选择MYSQL-Community-Serve-Source-Code-版本"><span class="toc-text">下载mysql源代码包，到mysql下载页面选择MYSQL Community Serve Source Code 版本</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#安装-bison，下载地址-bison"><span class="toc-text">安装 bison，下载地址 bison</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#安装ncurses，下载地址-ncurses"><span class="toc-text">安装ncurses，下载地址 ncurses</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#添加mysql用户与组"><span class="toc-text">添加mysql用户与组</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#源码编译mysql"><span class="toc-text">源码编译mysql</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#编译完成后，安装数据库"><span class="toc-text">编译完成后，安装数据库</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#可选的命令，将mysql的配置文件拷贝到-etc"><span class="toc-text">可选的命令，将mysql的配置文件拷贝到/etc</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#启动mysql"><span class="toc-text">启动mysql</span></a></li></ol></li></ol>
+    </div>
+</div>
+
+
+
+	</div>
+	
+
+
+<aside class="read-next outer">
+    <div class="inner">
+        <div class="read-next-feed">
+            
+            
+
+<article class="read-next-card" style="background-image: url(https://i.loli.net/2019/02/24/5c72252a523c7.jpg)">
+  <header class="read-next-card-header">
+    <small class="read-next-card-header-sitetitle">&mdash; C & Fish &mdash;</small>
+    <h3 class="read-next-card-header-title">Recent Posts</h3>
+  </header>
+  <div class="read-next-divider">
+    <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24">
+      <path d="M13 14.5s2 3 5 3 5.5-2.463 5.5-5.5S21 6.5 18 6.5c-5 0-7 11-12 11C2.962 17.5.5 15.037.5 12S3 6.5 6 6.5s4.5 3.5 4.5 3.5"/>
+    </svg>
+  </div>
+  <div class="read-next-card-content">
+    <ul>
+      
+      
+      
+      <li>
+        <a href="/2017/11/07/2017-11-07-learn-c/">C 语言基础入门</a>
+      </li>
+      
+      
+      
+      <li>
+        <a href="/2017/11/02/2017-11-01-php-patterns/">PHP 设计模式</a>
+      </li>
+      
+      
+      
+      <li>
+        <a href="/2017/08/15/2017-08-15-learn-regex-zh/">学习正则表达式的简单方法</a>
+      </li>
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+    </ul>
+  </div>
+  <footer class="read-next-card-footer">
+    <a href="/archives">  MORE  → </a>
+  </footer>
+</article>
+
+            
+            
+            
+
+            
+            
+            
+            
+        </div>
+    </div>
+</aside>
+
+	
+
+
+
+
+
+<footer class="site-footer outer">
+	<div class="site-footer-content inner">
+		<section class="copyright">
+			<a href="/" title="C & Fish">C & Fish</a>
+			&copy; 2019
+		</section>
+		<nav class="site-footer-nav">
+			
+            <a href="https://hexo.io" title="Hexo" target="_blank" rel="noopener">Hexo</a>
+            <a href="https://github.com/xzhih/hexo-theme-casper" title="Casper" target="_blank" rel="noopener">Casper</a>
+        </nav>
+    </div>
+</footer>
+	
+
+
+<script>
+    if(window.navigator && navigator.serviceWorker) {
+        navigator.serviceWorker.getRegistrations()
+        .then(function(registrations) {
+            for(let registration of registrations) {
+                registration.unregister();
+            }
+        });
+    }
+</script>
+
+
+
+
+
+
+
+<div class="floating-header">
+	<div class="floating-header-logo">
+        <a href="/" title="C & Fish">
+			
+                <img src="https://i.loli.net/2019/02/24/5c722760644a6.png" alt="C & Fish icon">
+			
+            <span>C & Fish</span>
+        </a>
+    </div>
+    <span class="floating-header-divider">&mdash;</span>
+    <div class="floating-header-title">lnmp 环境搭建</div>
+    <progress class="progress" value="0">
+        <div class="progress-container">
+            <span class="progress-bar"></span>
+        </div>
+    </progress>
+</div>
+
+
+
+
+
+
+<script src="/js/mix/post-lazy.min.js"></script>
+
+<script>;(function() {var bLazy = new Blazy()})();</script>
+
+
+
+
+<script src="/js/lightgallery.min.js"></script>
+<link rel="stylesheet" href="/css/lightgallery.min.css">
+<script>
+    lightGallery(document.getElementById('lightgallery'), {
+        selector: '.post-img'
+    });
+</script>
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>
