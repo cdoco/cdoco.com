@@ -39,8 +39,8 @@ footer_text:
 # Widget
 widgets:
   recent_posts: true
-  category: true
-  tagcloud: true
+  category: false
+  tagcloud: false
   # This is a simple theme, I think 3 is enough.
 
 # Gallery
@@ -57,12 +57,12 @@ local_search: false
 
 # Comment
 # https://valine.js.org
-comment: false
+comment: true
 valine:
   notify: false # mail notifier , https://github.com/xCss/Valine/wiki 
   verify: false # Verification code
-  appId: # your leancloud application appid
-  appKey: # your leancloud application appkey
+  appId: GApo23xpnMMfYYYJDtsjFtk8-gzGzoHsz
+  appKey: YMK4noseRycbeW2tOG0gClRh
   placeholder: Just go go # comment box placeholder
   pageSize: 10 # pagination size
   avatar: mm # gravatar style
