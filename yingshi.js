@@ -92,9 +92,10 @@ class Yingshi extends Deup {
    */
   formatVideoList(data) {
     return data.list.map((video) => {
-      const playUrls = video.vod_play_url
-        .split(video.vod_play_note)[1]
-        .split('#');
+      const playUrls =
+        video.vod_play_note === ''
+          ? video.vod_play_url.split('#')
+          : video.vod_play_url.split(video.vod_play_note)[1].split('#');
 
       return {
         id: `${video.vod_id}#1`,
