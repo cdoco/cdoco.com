@@ -97,7 +97,7 @@ class Yingshi extends Deup {
         .split('#');
 
       return {
-        id: `${video.vod_id}`,
+        id: `${video.vod_id}#1`,
         name: playUrls.length > 1 ? playUrls[0].split('$')[0] : video.vod_name,
         type: 'video',
         remark: video.vod_remarks,
@@ -108,7 +108,7 @@ class Yingshi extends Deup {
         related: playUrls.map((value, key) => {
           const [name, url] = value.split('$');
           return {
-            id: key === 0 ? `${video.vod_id}` : `${video.vod_id}#${key + 1}`,
+            id: `${video.vod_id}#${key + 1}`,
             name: playUrls.length > 1 ? name : video.vod_name,
             url,
             type: 'video',
