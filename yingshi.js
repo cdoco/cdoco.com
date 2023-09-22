@@ -48,7 +48,7 @@ class Yingshi extends Deup {
   async list(object = null, offset = 0, limit = 20) {
     const page = Math.floor(offset / limit) + 1;
     const response = await $axios.get(
-      `https://www.hongniuzy2.com/api.php/provide/vod/from/hnm3u8?ac=detail&pg=${page}`,
+      `https://cj.lziapi.com/api.php/providedown/vod?ac=detail&pg=${page}`,
     );
 
     try {
@@ -72,7 +72,7 @@ class Yingshi extends Deup {
   async search(object, keyword, offset, limit) {
     const page = Math.floor(offset / limit) + 1;
     const response = await $axios.get(
-      `https://www.hongniuzy2.com/api.php/provide/vod/from/hnm3u8?ac=detail&wd=${keyword}&pg=${page}`,
+      `https://cj.lziapi.com/api.php/providedown/vod?ac=detail&wd=${keyword}&pg=${page}`,
     );
 
     try {
