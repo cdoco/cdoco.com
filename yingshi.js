@@ -103,7 +103,7 @@ class Yingshi extends Deup {
         remark: video.vod_remarks,
         thumbnail: video.vod_pic,
         poster: video.vod_pic,
-        modified: new Date(video.vod_time).toISOString(),
+        modified: new Date(Date.parse(video.vod_time)).toISOString(),
         url: playUrls[0].split('$')[1],
         extra: {
           name:
