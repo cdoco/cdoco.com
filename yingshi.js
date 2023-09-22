@@ -7,9 +7,9 @@
  */
 class Yingshi extends Deup {
   /**
-   * Define the basic configuration of the yingshi plugin
+   * Define the basic configuration
    *
-   * @type {{layout: string, name: string, logo: string, pageSize: number, timeout: number}}
+   * @type {{layout: string, name: string, pageSize: number, timeout: number}}
    */
   config = {
     name: 'Movies & TV',
@@ -34,7 +34,7 @@ class Yingshi extends Deup {
    * @returns {Promise<any>}
    */
   async get(object) {
-    return object;
+    return object.extra ? { ...object, name: object.extra.name } : object;
   }
 
   /**
@@ -98,13 +98,17 @@ class Yingshi extends Deup {
 
       return {
         id: `${video.vod_id}#1`,
-        name: playUrls.length > 1 ? playUrls[0].split('$')[0] : video.vod_name,
+        name: video.vod_name,
         type: 'video',
         remark: video.vod_remarks,
         thumbnail: video.vod_pic,
         poster: video.vod_pic,
         modified: new Date(video.vod_time).toISOString(),
         url: playUrls[0].split('$')[1],
+        extra: {
+          name:
+            playUrls.length > 1 ? playUrls[0].split('$')[0] : video.vod_name,
+        },
         related: playUrls.map((value, key) => {
           const [name, url] = value.split('$');
           return {
