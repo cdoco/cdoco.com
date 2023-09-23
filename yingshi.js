@@ -180,7 +180,7 @@ class Yingshi extends Deup {
           : video.vod_play_url.split(video.vod_play_note)[1].split('#');
 
       return {
-        id: `${video.vod_id}#${playUrls.length - 1}`,
+        id: `${video.vod_id}#${playUrls.length}`,
         name: video.vod_name,
         type: 'video',
         remark: video.vod_remarks,
