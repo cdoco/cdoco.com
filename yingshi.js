@@ -105,7 +105,7 @@ class Yingshi extends Deup {
   async list(object = null, offset = 0, limit = 50) {
     const page = Math.floor(offset / limit) + 1;
     const type = (await $storage.inputs).type || '';
-    let url = `https://cj.lziapi.com/api.php/provide/vod/vod?ac=detail&pg=${page}&pagesize=${limit}`;
+    let url = `https://cj.lziapi.com/api.php/provide/vod?ac=detail&pg=${page}&pagesize=${limit}`;
 
     // Filter by type
     if (type !== '') {
@@ -129,7 +129,7 @@ class Yingshi extends Deup {
         $alert('未发现该类别的视频, 请查看源码注释获取类别编号');
         return [];
       }
-      url += `&ids=${ids}`;
+      url = `https://cj.lziapi.com/api.php/provide/vod?ac=detail&ids=${ids}&pagesize=${limit}`;
     }
 
     try {
