@@ -21,7 +21,7 @@ class Yingshi extends Deup {
   /**
    * Define inputs
    *
-   * Category:
+   * Types:
    * - 1: 电影
    * - 2: 连续剧
    * - 3: 综艺
