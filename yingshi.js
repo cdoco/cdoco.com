@@ -129,7 +129,7 @@ class Yingshi extends Deup {
         $alert('未发现该类别的视频, 请查看源码注释获取类别编号');
         return [];
       }
-      url = `https://cj.lziapi.com/api.php/provide/vod/vod?ac=detail&ids=${ids}`;
+      url += `&ids=${ids}`;
     }
 
     try {
