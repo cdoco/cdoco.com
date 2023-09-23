@@ -21,7 +21,7 @@ class Yingshi extends Deup {
   /**
    * Define inputs
    *
-   * Types:
+   * Category:
    * - 1: 电影
    * - 2: 连续剧
    * - 3: 综艺
@@ -180,7 +180,7 @@ class Yingshi extends Deup {
           : video.vod_play_url.split(video.vod_play_note)[1].split('#');
 
       return {
-        id: `${video.vod_id}#1`,
+        id: `${video.vod_id}#${playUrls.length - 1}`,
         name: video.vod_name,
         type: 'video',
         remark: video.vod_remarks,
@@ -189,21 +189,25 @@ class Yingshi extends Deup {
         modified: new Date(
           Date.parse(video.vod_time.replace(' ', 'T')),
         ).toISOString(),
-        url: playUrls[0].split('$')[1],
+        url: playUrls[playUrls.length - 1].split('$')[1],
         extra: {
           name:
-            playUrls.length > 1 ? playUrls[0].split('$')[0] : video.vod_name,
+            playUrls.length > 1
+              ? playUrls[playUrls.length - 1].split('$')[0]
+              : video.vod_name,
         },
-        related: playUrls.map((value, key) => {
-          const [name, url] = value.split('$');
-          return {
-            id: `${video.vod_id}#${key + 1}`,
-            name: playUrls.length > 1 ? name : video.vod_name,
-            url,
-            type: 'video',
-            thumbnail: video.vod_pic,
-          };
-        }),
+        related: playUrls
+          .map((value, key) => {
+            const [name, url] = value.split('$');
+            return {
+              id: `${video.vod_id}#${key + 1}`,
+              name: playUrls.length > 1 ? name : video.vod_name,
+              url,
+              type: 'video',
+              thumbnail: video.vod_pic,
+            };
+          })
+          .reverse(),
       };
     });
   }
