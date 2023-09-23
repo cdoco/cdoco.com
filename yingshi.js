@@ -1,11 +1,11 @@
 /**
- * Yingshi plugin for Deup
+ * MoviesTv plugin for Deup
  *
- * @class Yingshi
+ * @class MoviesTv
  * @extends {Deup}
  * @author ZiHang Gao
  */
-class Yingshi extends Deup {
+class MoviesTv extends Deup {
   /**
    * Define the basic configuration
    *
@@ -23,7 +23,7 @@ class Yingshi extends Deup {
    *
    * Types:
    * - 1: 电影
-   * - 2: 连续剧
+   * - 2: 电视剧
    * - 3: 综艺
    * - 4: 动漫
    * - 6: 动作
@@ -209,4 +209,4 @@ class Yingshi extends Deup {
   }
 }
 
-Deup.execute(new Yingshi());
+Deup.execute(new MoviesTv());
